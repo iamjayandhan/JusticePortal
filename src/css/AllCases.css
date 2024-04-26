@@ -1,0 +1,41 @@
+/* AllCases.css */
+
+.case-container {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  padding: 20px;
+  max-width: 500px; /* Set maximum width to 800px */
+  margin: 0 auto; /* Center the container horizontally */
+}
+
+.case-title {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.case-description {
+  margin-bottom: 10px;
+}
+
+.case-details {
+  margin-bottom: 10px;
+}
+
+.files-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.file-item {
+  margin-bottom: 5px;
+}
+
+.file-link {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.file-link:hover {
+  text-decoration: underline;
+}

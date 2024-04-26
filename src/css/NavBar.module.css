@@ -1,0 +1,38 @@
+/* NavBar.module.css */
+
+.nav {
+    background-color: #333; /* Dark background color */
+    padding: 15px 0; /* Add padding to the top and bottom */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+  }
+  
+  ul {
+    list-style-type: none; /* Remove bullet points from the list */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    text-align: center; /* Center-align list items */
+  }
+  
+  li {
+    display: inline; /* Display list items horizontally */
+    margin-right: 20px; /* Add margin between list items */
+  }
+  
+  li:last-child {
+    margin-right: 0; /* Remove margin from the last list item */
+  }
+  
+  a {
+    color: #fff; /* White text color */
+    text-decoration: none; /* Remove underline from links */
+    font-size: 18px; /* Increase font size */
+    font-weight: bold; /* Add bold font weight */
+    padding: 10px 15px; /* Add padding around links */
+    border-radius: 5px; /* Add rounded corners */
+    transition: background-color 0.3s; /* Smooth transition for background color */
+  }
+  
+  a:hover {
+    background-color: #555; /* Darken background color on hover */
+  }
+  

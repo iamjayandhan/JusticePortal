@@ -1,0 +1,45 @@
+.add-case-page {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .add-case-page h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .add-case-page label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .add-case-page input[type="text"],
+  .add-case-page input[type="date"],
+  .add-case-page textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .add-case-page input[type="file"] {
+    margin-bottom: 15px;
+  }
+  
+  .add-case-page button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .add-case-page button:hover {
+    background-color: #0056b3;
+  }
+  
