@@ -1,0 +1,48 @@
+/* Register.css */
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .form {
+    text-align: center;
+  }
+  
+  .input-field1 {
+    margin-bottom: 10px;
+    width: 300px;
+  }
+
+  .input-field2 {
+    margin-bottom: 10px;
+    width: 300px;
+    top:10px;
+  }
+  
+  .password-field {
+    position: relative;
+    margin-bottom: 10px;
+  }
+  
+  .toggle-password {
+    position: absolute;
+    top: 70%;
+    right: 30px;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+  
+  .eye-icon {
+    max-width: 24px;
+    height: auto;
+    cursor: pointer;
+  }
+  
+  .register-link {
+    cursor: pointer;
+    color: blue;
+  }
+  

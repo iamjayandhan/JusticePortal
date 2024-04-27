@@ -5,6 +5,7 @@ import Cookies from 'js-cookie';
 import { TextField, Button, Snackbar } from '@mui/material'; // Import Material-UI components
 import eyeOpen from './Assets/eye_open.png';
 import eyeClosed from './Assets/eye_closed.png';
+import '../css/Login.css'; // Import component-specific styles
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -55,7 +56,7 @@ const Login = () => {
   return (
     <div className='container'>
       <h1>User Login</h1>
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleLogin} className="login-form">
         <TextField
           label="Username"
           variant="outlined"
@@ -63,9 +64,10 @@ const Login = () => {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           autoComplete="off"
+          className="input-field1"
         />
         <br />
-        <div style={{ position: 'relative' }}>
+        <div className="password-field">
           <TextField
             label="Password"
             type={passwordVisible ? 'text' : 'password'}
@@ -73,24 +75,16 @@ const Login = () => {
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            className="input-field2"
           />
           <span
-            style={{
-              position: 'absolute',
-              top: '39%',
-              right: '30px',
-              transform: 'translateY(-50%)',
-            }}
+            className="toggle-password"
             onClick={() => setPasswordVisible(!passwordVisible)}
           >
             <img
               src={passwordVisible ? eyeOpen : eyeClosed}
               alt="Toggle Password"
-              style={{
-                maxWidth: '24px',
-                height: 'auto',
-                cursor: 'pointer',
-              }}
+              className="eye-icon"
             />
           </span>
         </div>
@@ -98,7 +92,7 @@ const Login = () => {
         <Button type="submit" variant="contained" color="primary">Login</Button>
       </form>
       <div>
-        <p>Don't have an account? <span onClick={() => window.location.href = '/register'}>Register</span></p> {/* Link to Register page */}
+        <p>Don't have an account? <span onClick={() => window.location.href = '/register'} className="register-link">Register</span></p>
       </div>
       <Snackbar
         open={openSnackbar}

@@ -1,3 +1,5 @@
+// Register.js
+
 import React, { useState } from 'react';
 import { collection, addDoc, query, where, getDocs } from 'firebase/firestore';
 import { db } from './firebase';
@@ -5,6 +7,7 @@ import Cookies from 'js-cookie';
 import { TextField, Button, Snackbar } from '@mui/material'; // Import Material-UI components
 import eyeOpen from './Assets/eye_open.png'; // Import eye_open icon
 import eyeClosed from './Assets/eye_closed.png'; // Import eye_closed icon
+import '../css/Register.css'; // Import Register.css for styling
 
 const Register = () => {
   const [username, setUsername] = useState('');
@@ -66,9 +69,10 @@ const Register = () => {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           autoComplete="off"
+          className="input-field1"
         />
         <br />
-        <div style={{ position: 'relative' }}>
+        <div className="password-field">
           <TextField
             label="Password"
             type={passwordVisible ? 'text' : 'password'}
@@ -76,24 +80,16 @@ const Register = () => {
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            className="input-field2"
           />
           <span
-            style={{
-              position: 'absolute',
-              top: '39%',
-              right: '30px',
-              transform: 'translateY(-50%)',
-            }}
+            className="toggle-password"
             onClick={() => setPasswordVisible(!passwordVisible)}
           >
             <img
               src={passwordVisible ? eyeOpen : eyeClosed}
               alt="Toggle Password"
-              style={{
-                maxWidth: '24px',
-                height: 'auto',
-                cursor: 'pointer',
-              }}
+              className="eye-icon"
             />
           </span>
         </div>
@@ -101,7 +97,7 @@ const Register = () => {
         <Button type="submit" variant="contained" color="primary">Register</Button>
       </form>
       <div>
-        <p>Already have an account? <span onClick={() => window.location.href = '/login'}>Login</span></p> {/* Directly change window location */}
+        <p>Already have an account? <span onClick={() => window.location.href = '/login'} className="register-link">Login</span></p> {/* Directly change window location */}
       </div>
       <Snackbar
         open={openSnackbar}

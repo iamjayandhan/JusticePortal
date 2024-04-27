@@ -16,13 +16,15 @@ function NavBar() {
 
   return (
     <nav className={styles.nav}>
-    <ul>
-      <li><Link to="/MainPage">Home</Link></li>
-      <li><Link to="/add-case">Add Case</Link></li>
-      <li><Link to="/all-cases">All Cases</Link></li>
-      {isLoggedIn && <li><button onClick={handleLogout}>Logout</button></li>}
-    </ul>
-  </nav>
+      {isLoggedIn && ( // Conditionally render the navbar only if user is logged in
+        <ul>
+          <li><Link to="/MainPage">Home</Link></li>
+          <li><Link to="/add-case">Add Case</Link></li>
+          <li><Link to="/all-cases">All Cases</Link></li>
+          <li><button onClick={handleLogout}>Logout</button></li>
+        </ul>
+      )}
+    </nav>
   );
 }
 

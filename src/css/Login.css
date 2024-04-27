@@ -1,0 +1,53 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:300,700,300italic);
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.login-form {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.input-field1 {
+    margin-bottom: 10px;
+    width: 300px;
+  }
+
+  .input-field2 {
+    margin-bottom: 10px;
+    width: 300px;
+    top:10px;
+  }
+
+  .toggle-password {
+    position: absolute;
+    top: 70%;
+    right: 30px;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+
+.eye-icon {
+    max-width: 24px;
+    height: auto;
+    cursor: pointer;
+}
+
+.register-link {
+    cursor: pointer;
+    color: blue;
+}
+
+.password-field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+
