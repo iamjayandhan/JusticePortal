@@ -46,3 +46,20 @@
     color: blue;
   }
   
+  h1 {
+    font-size: 2.5rem;
+    color: #000000; /* Green color */
+    text-align: center;
+    margin-bottom: 20px; /* Add some space below */
+    text-transform: uppercase; /* Convert text to uppercase */
+    font-family: 'Quicksand', sans-serif; /* Use the Quicksand font */
+    letter-spacing: 2px; /* Add letter spacing for better readability */
+    text-shadow: 2px 2px 4px rgba(76, 175, 80, 0.2); /* Add subtle shadow effect */
+  }
+  
+  
+  
+  
+  
+  
+  

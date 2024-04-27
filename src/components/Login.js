@@ -96,7 +96,7 @@ const Login = () => {
       </div>
       <Snackbar
         open={openSnackbar}
-        autoHideDuration={6000}
+        autoHideDuration={2000}
         onClose={handleCloseSnackbar}
         message={loginMessage}
       />

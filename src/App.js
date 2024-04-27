@@ -7,6 +7,7 @@ import AllCases from './components/AllCases';
 import Cookies from 'js-cookie'; // Import Cookies module
 import Register from './components/Register';
 import Login from './components/Login';
+import MyCases from './components/MyCases';
 
 const App = () => {
   // Check if user is logged in
@@ -23,6 +24,7 @@ const App = () => {
           <Route path="/all-cases" element={<AllCases/>}/>
           <Route path="/login" element={<Login />} /> {/* Render Login component */}
           <Route path="/register" element={<Register />} /> {/* Render Register component */}
+          <Route path="/my-cases" element={<MyCases/>}/>
         </Routes>
       </div>
     </Router>

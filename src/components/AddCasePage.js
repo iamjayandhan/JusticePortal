@@ -3,6 +3,7 @@ import { db, storage } from './firebase'; // Import the Firestore database insta
 import { collection, addDoc } from "firebase/firestore";
 import { ref, uploadBytes } from "firebase/storage";
 import '../css/AddCasePage.css';
+import Cookies from 'js-cookie';
 
 function AddCasePage() {
   const [caseTitle, setCaseTitle] = useState('');
@@ -11,6 +12,7 @@ function AddCasePage() {
   const [caseAssignee, setCaseAssignee] = useState('');
   const [filingDate, setFilingDate] = useState('');
   const [files, setFiles] = useState([]);
+  const username = Cookies.get('username'); 
 
   const handleFileChange = (e) => {
     const fileList = e.target.files;
@@ -34,13 +36,14 @@ function AddCasePage() {
         const localTimeString = currentDate.toLocaleString('en-US', options);
         console.log(localTimeString);
 
-      const docRef = await addDoc(collection(db, "cases"), {
+      await addDoc(collection(db, "cases"), {
         caseTitle,
         caseDescription,
         caseType,
         caseAssignee,
         filingDateTime: localTimeString,
-        files: uploadedFiles.map(fileRef => fileRef.fullPath) // Store file references
+        files: uploadedFiles.map(fileRef => fileRef.fullPath), // Store file references
+        username: username,
       });
 
       // Reset form fields

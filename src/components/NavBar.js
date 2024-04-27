@@ -6,6 +6,7 @@ import Cookies from 'js-cookie'; // Import Cookies
 function NavBar() {
   const navigate = useNavigate(); // Initialize useNavigate hook
   const [isLoggedIn, setIsLoggedIn] = useState(Cookies.get('username') !== undefined);
+  const username = Cookies.get('username');
 
   // Function to handle logout
   const handleLogout = () => {
@@ -21,7 +22,11 @@ function NavBar() {
           <li><Link to="/MainPage">Home</Link></li>
           <li><Link to="/add-case">Add Case</Link></li>
           <li><Link to="/all-cases">All Cases</Link></li>
-          <li><button onClick={handleLogout}>Logout</button></li>
+          <li><Link to="/my-cases">My Cases</Link></li>
+          <li className={styles.userSection}>
+            <span>{username}</span>
+            <button onClick={handleLogout}>Logout</button>
+          </li>
         </ul>
       )}
     </nav>

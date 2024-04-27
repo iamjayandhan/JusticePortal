@@ -1,5 +1,3 @@
-// Register.js
-
 import React, { useState } from 'react';
 import { collection, addDoc, query, where, getDocs } from 'firebase/firestore';
 import { db } from './firebase';
@@ -15,6 +13,7 @@ const Register = () => {
   const [registrationMessage, setRegistrationMessage] = useState('');
   const [openSnackbar, setOpenSnackbar] = useState(false); // State to control Snackbar visibility
   const [passwordVisible, setPasswordVisible] = useState(false); // State to toggle password visibility
+  const [registrationSuccess, setRegistrationSuccess] = useState(false); // State to control success message visibility
 
   const handleRegistration = async (e) => {
     e.preventDefault();
@@ -39,6 +38,7 @@ const Register = () => {
   
       Cookies.set('username', lowercaseUsername);
   
+      setRegistrationSuccess(true); // Set success message visibility
       setRegistrationMessage('Registration successful! Redirecting...');
       setUsername('');
       setPassword('');
@@ -46,7 +46,7 @@ const Register = () => {
       setTimeout(() => {
         // Redirect to LoginPage after registration
         window.location.href = '/MainPage';
-      }, 3000);
+      }, 1000);
     } catch (error) {
       console.error('Error during registration:', error);
       setRegistrationMessage('An error occurred during registration. Please try again later.');
@@ -101,9 +101,15 @@ const Register = () => {
       </div>
       <Snackbar
         open={openSnackbar}
-        autoHideDuration={6000}
+        autoHideDuration={3000}
         onClose={handleCloseSnackbar}
         message={registrationMessage}
+      />
+      <Snackbar
+        open={registrationSuccess}
+        autoHideDuration={3000}
+        onClose={() => setRegistrationSuccess(false)}
+        message="Registration successful!"
       />
     </div>
   );
