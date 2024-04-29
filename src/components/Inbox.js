@@ -37,7 +37,7 @@ function Inbox() {
                     caseFiles.push({ filePath, downloadURL });
                   }
                 }
-                caseDetails.files = caseFiles;
+                caseDetails.files = caseFiles; // Assign files to caseDetails object
                 messagesData.push({ id: docSnapshot.id, ...messageData, caseDetails });
               }
             }
@@ -77,9 +77,11 @@ function Inbox() {
                 <div className="file-links">
                   <p>Files:</p>
                   <ul>
-                    {message.caseDetails.files.map((file, index) => (
+                  {message.caseDetails.files.map((file, index) => (
                       <li key={index}>
-                        <a href={file.downloadURL} target="_blank" rel="noopener noreferrer">File {index + 1}</a>
+                        <a href={file.downloadURL} target="_blank" rel="noopener noreferrer">
+                          File {index + 1}: {getFileName(file.filePath)}
+                        </a>
                       </li>
                     ))}
                   </ul>
@@ -91,6 +93,14 @@ function Inbox() {
       ))}
     </div>
   );
+
+   // Function to extract file name from file path
+   function getFileName(filePath) {
+    // Split the file path by '/'
+    const parts = filePath.split('/');
+    // Get the last part (the file name)
+    return parts[parts.length - 1];
+  }
 }
 
 export default Inbox;
