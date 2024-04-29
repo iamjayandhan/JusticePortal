@@ -1,0 +1,56 @@
+/* Inbox.css */
+
+.inbox-container {
+    margin-top: 20px;
+  }
+  
+  .message {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+  }
+  
+  .message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  
+  .message-sender {
+    font-weight: bold;
+  }
+  
+  .message-timestamp {
+    font-size: 0.8rem;
+    color: #666;
+  }
+  
+  .message-subject {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .message-body {
+    color: #333;
+  }
+  
+  /* Style for scrollbar */
+  .inbox-container::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .inbox-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  .inbox-container::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  .inbox-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  

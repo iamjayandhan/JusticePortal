@@ -1,65 +1,67 @@
 /* Register.css */
 
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  .form {
-    text-align: center;
-  }
-  
-  .input-field1 {
-    margin-bottom: 10px;
-    width: 300px;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
 
-  .input-field2 {
-    margin-bottom: 10px;
-    width: 300px;
-    top:10px;
-  }
-  
-  .password-field {
-    position: relative;
-    margin-bottom: 10px;
-  }
-  
-  .toggle-password {
-    position: absolute;
-    top: 70%;
-    right: 30px;
-    transform: translateY(-50%);
-    cursor: pointer;
-  }
-  
-  .eye-icon {
-    max-width: 24px;
-    height: auto;
-    cursor: pointer;
-  }
-  
-  .register-link {
-    cursor: pointer;
-    color: blue;
-  }
-  
-  h1 {
-    font-size: 2.5rem;
-    color: #000000; /* Green color */
-    text-align: center;
-    margin-bottom: 20px; /* Add some space below */
-    text-transform: uppercase; /* Convert text to uppercase */
-    font-family: 'Quicksand', sans-serif; /* Use the Quicksand font */
-    letter-spacing: 2px; /* Add letter spacing for better readability */
-    text-shadow: 2px 2px 4px rgba(76, 175, 80, 0.2); /* Add subtle shadow effect */
-  }
-  
-  
-  
-  
-  
-  
-  
+.form {
+  text-align: center;
+}
+
+.input-field1,
+.input-field2{
+  margin-bottom: 20px;
+  width: 300px;
+}
+.input-field3{
+  margin-top:20px;
+  margin-bottom:10px;
+}
+
+.password-field {
+  position: relative;
+  width: 300px; /* Adjust width as needed */
+  margin-bottom: 20px;
+}
+
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 10px; /* Adjust position as needed */
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+
+.eye-icon {
+  max-width: 24px;
+  height: auto;
+  cursor: pointer;
+}
+
+.register-link {
+  cursor: pointer;
+  color: blue;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #000000;
+  text-align: center;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  font-family: 'Quicksand', sans-serif;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgba(76, 175, 80, 0.2);
+}
+
+.button-container {
+  margin-top: 20px;
+}
+
+.button-container button {
+  margin-right: 10px;
+}

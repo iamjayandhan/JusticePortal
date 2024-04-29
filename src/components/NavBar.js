@@ -23,6 +23,7 @@ function NavBar() {
           <li><Link to="/add-case">Add Case</Link></li>
           <li><Link to="/all-cases">All Cases</Link></li>
           <li><Link to="/my-cases">My Cases</Link></li>
+          <li><Link to="/inbox">Inbox</Link></li>
           <li className={styles.userSection}>
             <span>{username}</span>
             <button onClick={handleLogout}>Logout</button>
