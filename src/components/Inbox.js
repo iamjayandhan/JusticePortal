@@ -21,20 +21,20 @@ function Inbox() {
         if (cookieUsername) {
           setLoggedInUsername(cookieUsername);
           const messagesCollection = collection(db, 'messages');
-const querySnapshot = await getDocs(messagesCollection);
-if (!querySnapshot.empty) {
-  const messagesData = [];
-  for (const docSnapshot of querySnapshot.docs) {
-    const messageData = docSnapshot.data();
-    console.log("Message data:", messageData);
-    if (messageData.username === cookieUsername) {
-      const caseDetails = messageData.caseDetails || {};
-      const caseId = caseDetails.id || null;
-      if (caseId) {
-        const caseDocRef = doc(db, 'cases', caseId);
-        const caseDocSnapshot = await getDoc(caseDocRef);
-        const caseDetailsData = caseDocSnapshot.data();
-        const caseFiles = [];
+        const querySnapshot = await getDocs(messagesCollection);
+        if (!querySnapshot.empty) {
+          const messagesData = [];
+        for (const docSnapshot of querySnapshot.docs) {
+          const messageData = docSnapshot.data();
+          console.log("Message data:", messageData);
+        if (messageData.username === cookieUsername) {
+          const caseDetails = messageData.caseDetails || {};
+          const caseId = caseDetails.id || null;
+        if (caseId) {
+          const caseDocRef = doc(db, 'cases', caseId);
+          const caseDocSnapshot = await getDoc(caseDocRef);
+          const caseDetailsData = caseDocSnapshot.data();
+          const caseFiles = [];
         if (caseDetailsData.files && caseDetailsData.files.length > 0) {
           for (const filePath of caseDetailsData.files) {
             const fileRef = ref(storage, filePath);

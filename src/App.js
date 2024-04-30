@@ -9,6 +9,7 @@ import Register from './components/Register';
 import Login from './components/Login';
 import MyCases from './components/MyCases';
 import Inbox from './components/Inbox';
+import ClientRequests from './components/ClientRequests';
 
 const App = () => {
   // Check if user is logged in
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/register" element={<Register />} /> {/* Render Register component */}
           <Route path="/my-cases" element={<MyCases/>}/>
           <Route path="/inbox" element={<Inbox/>}/>
+          <Route path="/lawyers" element={<ClientRequests/>}/>
         </Routes>
       </div>
     </Router>

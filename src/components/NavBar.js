@@ -26,6 +26,8 @@ function NavBar() {
           <li><Link to="/add-case">Add Case</Link></li>
           {/* Conditionally render the "All Cases" link based on the user's role */}
           {userRole !== 'Owners/Clients' && <li><Link to="/all-cases">All Cases</Link></li>}
+          {/* Conditionally render the "ClientRequests" link only for clients */}
+          {userRole === 'Owners/Clients' && <li><Link to="/lawyers">Lawyers</Link></li>}
           <li><Link to="/my-cases">My Cases</Link></li>
           <li><Link to="/inbox">Inbox</Link></li>
           <li className={styles.userSection}>
