@@ -30,6 +30,13 @@ const Login = () => {
         if (userDoc.password === password) {
           setLoginMessage('Authenticating...');
           Cookies.set('username', lowerCaseUsername);
+          const userRole = userDoc.role.substring(5); // Remove the first 8 characters ("Case%20")
+          Cookies.set('role', userRole);
+          
+          
+
+
+
   
           setTimeout(() => {
             window.location.href = '/MainPage';

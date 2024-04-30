@@ -21,11 +21,17 @@ function AllCases() {
             const caseData = doc.data();
             if (caseData.files) {
               const filesData = await Promise.all(
-                caseData.files.map(async (filePath) => {
-                  const fileRef = ref(storage, filePath);
-                  const downloadURL = await getDownloadURL(fileRef);
-                  return { filePath, downloadURL };
-                })
+                caseData.files.map(async (fileInfo) => {
+                  if (typeof fileInfo === 'string') { // Add a type check
+                    const fileRef = ref(storage, fileInfo);
+                    const downloadURL = await getDownloadURL(fileRef);
+                    return { filePath: fileInfo, downloadURL };
+                  } else {
+                    console.error('File path is not a string:', fileInfo);
+                    // Handle the error or skip this file
+                    return null;
+                  }
+                }).filter(fileInfo => fileInfo !== null) // Filter out null values
               );
               caseData.files = filesData;
             } else {
@@ -33,6 +39,7 @@ function AllCases() {
             }
             casesData.push({ id: doc.id, ...caseData });
           }
+          
           setCases(casesData);
         } else {
           console.log('No cases found.');

@@ -40,6 +40,7 @@ const Register = () => {
       });
   
       Cookies.set('username', lowercaseUsername);
+      Cookies.set('role', role);
   
       setRegistrationSuccess(true); // Set success message visibility
       setRegistrationMessage('Registration successful! Redirecting...');

@@ -8,9 +8,12 @@ function NavBar() {
   const [isLoggedIn, setIsLoggedIn] = useState(Cookies.get('username') !== undefined);
   const username = Cookies.get('username');
 
+  const userRole = Cookies.get('role');
+
   // Function to handle logout
   const handleLogout = () => {
     Cookies.remove('username'); // Remove the 'username' cookie
+    Cookies.remove('role');
     setIsLoggedIn(false); // Update isLoggedIn state
     navigate('/login'); // Redirect to the login page
   };
@@ -21,7 +24,8 @@ function NavBar() {
         <ul>
           <li><Link to="/MainPage">Home</Link></li>
           <li><Link to="/add-case">Add Case</Link></li>
-          <li><Link to="/all-cases">All Cases</Link></li>
+          {/* Conditionally render the "All Cases" link based on the user's role */}
+          {userRole !== 'Owners/Clients' && <li><Link to="/all-cases">All Cases</Link></li>}
           <li><Link to="/my-cases">My Cases</Link></li>
           <li><Link to="/inbox">Inbox</Link></li>
           <li className={styles.userSection}>
