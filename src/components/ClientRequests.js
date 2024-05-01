@@ -70,7 +70,7 @@ function ClientRequests() {
       const request = {
         caseId: selectedCase,
         message: requestMessage,
-        to: selectedLawyer,
+        username: selectedLawyer,
         from: loggedInUsername,
         timestamp: new Date()
       };
@@ -114,7 +114,9 @@ function ClientRequests() {
             </select>
           </div>
           <div className="buttons">
-            <button onClick={handleSendRequest}>Send</button>
+            <button className={(!selectedCase || !requestMessage || !selectedLawyer) ? "disabled" : ""} disabled={!selectedCase || !requestMessage || !selectedLawyer} onClick={handleSendRequest}>
+              {(!selectedCase || !requestMessage || !selectedLawyer) ? "Please fill out all fields" : "Send"}
+            </button>
             <button onClick={() => window.location.reload()}>Cancel</button>
           </div>
         </div>
@@ -123,6 +125,9 @@ function ClientRequests() {
       )}
     </div>
   );
+  
+  
+  
 }
 
 export default ClientRequests;

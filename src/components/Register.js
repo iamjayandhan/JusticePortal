@@ -88,7 +88,7 @@ const Register = () => {
         />
         <br/>
         <div className="input-field3">
-  <FormControl variant="outlined" required style={{ width: '300px' }}> {/* Adjust width here */}
+  <FormControl variant="outlined" required style={{ width: '300px' }}>
     <InputLabel>Role</InputLabel>
     <Select
       value={role}
@@ -133,13 +133,13 @@ const Register = () => {
       </div>
       <Snackbar
         open={openSnackbar}
-        autoHideDuration={3000}
+        autoHideDuration={100}
         onClose={handleCloseSnackbar}
         message={registrationMessage}
       />
       <Snackbar
         open={registrationSuccess}
-        autoHideDuration={3000}
+        autoHideDuration={100}
         onClose={() => setRegistrationSuccess(false)}
         message="Registration successful!"
       />

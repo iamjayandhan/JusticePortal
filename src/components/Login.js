@@ -31,16 +31,10 @@ const Login = () => {
           setLoginMessage('Authenticating...');
           Cookies.set('username', lowerCaseUsername);
           const userRole = userDoc.role.substring(5); // Remove the first 8 characters ("Case%20")
-          Cookies.set('role', userRole);
-          
-          
-
-
-
-  
+          Cookies.set('role', userRole);  
           setTimeout(() => {
             window.location.href = '/MainPage';
-          }, 3000);
+          }, 100);
         } else {
           setLoginMessage('Invalid credentials. Please try again.');
           setOpenSnackbar(true); // Open Snackbar for failure message
@@ -103,7 +97,7 @@ const Login = () => {
       </div>
       <Snackbar
         open={openSnackbar}
-        autoHideDuration={2000}
+        autoHideDuration={100}
         onClose={handleCloseSnackbar}
         message={loginMessage}
       />

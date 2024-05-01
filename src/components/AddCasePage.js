@@ -47,18 +47,23 @@ function AddCasePage() {
       });
 
       // Reset form fields
-      setCaseTitle('');
-      setCaseDescription('');
-      setCaseType('');
-      setCaseAssignee('');
-      setFilingDate('');
-      setFiles([]);
+      resetForm();
 
       alert("Case added successfully!");
     } catch (error) {
       console.error("Error adding case: ", error);
       alert("An error occurred while adding the case. Please try again.");
     }
+  };
+
+
+  const resetForm = () => {
+    setCaseTitle('');
+    setCaseDescription('');
+    setCaseType('');
+    setCaseAssignee('');
+    setFilingDate('');
+    setFiles([]);
   };
 
   return (
@@ -87,12 +92,16 @@ function AddCasePage() {
         </label>
         <label>
           Upload File(s):
-          <input type="file" multiple onChange={handleFileChange} />
+          <input type="file" multiple onChange={handleFileChange} required />
         </label>
-        <button type="submit">Add Case</button>
+        <div className="buttons">
+          <button type="submit">Add Case</button>
+          <button type="button" onClick={resetForm}>Reset</button>
+        </div>
       </form>
     </div>
   );
+  
 }
 
 export default AddCasePage;

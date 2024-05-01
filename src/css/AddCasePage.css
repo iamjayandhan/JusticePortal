@@ -28,9 +28,9 @@
     margin-bottom: 15px;
   }
   
-  .add-case-page button {
+  .add-case-page .button {
     display: block;
-    width: 100%;
+    width: 20%;
     padding: 10px;
     background-color: #007bff;
     color: #fff;
@@ -38,8 +38,8 @@
     border-radius: 5px;
     cursor: pointer;
   }
-  
-  .add-case-page button:hover {
+
+  .add-case-page .button:hover {
     background-color: #0056b3;
   }
   

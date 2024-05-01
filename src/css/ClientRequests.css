@@ -47,4 +47,8 @@
   .buttons button:hover {
     background-color: #0056b3;
   }
+
+  #request-message{
+    width:537px;
+  }
   

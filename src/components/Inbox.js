@@ -7,6 +7,7 @@ import '../css/Inbox.css';
 
 function Inbox() {
   const [messages, setMessages] = useState([]);
+  const [requests, setRequests] = useState([]);
   const [loggedInUsername, setLoggedInUsername] = useState('');
   const [selectedCaseId, setSelectedCaseId] = useState(null);
   const [selectedCaseDetails, setSelectedCaseDetails] = useState(null); // New state variable
@@ -18,42 +19,52 @@ function Inbox() {
       try {
         const cookieUsername = Cookies.get('username');
         console.log("Retrieved username from cookies:", cookieUsername);
+        
         if (cookieUsername) {
           setLoggedInUsername(cookieUsername);
+      
           const messagesCollection = collection(db, 'messages');
-        const querySnapshot = await getDocs(messagesCollection);
-        if (!querySnapshot.empty) {
+          const requestsCollection = collection(db, 'requests');
+      
+          const messagesSnapshot = await getDocs(messagesCollection);
+          const requestsSnapshot = await getDocs(query(requestsCollection, where('username', '==', cookieUsername)));
+      
           const messagesData = [];
-        for (const docSnapshot of querySnapshot.docs) {
-          const messageData = docSnapshot.data();
-          console.log("Message data:", messageData);
-        if (messageData.username === cookieUsername) {
-          const caseDetails = messageData.caseDetails || {};
-          const caseId = caseDetails.id || null;
-        if (caseId) {
-          const caseDocRef = doc(db, 'cases', caseId);
-          const caseDocSnapshot = await getDoc(caseDocRef);
-          const caseDetailsData = caseDocSnapshot.data();
-          const caseFiles = [];
-        if (caseDetailsData.files && caseDetailsData.files.length > 0) {
-          for (const filePath of caseDetailsData.files) {
-            const fileRef = ref(storage, filePath);
-            const downloadURL = await getDownloadURL(fileRef); // Potential source of error
-            caseFiles.push({ filePath, downloadURL });
+      
+          // Fetch and process messages from the 'messages' collection
+          for (const doc of messagesSnapshot.docs) {
+            const messageData = doc.data();
+            // If the message is addressed to the current user, process it
+            if (messageData.username === cookieUsername) {
+              if (messageData.type === 'case') { // Check if the message is of type 'case'
+                const caseDetailsData = messageData.caseDetails;
+                const caseFiles = [];
+                if (caseDetailsData.files && caseDetailsData.files.length > 0) {
+                  for (const filePath of caseDetailsData.files) {
+                    const fileRef = ref(storage, filePath);
+                    try {
+                      const downloadURL = await getDownloadURL(fileRef);
+                      caseFiles.push({ filePath, downloadURL });
+                    } catch (error) {
+                      console.error("Error downloading file:", error);
+                    }
+                  }
+                }
+                // Push the message with case details to messagesData
+                messagesData.push({ id: doc.id, ...messageData, caseDetails: { ...caseDetailsData, files: caseFiles } });
+              } else { // Handle other message types
+                messagesData.push({ id: doc.id, ...messageData });
+              }
+            }
           }
-        }
-        caseDetailsData.files = caseFiles;
-        messagesData.push({ id: docSnapshot.id, ...messageData, caseDetails: caseDetailsData });
-      } else {
-        messagesData.push({ id: docSnapshot.id, ...messageData });
-      }
-    }
-  }
-  setMessages(messagesData);
-}
- else {
-            console.log("No messages found.");
-          }
+      
+          // Fetch and process messages from the 'requests' collection
+          requestsSnapshot.forEach((doc) => {
+            const requestData = doc.data();
+            messagesData.push({ id: doc.id, ...requestData, type: 'request' });
+          });
+      
+          setMessages(messagesData);
         } else {
           console.log("No username found in cookies.");
         }
@@ -61,6 +72,11 @@ function Inbox() {
         console.error("Error fetching messages:", error);
       }
     };
+    
+    
+    
+    
+    
     
     
 
@@ -129,13 +145,19 @@ function Inbox() {
       <h2>Inbox</h2>
       {messages.map((message) => (
         <div className="message" key={message.id}>
-        <div className="message-header">
-          <div className="message-info">
-            <p className="message-sender">From: {message.sender}</p>
-            <p className="message-hearing">Hearing Details: {message.hearingDetails}</p>
-            <p className="message-timestamp">Received: {message.timestamp ? new Date(message.timestamp.toDate()).toLocaleString() : 'Unknown'}</p>
+          <div className="message-header">
+            <div className="message-info">
+              <p className="message-sender">From: {message.sender}</p>
+              {message.message && (
+                <p className="message-details">Message: {message.message}</p>
+              )}
+              {message.hearingDetails && (
+                <p className="message-details">Hearing Details: {message.hearingDetails}</p>
+              )}
+
+              <p className="message-timestamp">Received: {message.timestamp ? new Date(message.timestamp.toDate()).toLocaleString() : 'Unknown'}</p>
+            </div>
           </div>
-        </div>
           {message.caseDetails && (
             <div className="message-details">
               <p>Case Title: {message.caseDetails.caseTitle}</p>
@@ -179,6 +201,7 @@ function Inbox() {
       )}
     </div>
   );
+  
 
   function getFileName(filePath) {
     const parts = filePath.split('/');
