@@ -26,6 +26,10 @@ function AllCases() {
                     const fileRef = ref(storage, fileInfo);
                     const downloadURL = await getDownloadURL(fileRef);
                     return { filePath: fileInfo, downloadURL };
+                  } else if (fileInfo.filePath) { // Check if filePath exists in object
+                    const fileRef = ref(storage, fileInfo.filePath);
+                    const downloadURL = await getDownloadURL(fileRef);
+                    return { ...fileInfo, downloadURL };
                   } else {
                     console.error('File path is not a string:', fileInfo);
                     // Handle the error or skip this file
@@ -33,6 +37,7 @@ function AllCases() {
                   }
                 }).filter(fileInfo => fileInfo !== null) // Filter out null values
               );
+              
               caseData.files = filesData;
             } else {
               caseData.files = [];
@@ -110,21 +115,39 @@ function AllCases() {
         </div>
       ))}
       {/* Modal for case details */}
-      {selectedCase && (
-        <div className="modal">
-          <div className="modal-content">
-            <h2>Case Details</h2>
-            <p>Case Title: {selectedCase.caseTitle}</p>
-            <p>Case Description: {selectedCase.caseDescription}</p>
-            {userRole === 'Lawyers/Attorneys' && (
-              <>
-                <button onClick={handleTakeCase}>Take Case</button>
-                <button onClick={() => setSelectedCase(null)}>Back</button>
-              </>
-            )}
-          </div>
+{selectedCase && (
+  <div className="modal">
+    <div className="modal-content">
+      <h2>Case Details</h2>
+      <p>Case Title: {selectedCase.caseTitle}</p>
+      <p>Case Description: {selectedCase.caseDescription}</p>
+      <p>Client Name: {selectedCase.caseAssignee}</p>
+      <p>Case Type: {selectedCase.caseType}</p>
+      
+      {/* Display files attached to the case */}
+      {selectedCase.files.length > 0 && (
+        <div>
+          <h3>Files Attached:</h3>
+          <ul>
+            {selectedCase.files.map((file, index) => (
+              <li key={index}>
+                <a href={file.downloadURL} target="_blank" rel="noopener noreferrer" className="file-link">{file.filePath}</a>
+              </li>
+            ))}
+          </ul>
         </div>
       )}
+
+      {userRole === 'Lawyers/Attorneys' && (
+        <>
+          <button onClick={handleTakeCase}>Take Case</button>
+          <button onClick={() => setSelectedCase(null)}>Back</button>
+        </>
+      )}
+    </div>
+  </div>
+)}
+
     </div>
   );
 }

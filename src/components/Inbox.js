@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { db, storage } from './firebase'; // Import the Firestore database instance and Firebase storage instance
-import { collection, getDocs, doc, setDoc, getDoc, addDoc, query, where } from 'firebase/firestore';
+import { collection, getDocs, setDoc, addDoc, query, where } from 'firebase/firestore';
 import { ref, getDownloadURL } from 'firebase/storage'; // Import the necessary storage functions
 import Cookies from 'js-cookie';
 import '../css/Inbox.css';
 
 function Inbox() {
   const [messages, setMessages] = useState([]);
-  const [requests, setRequests] = useState([]);
   const [loggedInUsername, setLoggedInUsername] = useState('');
   const [selectedCaseId, setSelectedCaseId] = useState(null);
   const [selectedCaseDetails, setSelectedCaseDetails] = useState(null); // New state variable
@@ -142,12 +141,16 @@ function Inbox() {
 
   return (
     <div className="inbox-container">
-      <h2>Inbox</h2>
+      <div class="inbox-heading">
+        <h2>INBOX</h2>
+      </div>
       {messages.map((message) => (
         <div className="message" key={message.id}>
           <div className="message-header">
             <div className="message-info">
-              <p className="message-sender">From: {message.sender}</p>
+              {message.sender && (
+                <p className="message-sender">From: {message.sender}</p>
+              )}
               {message.message && (
                 <p className="message-details">Message: {message.message}</p>
               )}
@@ -155,7 +158,7 @@ function Inbox() {
                 <p className="message-details">Hearing Details: {message.hearingDetails}</p>
               )}
 
-              <p className="message-timestamp">Received: {message.timestamp ? new Date(message.timestamp.toDate()).toLocaleString() : 'Unknown'}</p>
+              <p className="message-timestamp">Received: {message.timestamp ? new Date(message.timestamp.toDate()).toLocaleString() : ''}</p>
             </div>
           </div>
           {message.caseDetails && (
@@ -186,19 +189,23 @@ function Inbox() {
         </div>
       ))}
       {isModalOpen && (
-        <div className="modal">
-          <div className="modal-content">
-            <span className="close" onClick={handleCloseModal}>&times;</span>
-            <h3>Add Hearing Details</h3>
-            <textarea
-              value={hearingDetails}
-              onChange={(e) => setHearingDetails(e.target.value)}
-              placeholder="Enter hearing details..."
-            ></textarea>
-            <button onClick={() => handleSendHearing(selectedCaseId, selectedCaseDetails)}>Send</button>
-          </div>
-        </div>
-      )}
+  <div className="modal">
+    <div className="modal-content">
+      <span className="close" onClick={handleCloseModal}>&times;</span>
+      <h3>Add Hearing Details</h3>
+      <textarea
+        value={hearingDetails}
+        onChange={(e) => setHearingDetails(e.target.value)}
+        placeholder="Enter hearing details..."
+      ></textarea>
+      <div className="modal-buttons">
+        <button onClick={() => handleSendHearing(selectedCaseId, selectedCaseDetails)}>Send</button>
+        <button onClick={handleCloseModal}>Back</button> {/* Back button */}
+      </div>
+    </div>
+  </div>
+)}
+
     </div>
   );
   

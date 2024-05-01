@@ -83,7 +83,7 @@ function AddCasePage() {
           <input type="text" value={caseType} onChange={(e) => setCaseType(e.target.value)} required />
         </label>
         <label>
-          Case Assignee:
+          Client Name:
           <input type="text" value={caseAssignee} onChange={(e) => setCaseAssignee(e.target.value)} required />
         </label>
         <label>

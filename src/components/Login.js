@@ -2,56 +2,57 @@ import React, { useState } from 'react';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { db } from './firebase';
 import Cookies from 'js-cookie';
-import { TextField, Button, Snackbar } from '@mui/material'; // Import Material-UI components
+import { TextField, Button, Snackbar } from '@mui/material';
 import eyeOpen from './Assets/eye_open.png';
 import eyeClosed from './Assets/eye_closed.png';
-import '../css/Login.css'; // Import component-specific styles
+import '../css/Login.css';
 
 const Login = () => {
-  const [username, setUsername] = useState('');
+  const [identifier, setIdentifier] = useState(''); // Change 'username' to 'identifier' to accommodate both email and username
   const [password, setPassword] = useState('');
   const [loginMessage, setLoginMessage] = useState('');
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const [openSnackbar, setOpenSnackbar] = useState(false); // State to control Snackbar visibility
+  const [openSnackbar, setOpenSnackbar] = useState(false);
 
   const handleLogin = async (e) => {
     e.preventDefault();
   
     const usersCollectionRef = collection(db, 'users');
-    const lowerCaseUsername = username.toLowerCase();
-    const q = query(usersCollectionRef, where('username', '==', lowerCaseUsername));
+    const lowerCaseIdentifier = identifier.toLowerCase();
+    const usernameQuery = query(usersCollectionRef, where('username', '==', lowerCaseIdentifier)); // Query for username
+    const emailQuery = query(usersCollectionRef, where('email', '==', lowerCaseIdentifier)); // Query for email
   
     try {
-      const querySnapshot = await getDocs(q);
-  
-      if (!querySnapshot.empty) {
-        const userDoc = querySnapshot.docs[0].data();
-  
+      const usernameSnapshot = await getDocs(usernameQuery);
+      const emailSnapshot = await getDocs(emailQuery);
+
+      if (!usernameSnapshot.empty || !emailSnapshot.empty) {
+        const userDoc = !usernameSnapshot.empty ? usernameSnapshot.docs[0].data() : emailSnapshot.docs[0].data(); // Check both username and email
         if (userDoc.password === password) {
           setLoginMessage('Authenticating...');
-          Cookies.set('username', lowerCaseUsername);
-          const userRole = userDoc.role.substring(5); // Remove the first 8 characters ("Case%20")
+          Cookies.set('username', userDoc.username); // Set username
+          const userRole = userDoc.role.substring(5);
           Cookies.set('role', userRole);  
           setTimeout(() => {
             window.location.href = '/MainPage';
           }, 100);
         } else {
           setLoginMessage('Invalid credentials. Please try again.');
-          setOpenSnackbar(true); // Open Snackbar for failure message
+          setOpenSnackbar(true);
         }
       } else {
         setLoginMessage('Invalid credentials or user not registered. Please try again.');
-        setOpenSnackbar(true); // Open Snackbar for failure message
+        setOpenSnackbar(true);
       }
     } catch (error) {
       console.error('Error during login:', error);
       setLoginMessage('An error occurred during login. Please try again later.');
-      setOpenSnackbar(true); // Open Snackbar for failure message
+      setOpenSnackbar(true);
     }
   };
 
   const handleCloseSnackbar = () => {
-    setOpenSnackbar(false); // Close Snackbar
+    setOpenSnackbar(false);
   };
 
   return (
@@ -59,11 +60,11 @@ const Login = () => {
       <h1>User Login</h1>
       <form onSubmit={handleLogin} className="login-form">
         <TextField
-          label="Username"
+          label="Email or Username" // Change label to reflect email or username
           variant="outlined"
           required
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={identifier}
+          onChange={(e) => setIdentifier(e.target.value)}
           autoComplete="off"
           className="input-field1"
         />
@@ -97,7 +98,7 @@ const Login = () => {
       </div>
       <Snackbar
         open={openSnackbar}
-        autoHideDuration={100}
+        autoHideDuration={3000}
         onClose={handleCloseSnackbar}
         message={loginMessage}
       />

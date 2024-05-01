@@ -133,13 +133,13 @@ const Register = () => {
       </div>
       <Snackbar
         open={openSnackbar}
-        autoHideDuration={100}
+        autoHideDuration={3000}
         onClose={handleCloseSnackbar}
         message={registrationMessage}
       />
       <Snackbar
         open={registrationSuccess}
-        autoHideDuration={100}
+        autoHideDuration={3000}
         onClose={() => setRegistrationSuccess(false)}
         message="Registration successful!"
       />

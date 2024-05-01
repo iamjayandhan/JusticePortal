@@ -50,3 +50,73 @@ h2 {
   margin-bottom: 15px;
   text-align: center; /* Align the text to the center */
 }
+
+
+
+
+
+
+
+
+/* AllCases.css */
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  z-index: 999; /* Ensure modal is on top of other content */
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Shadow effect */
+  max-width: 80%; /* Adjust maximum width as needed */
+  max-height: 80%; /* Adjust maximum height as needed */
+  overflow-y: auto; /* Enable vertical scrolling if content overflows */
+}
+
+.modal h2 {
+  margin-top: 0; /* Remove default margin */
+  color: black; /* Set text color to black */
+}
+
+.modal p {
+  margin-bottom: 10px; /* Add spacing between paragraphs */
+  color: black; /* Set text color to black */
+}
+
+.modal ul {
+  list-style-type: none; /* Remove default list styles */
+  padding: 0; /* Remove default padding */
+}
+
+.modal li {
+  margin-bottom: 5px; /* Add spacing between list items */
+  color: black; /* Set text color to black */
+}
+
+.modal a.file-link {
+  color: blue; /* Change the color to your desired color */
+  /* Add any additional styling you want */
+}
+
+.modal-buttons {
+  margin-top: 20px; /* Add spacing between buttons and other content */
+  text-align: center; /* Center-align buttons */
+}
+
+.modal-buttons button {
+  margin-right: 10px; /* Add spacing between buttons */
+}
+
+.modal-buttons button:last-child {
+  margin-right: 0; /* Remove margin from the last button */
+}
