@@ -151,6 +151,9 @@ function Inbox() {
               {message.sender && (
                 <p className="message-sender">From: {message.sender}</p>
               )}
+              {message.from && (
+                <p className="message-sender">From: {message.from}</p>
+              )}
               {message.message && (
                 <p className="message-details">Message: {message.message}</p>
               )}
