@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { collection, addDoc, query, where, getDocs } from 'firebase/firestore';
 import { db } from './firebase';
 import Cookies from 'js-cookie';
-import { TextField, Button, Snackbar, FormControl, InputLabel, Select, MenuItem } from '@mui/material'; import eyeOpen from './Assets/eye_open.png'; // Import eye_open icon
+import { TextField, Button, Snackbar } from '@mui/material'; import eyeOpen from './Assets/eye_open.png'; // Import eye_open icon
 import eyeClosed from './Assets/eye_closed.png'; // Import eye_closed icon
 import '../css/Register.css'; // Import Register.css for styling
 
@@ -88,18 +88,31 @@ const Register = () => {
         />
         <br/>
         <div className="input-field3">
-  <FormControl variant="outlined" required style={{ width: '300px' }}>
-    <InputLabel>Role</InputLabel>
-    <Select
-      value={role}
-      onChange={(e) => setRole(e.target.value)}
-      label="Role"
-    >
-      <MenuItem value="Case Owners/Clients">Case Owners/Clients</MenuItem>
-      <MenuItem value="Lawyers/Attorneys">Lawyers/Attorneys</MenuItem>
-      <MenuItem value="clerk/Endorser">Clerk/Endorser</MenuItem>
-    </Select>
-  </FormControl>
+        
+        <select
+  value={role}
+  onChange={(e) => setRole(e.target.value)}
+  style={{
+    width: '300px',
+    height: '55px',
+    padding: '10px',
+    fontSize: '16px',
+    border: '1px solid #ccc',
+    borderRadius: '5px',
+    backgroundColor: '#fff',
+    color: '#666666',
+    outline: 'none',
+  }}
+  required
+>
+  <option value="" disabled>Role*</option>
+  <option value="Case Owners/Clients">Case Owners/Clients</option>
+  <option value="Lawyers/Attorneys">Lawyers/Attorneys</option>
+  <option value="Clerk/Endorser">Clerk/Endorser</option>
+</select>
+
+
+
 </div>
 
 <div className="password-field" style={{ width: '300px', position: 'relative', marginBottom: '20px' }}>
