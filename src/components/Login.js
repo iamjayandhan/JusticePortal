@@ -56,8 +56,9 @@ const Login = () => {
   };
 
   return (
-    <div className='container'>
-      <h1>User Login</h1>
+    <div class="outer-container">
+    <div className='login-container'>
+      <h1>Login</h1>
       <form onSubmit={handleLogin} className="login-form">
         <TextField
           label="Email or Username" // Change label to reflect email or username
@@ -102,6 +103,7 @@ const Login = () => {
         onClose={handleCloseSnackbar}
         message={loginMessage}
       />
+    </div>
     </div>
   );
 };

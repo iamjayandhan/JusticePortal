@@ -1,12 +1,35 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:300,700,300italic);
 
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    /* height: 100vh; */
+.outer-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding:50px; /* Adjust the padding as needed */
+  border: 1px solid #333333; /* Example border color */
+  border-radius: 10px; /* Adjust the border radius as needed */
+  box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.1); /* Add a subtle shadow effect */
+  background-color: #FFFFFF; /* Example background color */
+  transition: box-shadow 0.3s ease; /* Add smooth transition for hover effect */
+}
+
+.login-container:hover {
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+}
+
+
+
 
 .login-form {
     text-align: center;
@@ -51,13 +74,33 @@
 }
 
 h1 {
-  font-size: 2.5rem;
-  color: #000000; /* Green color */
-  text-align: center;
+  font-size: 2.5rem; /* Adjust the font size as needed */
+  font-family: 'Raleway', sans-serif; /* Use Raleway font */
+  font-weight: 700; /* Use bold font weight */
+  color: #333333; /* Dark color */
+  text-align: center; /* Center align the text */
   margin-bottom: 20px; /* Add some space below */
   text-transform: uppercase; /* Convert text to uppercase */
-  font-family: 'Quicksand', sans-serif; /* Use the Quicksand font */
   letter-spacing: 2px; /* Add letter spacing for better readability */
-  text-shadow: 2px 2px 4px rgba(76, 175, 80, 0.2); /* Add subtle shadow effect */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow effect */
 }
 
+
+
+
+@media only screen and (max-width: 600px) {
+  .login-container {
+    padding: 50px; /* Adjust padding for smaller screens */
+  }
+  
+  .input-field1,
+  .input-field2 {
+    width: 100%; /* Make input fields full width */
+    max-width: 400px; /* Increase maximum width for better readability */
+  }
+  
+  
+  .toggle-password {
+    right: 10px; /* Adjust the position of the toggle password button */
+  }
+}

@@ -29,13 +29,13 @@ function NavBar() {
   };
 
   return (
-    <nav className={styles.nav}>
-      <div className={styles.menuToggle} onClick={toggleMenu}>
-        <div className={styles.bar}></div>
-        <div className={styles.bar}></div>
-        <div className={styles.bar}></div>
-      </div>
-      {isLoggedIn && (
+    isLoggedIn && (
+      <nav className={styles.nav}>
+        <div className={styles.menuToggle} onClick={toggleMenu}>
+          <div className={styles.bar}></div>
+          <div className={styles.bar}></div>
+          <div className={styles.bar}></div>
+        </div>
         <ul className={`${styles.menu} ${isMenuOpen ? styles.active : ''}`}>
           <li><Link to="/MainPage" onClick={handleMenuItemClick}>Home</Link></li>
           <li><Link to="/add-case" onClick={handleMenuItemClick}>Add Case</Link></li>
@@ -48,8 +48,8 @@ function NavBar() {
             <button onClick={handleLogout}>Logout</button>
           </li>
         </ul>
-      )}
-    </nav>
+      </nav>
+    )
   );
 }
 

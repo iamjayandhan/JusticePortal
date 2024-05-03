@@ -1,4 +1,4 @@
-.container {
+.mainpage-container {
   max-width: 900px;
   margin: 0 auto;
   /* padding: 0; */
@@ -6,7 +6,7 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-top: 0; /* Remove margin at the top */
+  margin-top: 2rem; /* Remove margin at the top */
   margin-bottom: 0; /* Remove margin at the bottom */
 }
 

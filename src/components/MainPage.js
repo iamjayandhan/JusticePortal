@@ -4,7 +4,7 @@ import '../css/MainPage.css';
 
 function MainPage() {
   return (
-    <div className='container'>
+    <div className='mainpage-container'>
       <h1>Welcome to the Justice Portal</h1>
       <p>
         The Justice Portal revolutionizes case management processes by providing a centralized platform for seamless scheduling, tracking, and monitoring of various types of cases across diverse legal domains.

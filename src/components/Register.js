@@ -63,7 +63,8 @@ const Register = () => {
   };
 
   return (
-    <div className='container'>
+    <div className='outer-container-reg'>
+    <div className='register-container'>
       <h1>Register</h1>
       <form className="form" onSubmit={handleRegistration}>
         <TextField
@@ -156,6 +157,7 @@ const Register = () => {
         onClose={() => setRegistrationSuccess(false)}
         message="Registration successful!"
       />
+    </div>
     </div>
   );
 };
