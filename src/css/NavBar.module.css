@@ -35,9 +35,7 @@
   ul li:first-child {
     margin-left: 0px; /* Align first list item to the right */
   }
-  ul li:nth-child(6) {
-    margin-left: 200px; 
-  }
+
 
   ul li a {
     color: #fff;
