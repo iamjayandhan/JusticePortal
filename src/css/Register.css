@@ -12,13 +12,14 @@
 
 .register-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
-  padding: 50px; /* Adjust the padding as needed */
-  border: 2px solid #333333; /* Example border color */
+  align-items: center;
+  justify-content: center;
+  padding:50px; /* Adjust the padding as needed */
+  border: 2px solid;
+  border-image: linear-gradient(to right, #ff00ff, #00ffff, #ff00ff);
   border-radius: 10px; /* Adjust the border radius as needed */
-  box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.1); /* Add a subtle shadow effect */
+  box-shadow: 10px 16px 32px rgba(0, 0, 0, 0.1); /* Add a subtle shadow effect */
   background-color: #FFFFFF; /* Example background color */
   transition: box-shadow 0.3s ease; /* Add smooth transition for hover effect */
 }
