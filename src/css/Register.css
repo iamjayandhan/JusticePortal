@@ -3,10 +3,10 @@
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
+  right: 13rem;
   bottom: 0;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
 }
 
@@ -26,6 +26,52 @@
 
 .register-container:hover {
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+}
+
+
+.justiceTitle {
+  font-family: 'Raleway', sans-serif; /* Apply the same font as before */
+  font-size: 3.5rem; /* Adjust the font size as needed */
+  font-weight: 700; /* Use bold font weight */
+  color: #333333; /* Dark color */
+  text-align: center; /* Center align the text */
+  margin-bottom: 20px; /* Add some space below */
+  text-transform: uppercase; /* Convert text to uppercase */
+  letter-spacing: 2px; /* Add letter spacing for better readability */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow effect */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.slogan {
+  font-family: 'Raleway', sans-serif; /* Apply the same font as before */
+  font-size: 1.5rem; /* Adjust the font size as needed */
+  font-weight: 500; /* Use bold font weight */
+  color: #ac2121; /* Dark color */
+  text-align: center; /* Center align the text */
+  margin-top: 20px; /* Add some space above */
+  text-transform: uppercase; /* Convert text to uppercase */
+  letter-spacing: 2px; /* Add letter spacing for better readability */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow effect */
+  position: absolute;
+  top: calc(50% + 3.5rem); /* Position below the title */
+  left: 30%;
+  transform: translate(-50%, -50%);
+}
+
+.img-container {
+  display: flex;
+  justify-content: center; /* Center the image horizontally */
+}
+
+.img {
+  width: 120px;
+  height: auto;
+  position: relative;
+  right: 305px;
+  top:200px;
 }
 
 .form {
@@ -102,8 +148,32 @@ h1 {
 
 /* Media query for mobile devices */
 @media only screen and (max-width: 600px) {
+  .outer-container-reg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Stack child elements vertically */
+  }
+
+  .header-container {
+    margin-bottom: 20px; /* Add space between header and login container */
+  }
+
   .register-container {
     padding: 20px; /* Adjust the padding for smaller screens */
+    width: 80%; /* Adjust width for smaller screens */
+    max-width: 400px; /* Set maximum width for better readability */
+    margin: 0 auto; /* Center the container horizontally */
+    display: flex; /* Use flexbox */
+    flex-direction: column; /* Stack child elements vertically */
+    justify-content: center; /* Center child elements vertically */
+    align-items: center; /* Center child elements horizontally */
+    text-align: center; /* Center text content */
   }
   
   .input-field1,
@@ -112,5 +182,6 @@ h1 {
   .password-field {
     width: 100%; /* Make input fields full width */
     max-width: 300px; /* Set maximum width for better readability */
+    margin-bottom: 20px; /* Add space below the input fields */
   }
 }

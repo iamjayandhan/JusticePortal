@@ -4,12 +4,13 @@
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
+  right: 13rem;
   bottom: 0;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
 }
+
 
 .login-container {
   display: flex;
@@ -30,7 +31,52 @@
 }
 
 
+.justiceTitle {
+  font-family: 'Raleway', sans-serif; /* Apply the same font as before */
+  font-size: 3.5rem; /* Adjust the font size as needed */
+  font-weight: 700; /* Use bold font weight */
+  color: #333333; /* Dark color */
+  text-align: center; /* Center align the text */
+  margin-bottom: 20px; /* Add some space below */
+  text-transform: uppercase; /* Convert text to uppercase */
+  letter-spacing: 2px; /* Add letter spacing for better readability */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow effect */
+  position: absolute;
+  top: 50%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+}
 
+.slogan {
+  font-family: 'Raleway', sans-serif; /* Apply the same font as before */
+  font-size: 1.5rem; /* Adjust the font size as needed */
+  font-weight: 500; /* Use bold font weight */
+  color: #ac2121; /* Dark color */
+  text-align: center; /* Center align the text */
+  margin-top: 20px; /* Add some space above */
+  text-transform: uppercase; /* Convert text to uppercase */
+  letter-spacing: 2px; /* Add letter spacing for better readability */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow effect */
+  position: absolute;
+  top: calc(50% + 2rem); /* Position below the title */
+  left: 30%;
+  transform: translate(-50%, -50%);
+}
+
+
+
+.img-container {
+  display: flex;
+  justify-content: center; /* Center the image horizontally */
+}
+
+.img {
+  width: 120px;
+  height: auto;
+  position: relative;
+  right: 305px;
+  top:200px;
+}
 
 .login-form {
     text-align: center;
@@ -86,21 +132,57 @@ h1 {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow effect */
 }
 
-
-
-
 @media only screen and (max-width: 600px) {
-  .login-container {
-    padding: 50px; /* Adjust padding for smaller screens */
+  .outer-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Stack child elements vertically */
   }
-  
+
+  .header-container {
+    margin-bottom: 20px; /* Add space between header and login container */
+  }
+
+  .login-container {
+    padding: 20px; /* Adjust padding for smaller screens */
+    width: 65%; /* Adjust width for smaller screens */
+    max-width: 300px; /* Set maximum width for better readability */
+    display: flex; /* Use flexbox */
+    flex-direction: column; /* Stack child elements vertically */
+    justify-content: center; /* Center child elements vertically */
+    align-items: center; /* Center child elements horizontally */
+    text-align: center; /* Center text content */
+    position: relative;
+  }
+
+  .justiceTitle {
+    font-size: 2.5rem; /* Decrease font size for smaller screens */
+    margin-bottom: 20px; /* Add space below the title */
+  }
+
+  .slogan {
+    font-size: 1.2rem; /* Decrease font size for smaller screens */
+    margin-bottom: 20px; /* Add space below the slogan */
+  }
+
+  .img {
+    width: 80px; /* Decrease image size for smaller screens */
+    margin-bottom: 20px; /* Add some space below the image */
+  }
+
   .input-field1,
   .input-field2 {
     width: 100%; /* Make input fields full width */
-    max-width: 400px; /* Increase maximum width for better readability */
+    max-width: 300px; /* Decrease maximum width for better fit */
+    margin-bottom: 20px; /* Add space below the input fields */
   }
-  
-  
+
   .toggle-password {
     right: 10px; /* Adjust the position of the toggle password button */
   }

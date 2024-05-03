@@ -5,6 +5,7 @@ import Cookies from 'js-cookie';
 import { TextField, Button, Snackbar } from '@mui/material'; import eyeOpen from './Assets/eye_open.png'; // Import eye_open icon
 import eyeClosed from './Assets/eye_closed.png'; // Import eye_closed icon
 import '../css/Register.css'; // Import Register.css for styling
+import myImage from './Assets/court2.png';
 
 const Register = () => {
   const [username, setUsername] = useState('');
@@ -63,6 +64,15 @@ const Register = () => {
   };
 
   return (
+    <><div class="header-container">
+    <div className="img-container">
+        {/* Use the imported image with styles */}
+        <img src={myImage} alt="Description" className="img" />
+      </div>
+      <h1 className='justiceTitle'>Justice Portal</h1>
+      <h1 className='slogan'>Bridging the Gap between Law and Fairness</h1>
+      </div>
+
     <div className='outer-container-reg'>
     <div className='register-container'>
       <h1>Register</h1>
@@ -159,6 +169,7 @@ const Register = () => {
       />
     </div>
     </div>
+    </>
   );
 };
 
