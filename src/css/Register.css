@@ -12,13 +12,14 @@
 }
 
 .input-field1,
-.input-field2{
+.input-field2 {
   margin-bottom: 20px;
   width: 300px;
 }
-.input-field3{
-  margin-top:20px;
-  margin-bottom:10px;
+
+.input-field3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 
 .password-field {
@@ -34,7 +35,6 @@
   transform: translateY(-50%);
   cursor: pointer;
 }
-
 
 .eye-icon {
   max-width: 24px;

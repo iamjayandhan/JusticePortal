@@ -16,7 +16,6 @@ function MainPage() {
         <li>Real-time case tracking</li>
         <li>Document submission and management</li>
         <li>User-friendly interface for all stakeholders</li>
-        <li>Secure data encryption and compliance with privacy regulations</li>
       </ul>
       <h2>Our Mission:</h2>
       <p>

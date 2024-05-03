@@ -1,48 +1,97 @@
-.nav {
-  background-color: #1a1a1a; /* Dark background color */
-  padding: 15px 20px; /* Add padding to the top and bottom */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
-  display: flex; /* Change display to flex */
-  justify-content: flex-end; /* Align items to the right */
-}
+  .nav {
+    background-color: #1a1a1a;
+    padding: 15px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
 
-ul {
-  list-style-type: none; /* Remove bullet points from the list */
-  margin: 0; /* Remove default margin */
-  padding: 0; /* Remove default padding */
-  display: flex; /* Change display to flex */
-}
+  .menuToggle {
+    cursor: pointer;
+    display: none; /* Initially hide the menu toggle on larger screens */
+  }
 
-li {
-  margin-left: 20px; /* Add margin between list items */
-}
+  .bar {
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    margin: 4px 0;
+    transition: transform 0.3s, opacity 0.3s;
+  }
 
-li:first-child {
-  margin-left: auto; /* Align first list item to the right */
-}
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-end; /* Align items to the right */
+  }
+  
+  ul li {
+    margin-left: 20px; /* Add margin-left between list items */
+  }
+  
+  ul li:first-child {
+    margin-left: 0px; /* Align first list item to the right */
+  }
+  ul li:nth-child(6) {
+    margin-left: 200px; 
+  }
 
-a {
-  color: #fff; /* White text color */
-  text-decoration: none; /* Remove underline from links */
-  font-size: 16px; /* Increase font size */
-  font-weight: bold; /* Add bold font weight */
-  padding: 10px 15px; /* Add padding around links */
-  border-radius: 5px; /* Add rounded corners */
-  transition: background-color 0.3s; /* Smooth transition for background color */
-  font-family: 'Roboto', Arial, sans-serif; /* Change font family */
-}
+  ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    font-family: 'Roboto', Arial, sans-serif;
+  }
 
-a:hover {
-  background-color: #555; /* Darken background color on hover */
-}
+  ul li a:hover {
+    background-color: #555;
+  }
 
-.userSection {
-  display: flex;
-  align-items: center;
-}
+  .userSection {
+    display: flex;
+    align-items: center;
+  }
 
-.userSection span {
-  margin-right: 10px; /* Add some space between username and logout button */
-  color: #fff;
-}
+  .userSection span {
+    margin-right: 10px;
+    color: #fff;
+  }
 
+  /* Media query for mobile view */
+  @media screen and (max-width: 768px) {
+    .menuToggle {
+      display: block; /* Display the menu toggle on smaller screens */
+    }
+
+    ul {
+      flex-direction: column; /* Stack menu items vertically on smaller screens */
+      position: absolute;
+      top: 65px; /* Adjust the top position */
+      left: 0;
+      width: 100%;
+      background-color: #1a1a1a;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      z-index: 1;
+      display: none; /* Initially hide the menu on smaller screens */
+    }
+
+    ul.active {
+      display: flex; /* Display the menu when active */
+    }
+
+    ul li {
+      margin: 10px 0; /* Adjust margin for menu items */
+    }
+
+    ul li:first-child {
+      margin-top: 0; /* Reset margin for the first menu item */
+    }
+  }
