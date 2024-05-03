@@ -43,3 +43,26 @@
     background-color: #0056b3;
   }
   
+
+  /* Media query for mobile view */
+@media screen and (max-width: 768px) {
+  .add-case-page {
+    max-width: 325px;
+    padding: 10px; /* Reduce padding for smaller screens */
+  }
+
+  .add-case-page h2 {
+    font-size: 20px; /* Decrease font size for smaller screens */
+    margin-bottom: 15px; /* Adjust margin for smaller screens */
+  }
+
+  .add-case-page input[type="text"],
+  .add-case-page input[type="date"],
+  .add-case-page textarea {
+    margin-bottom: 10px; /* Adjust margin for smaller screens */
+  }
+
+  .add-case-page .button {
+    width: 100%; /* Make button full width for smaller screens */
+  }
+}

@@ -120,3 +120,42 @@ h2 {
 .modal-buttons button:last-child {
   margin-right: 0; /* Remove margin from the last button */
 }
+
+
+
+/* Media query for mobile view */
+@media screen and (max-width: 768px) {
+  .case-container {
+    max-width: 310px;
+    padding: 15px; /* Decrease padding for smaller screens */
+  }
+
+  .case-title {
+    font-size: 20px; /* Decrease font size for smaller screens */
+  }
+
+  .file-link {
+    font-size: 14px; /* Decrease font size for file links on smaller screens */
+  }
+
+  .modal-content {
+    max-width: 90%; /* Adjust maximum width for smaller screens */
+    max-height: 90%; /* Adjust maximum height for smaller screens */
+  }
+
+  .modal h2 {
+    font-size: 1.5rem; /* Decrease font size for modal headings on smaller screens */
+  }
+
+  .modal p {
+    font-size: 14px; /* Decrease font size for modal paragraphs on smaller screens */
+  }
+
+  .modal-buttons {
+    margin-top: 15px; /* Adjust spacing between buttons and other content for smaller screens */
+  }
+
+  .modal-buttons button {
+    padding: 8px 15px; /* Adjust padding for buttons on smaller screens */
+  }
+}

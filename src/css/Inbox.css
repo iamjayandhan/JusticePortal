@@ -160,3 +160,30 @@ button:hover {
 .modal-buttons button:last-child {
   margin-right: 0; /* Remove margin from the last button */
 }
+
+
+/* Media query for mobile view */
+@media screen and (max-width: 768px) {
+  /* Adjust styles for smaller screens */
+  .inbox-container {
+    margin-top: 10px; /* Decrease top margin */
+  }
+
+  .inbox-heading {
+    padding: 8px 0; /* Decrease padding */
+    font-size: 18px; /* Decrease font size */
+  }
+
+  .message {
+    max-width: 90%; /* Adjust message width for smaller screens */
+  }
+
+  .message-header {
+    flex-direction: column; /* Stack header items vertically */
+  }
+
+  .message-timestamp {
+    align-self: flex-start; /* Align timestamp to start */
+    margin-top: 5px; /* Adjust margin */
+  }
+}
