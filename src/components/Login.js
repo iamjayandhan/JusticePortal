@@ -58,7 +58,7 @@ const Login = () => {
 
   return (
   <>
-  <div class="header-container">
+  <div class="header-container-login">
   <div className="img-container">
       {/* Use the imported image with styles */}
       <img src={myImage} alt="Description" className="img" />

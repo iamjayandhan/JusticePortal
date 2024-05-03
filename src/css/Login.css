@@ -145,7 +145,7 @@ h1 {
     flex-direction: column; /* Stack child elements vertically */
   }
 
-  .header-container {
+  .header-container-login {
     margin-bottom: 20px; /* Add space between header and login container */
   }
 
