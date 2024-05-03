@@ -52,3 +52,26 @@
     width:537px;
   }
   
+
+  /* Media query for mobile view */
+@media screen and (max-width: 768px) {
+  /* Adjust styles for smaller screens */
+  .client-requests-container {
+    max-width: 90%; /* Decrease max-width */
+    margin-top: 20px; /* Add top margin */
+  }
+
+  .request-form {
+    padding: 15px; /* Decrease padding */
+  }
+  
+  .input-field {
+    margin-bottom: 15px; /* Decrease bottom margin */
+    max-width: 100%;
+  }
+
+  .buttons button {
+    padding: 8px 15px; /* Decrease padding for buttons */
+    font-size: 14px; /* Decrease font size for buttons */
+  }
+}

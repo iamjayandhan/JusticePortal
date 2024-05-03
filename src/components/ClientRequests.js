@@ -101,9 +101,14 @@ function ClientRequests() {
             </select>
           </div>
           <div className="input-field">
-            <label htmlFor="request-message">Request Message:</label>
-            <textarea id="request-message" value={requestMessage} onChange={(e) => setRequestMessage(e.target.value)} />
-          </div>
+          <label htmlFor="request-message">Request Message:</label>
+          <textarea
+            id="request-message"
+            value={requestMessage}
+            onChange={(e) => setRequestMessage(e.target.value)}
+            style={{ width: '93%' }} // Adjust the width inline
+          />
+        </div>
           <div className="input-field">
             <label htmlFor="lawyers-list">Select Lawyer:</label>
             <select id="lawyers-list" value={selectedLawyer} onChange={(e) => setSelectedLawyer(e.target.value)}>
