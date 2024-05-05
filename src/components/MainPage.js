@@ -5,11 +5,11 @@ import '../css/MainPage.css';
 function MainPage() {
   return (
     <div className='mainpage-container'>
-      <h1>Welcome to the Justice Portal</h1>
-      <p>
+      <h1 className='maintitle'>Welcome to the Justice Portal</h1>
+      <p className='mainp'>
         The Justice Portal revolutionizes case management processes by providing a centralized platform for seamless scheduling, tracking, and monitoring of various types of cases across diverse legal domains.
       </p>
-      <h2>Key Features:</h2>
+      <h2 className='mainh2'>KEY FEATURES</h2>
           <div style={styles.listItemContainer}>
       <div style={styles.listItem}>Efficient scheduling of hearings</div>
       <div style={styles.listItem}>Real-time case tracking</div>
@@ -17,8 +17,8 @@ function MainPage() {
     </div>
 
 
-      <h2>Our Mission:</h2>
-      <p>
+      <h2 className='mainh2'>OUR MISSION</h2>
+      <p className='mainp'>
         Our mission is to enhance the efficiency and effectiveness of judicial proceedings while upholding the principles of fairness and access to justice for all.
       </p>
     </div>
