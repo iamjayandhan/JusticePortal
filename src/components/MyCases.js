@@ -4,11 +4,13 @@ import { collection, query, where, getDocs, deleteDoc, doc, updateDoc } from "fi
 import { ref, getDownloadURL, deleteObject, uploadBytes } from "firebase/storage";
 import '../css/MyCases.css'; // Import the CSS file
 import Cookies from 'js-cookie';
+import starImage from './star2.png'; // Import the star image
 
 function MyCases() {
   const [cases, setCases] = useState([]);
   const [editingCaseId, setEditingCaseId] = useState(null); // State to track the case being edited
   const [username, setUsername] = useState(null); // State to store logged-in username
+  const [wantedLevel, setWantedLevel] = useState(0); // State to store wanted level
 
   // Define state variables for editing case details
   const [editedCase, setEditedCase] = useState({
@@ -50,6 +52,7 @@ function MyCases() {
             casesData.push({ id: doc.id, ...caseData });
           }
           setCases(casesData);
+          setWantedLevel(casesData.length);
         } else {
           console.log("No cases found.");
         }
@@ -242,6 +245,15 @@ function MyCases() {
           )}
         </div>
       ))}
+
+
+<div className="wanted-level">
+        <span>Wanted Level:</span>
+        {Array.from({ length: wantedLevel }, (_, index) => (
+          <img key={index} src={starImage} alt="star" />
+        ))}
+      </div>
+
     </div>
   );
 }

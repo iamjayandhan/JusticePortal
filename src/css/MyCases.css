@@ -1,14 +1,20 @@
-.my-cases-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-  }
+.my-case-container {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  padding: 20px;
+  max-width: 800px; /* Adjusted maximum width */
+  margin: 0 auto; /* Center the container horizontally */
+  background-color: #f9f9f9; /* Light background color */
+  top:10px;
+}
   
   .case-item {
     border: 1px solid #ccc;
     border-radius: 5px;
     margin-bottom: 20px;
     padding: 20px;
+    top:10px;
   }
   
   .case-details {
@@ -22,6 +28,22 @@
   .case-actions button {
     margin-right: 10px;
   }
+
+
+  .wanted-level {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .wanted-level img {
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+  }
+  
   
 
   /* Media query for mobile view */
