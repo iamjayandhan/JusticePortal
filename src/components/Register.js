@@ -69,8 +69,8 @@ const Register = () => {
         {/* Use the imported image with styles */}
         <img src={myImage} alt="Description" className="img" />
       </div>
-      <h1 className='justiceTitle'>Justice Portal</h1>
-      <h1 className='slogan'>Bridging the Gap between Law and Fairness</h1>
+      <h1 className='justiceTitleReg'>Justice Portal</h1>
+      <h1 className='sloganReg'>Bridging the Gap between Law and Fairness</h1>
       </div>
 
     <div className='outer-container-reg'>

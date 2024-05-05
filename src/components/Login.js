@@ -63,8 +63,8 @@ const Login = () => {
       {/* Use the imported image with styles */}
       <img src={myImage} alt="Description" className="img" />
     </div>
-    <h1 className='justiceTitle'>Justice Portal</h1>
-    <h1 className='slogan'>Bridging the Gap between Law and Fairness</h1>
+    <h1 className='justiceTitleLogin'>Justice Portal</h1>
+    <h1 className='sloganLogin'>Bridging the Gap between Law and Fairness</h1>
     </div>
     <div class="outer-container">
     <div className='login-container'>

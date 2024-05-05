@@ -29,7 +29,7 @@
 }
 
 
-.justiceTitle {
+.justiceTitleReg {
   font-family: 'Raleway', sans-serif; /* Apply the same font as before */
   font-size: 3.5rem; /* Adjust the font size as needed */
   font-weight: 700; /* Use bold font weight */
@@ -40,12 +40,12 @@
   letter-spacing: 2px; /* Add letter spacing for better readability */
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow effect */
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 47%;
+  left: 30%;
   transform: translate(-50%, -50%);
 }
 
-.slogan {
+.sloganReg {
   font-family: 'Raleway', sans-serif; /* Apply the same font as before */
   font-size: 1.5rem; /* Adjust the font size as needed */
   font-weight: 500; /* Use bold font weight */
@@ -148,6 +148,26 @@ h1 {
 
 /* Media query for mobile devices */
 @media only screen and (max-width: 600px) {
+
+  .justiceTitleReg {
+    font-size: 2.5rem; /* Decrease font size for smaller screens */
+    margin: 0;
+    padding: 0;
+    position: absolute; /* Position the element absolutely */
+    top: 3rem; /* Position it 12rem from the top of the screen */
+    left: 12rem; /* Align the left edge with the left side of the screen */
+    right: 0; /* Align the right edge with the right side of the screen */
+    text-align: center; /* Center the text horizontally */
+}
+.sloganReg {
+  font-size: 1.2rem; /* Decrease font size for smaller screens */
+  margin-bottom: 20px; /* Add space below the slogan */
+  position: absolute; /* Position the element absolutely */
+  top: calc(6rem + 1.5rem); /* Position it below .justiceTitleLogin */
+  left:11.5rem; /* Move it slightly to the right */
+  right: 0rem; /* Move it slightly to the left */
+  text-align: center; /* Center the text horizontally */
+}
   .outer-container-reg {
     position: fixed;
     top: 0;
