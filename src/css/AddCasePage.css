@@ -60,6 +60,7 @@
   .add-case-page input[type="date"],
   .add-case-page textarea {
     margin-bottom: 10px; /* Adjust margin for smaller screens */
+    width:300px;
   }
 
   .add-case-page .button {
