@@ -6,6 +6,7 @@ import '../css/ClientRequests.css';
 
 function ClientRequests() {
   const [selectedCase, setSelectedCase] = useState('');
+  const [selectedCaseTitle, setSelectedCaseTitle] = useState('');
   const [requestMessage, setRequestMessage] = useState('');
   const [lawyersList, setLawyersList] = useState([]);
   const [selectedLawyer, setSelectedLawyer] = useState('');
@@ -69,6 +70,7 @@ function ClientRequests() {
     try {
       const request = {
         caseId: selectedCase,
+        caseTitle: selectedCaseTitle,
         message: requestMessage,
         username: selectedLawyer,
         from: loggedInUsername,
@@ -92,14 +94,19 @@ function ClientRequests() {
       {isLoggedIn ? (
         <div className="request-form">
           <div className="input-field">
-            <label htmlFor="case-dropdown">Choose Case:</label>
-            <select id="case-dropdown" value={selectedCase} onChange={(e) => setSelectedCase(e.target.value)}>
-              <option value="">Select a Case</option>
-              {clientCases.map((caseItem) => (
-                <option key={caseItem.id} value={caseItem.id}>{caseItem.caseTitle}</option>
-              ))}
-            </select>
-          </div>
+  <label htmlFor="case-dropdown">Choose Case:</label>
+  <select id="case-dropdown" value={selectedCase} onChange={(e) => {
+    setSelectedCase(e.target.value);
+    const selectedTitle = clientCases.find(caseItem => caseItem.id === e.target.value)?.caseTitle;
+    setSelectedCaseTitle(selectedTitle || ''); // Update selectedCaseTitle based on selectedCase
+  }}>
+    <option value="">Select a Case</option>
+    {clientCases.map((caseItem) => (
+      <option key={caseItem.id} value={caseItem.id}>{caseItem.caseTitle}</option>
+    ))}
+  </select>
+</div>
+
           <div className="input-field">
           <label htmlFor="request-message">Request Message:</label>
           <textarea
