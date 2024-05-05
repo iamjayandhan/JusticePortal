@@ -116,8 +116,8 @@ function AllCases() {
       ))}
       {/* Modal for case details */}
 {selectedCase && (
-  <div className="modal">
-    <div className="modal-content">
+  <div className="modal-allcases">
+    <div className="modal-content-allcases">
       <h2>Case Details</h2>
       <p>Case Title: {selectedCase.caseTitle}</p>
       <p>Case Description: {selectedCase.caseDescription}</p>
@@ -128,7 +128,7 @@ function AllCases() {
       {selectedCase.files.length > 0 && (
         <div>
           <h3>Files Attached:</h3>
-          <ul>
+          <ul className='ul-allcases'>
             {selectedCase.files.map((file, index) => (
               <li key={index}>
                 <a href={file.downloadURL} target="_blank" rel="noopener noreferrer" className="file-link">{file.filePath}</a>

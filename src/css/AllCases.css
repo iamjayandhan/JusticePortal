@@ -1,26 +1,26 @@
+/* AllCases.css */
+
+/* Base styles */
 .case-container {
   border: 1px solid #ccc;
   border-radius: 5px;
   margin-bottom: 20px;
   padding: 20px;
-  max-width: 800px; /* Adjusted maximum width */
-  margin: 0 auto; /* Center the container horizontally */
-  background-color: #f9f9f9; /* Light background color */
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #f9f9f9;
 }
 
 .case {
-  margin-bottom: 20px; /* Add some spacing between cases */
+  margin-bottom: 20px;
 }
 
 .case-title {
-  font-size: 24px; /* Increased font size for case titles */
+  font-size: 24px;
   margin-bottom: 10px;
 }
 
-.case-description {
-  margin-bottom: 10px;
-}
-
+.case-description,
 .case-details {
   margin-bottom: 10px;
 }
@@ -45,117 +45,146 @@
 
 h2 {
   font-size: 1.8rem;
-  color: #0f0f0f; /* Blue color */
+  color: #0f0f0f;
   margin-top: 30px;
   margin-bottom: 15px;
-  text-align: center; /* Align the text to the center */
+  text-align: center;
 }
 
-
-
-
-
-
-
-
-/* AllCases.css */
-
-.modal {
+/* Modal styles */
+.modal-allcases {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
-  z-index: 999; /* Ensure modal is on top of other content */
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
 }
 
-.modal-content {
+.modal-content-allcases {
   background-color: white;
   padding: 20px;
   border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Shadow effect */
-  max-width: 80%; /* Adjust maximum width as needed */
-  max-height: 80%; /* Adjust maximum height as needed */
-  overflow-y: auto; /* Enable vertical scrolling if content overflows */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  max-width: 80%;
+  max-height: 80%;
+  overflow-y: auto;
 }
 
 .modal h2 {
-  margin-top: 0; /* Remove default margin */
-  color: black; /* Set text color to black */
+  margin-top: 0;
+  color: black;
 }
 
 .modal p {
-  margin-bottom: 10px; /* Add spacing between paragraphs */
-  color: black; /* Set text color to black */
+  margin-bottom: 10px;
+  color: black;
 }
 
 .modal ul {
-  list-style-type: none; /* Remove default list styles */
-  padding: 0; /* Remove default padding */
+  list-style-type: none;
+  padding: 0;
 }
 
 .modal li {
-  margin-bottom: 5px; /* Add spacing between list items */
-  color: black; /* Set text color to black */
+  margin-bottom: 5px;
+  color: black;
 }
 
 .modal a.file-link {
-  color: blue; /* Change the color to your desired color */
-  /* Add any additional styling you want */
+  color: blue;
+}
+
+.modal a.file-link:hover {
+  text-decoration: underline;
 }
 
 .modal-buttons {
-  margin-top: 20px; /* Add spacing between buttons and other content */
-  text-align: center; /* Center-align buttons */
+  margin-top: 20px;
+  text-align: center;
 }
 
 .modal-buttons button {
-  margin-right: 10px; /* Add spacing between buttons */
+  margin-right: 10px;
+  padding: 8px 15px;
 }
 
 .modal-buttons button:last-child {
-  margin-right: 0; /* Remove margin from the last button */
+  margin-right: 0;
 }
-
-
 
 /* Media query for mobile view */
 @media screen and (max-width: 768px) {
+  .modal-allcases{
+    top: 50%; /* Adjust the modal position to center vertically */
+    transform: translateY(-50%); /* Center the modal vertically */
+  }
   .case-container {
     max-width: 310px;
-    padding: 15px; /* Decrease padding for smaller screens */
+    padding: 15px;
   }
 
   .case-title {
-    font-size: 20px; /* Decrease font size for smaller screens */
+    font-size: 20px;
   }
 
   .file-link {
-    font-size: 14px; /* Decrease font size for file links on smaller screens */
+    font-size: 14px;
   }
 
-  .modal-content {
-    max-width: 90%; /* Adjust maximum width for smaller screens */
-    max-height: 90%; /* Adjust maximum height for smaller screens */
+  .modal-content-allcases {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    max-width: 90%;
+    max-height: 90%;
+    overflow-y: auto;
+  }
+  
+  ul li{
+    margin: 0; /* Remove all margin spaces */
+    padding: 0; /* Remove all padding */
   }
 
   .modal h2 {
-    font-size: 1.5rem; /* Decrease font size for modal headings on smaller screens */
+    font-size: 1.5rem;
   }
 
   .modal p {
-    font-size: 14px; /* Decrease font size for modal paragraphs on smaller screens */
+    font-size: 14px;
   }
 
   .modal-buttons {
-    margin-top: 15px; /* Adjust spacing between buttons and other content for smaller screens */
+    margin-top: 15px;
   }
 
   .modal-buttons button {
-    padding: 8px 15px; /* Adjust padding for buttons on smaller screens */
+    padding: 8px 15px;
   }
+
+  .ul-allcases {
+    flex-direction: column; /* Stack menu items vertically on smaller screens */
+    position: absolute;
+    top: 80%; /* Adjust the top position */
+    width: 100%;
+    z-index: 1;
+    display: block;
+    unicode-bidi: isolate;
+    background-color: white;
+    margin: 0; /* Remove all margin spaces */
+    padding: 0; /* Remove all padding */
+  }
+  .file-link {
+    font-size: 1rem;
+    color: #0f83ff;
+    text-decoration: none;
+  }
+
 }
+
+
