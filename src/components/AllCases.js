@@ -104,7 +104,7 @@ function AllCases() {
 
   return (
     <div>
-      <h2>All Cases</h2>
+      <h2>ALL CASES</h2>
       {cases.map((caseItem) => (
         <div className="case-container" key={caseItem.id}>
           <h3 className="case-title">{caseItem.caseTitle}</h3>

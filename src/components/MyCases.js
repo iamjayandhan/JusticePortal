@@ -172,7 +172,7 @@ function MyCases() {
 
   return (
     <div>
-      <h2>My Cases</h2>
+      <h2>MY CASES</h2>
       {cases.map((caseItem) => (
         <div className="case-container" key={caseItem.id}>
           {/* Check if the current case is in editing mode */}
