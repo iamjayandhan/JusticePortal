@@ -119,7 +119,6 @@ const Register = () => {
   <option value="" disabled>Role*</option>
   <option value="Case Owners/Clients">Case Owners/Clients</option>
   <option value="Lawyers/Attorneys">Lawyers/Attorneys</option>
-  <option value="Clerk/Endorser">Clerk/Endorser</option>
 </select>
 
 
