@@ -123,6 +123,7 @@ function AllCases() {
       <p>Case Description: {selectedCase.caseDescription}</p>
       <p>Client Name: {selectedCase.caseAssignee}</p>
       <p>Case Type: {selectedCase.caseType}</p>
+      <p>Filling Date: {selectedCase.filingDateTime}</p>
       
       {/* Display files attached to the case */}
       {selectedCase.files.length > 0 && (

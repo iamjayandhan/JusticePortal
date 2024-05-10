@@ -86,10 +86,10 @@ function AddCasePage() {
           Client Name:
           <input type="text" value={caseAssignee} onChange={(e) => setCaseAssignee(e.target.value)} required />
         </label>
-        <label>
+        {/* <label>
           Filing Date:
           <input type="date" value={filingDate} onChange={(e) => setFilingDate(e.target.value)} required />
-        </label>
+        </label> */}
         <label>
           Upload File(s):
           <input type="file" multiple onChange={handleFileChange} required />
