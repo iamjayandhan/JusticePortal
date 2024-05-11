@@ -143,8 +143,8 @@ const Register = () => {
         <br />
         <Button type="submit" variant="contained" color="primary">Register</Button>
       </form>
-      <div>
-        <p>Already have an account? <span onClick={() => window.location.href = '/login'} className="register-link">Login</span></p> {/* Directly change window location */}
+      <div className='routeToLogin'>
+        <p className='routeToLogin'>Already have an account? <span onClick={() => window.location.href = '/login'} className="register-link">Login</span></p> {/* Directly change window location */}
       </div>
       <Snackbar
         open={openSnackbar}

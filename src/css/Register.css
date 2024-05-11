@@ -193,37 +193,53 @@ h1 {
   }
   
   .img {
-    left: 0px;
-    width: 80%; /* Adjust the width to make it responsive */
-    max-width: 120px; /* Set a maximum width */
+    width: 80px;
     height: auto;
     position: relative;
-    margin-top: -110px; /* Move the image 50px up */
+    right: 305px;
+    margin-top:10px;
   }
+
+  .register-heading {
+    font-size: 1.8rem; /* Adjust the font size as needed */
+    font-family: 'Raleway', sans-serif; /* Use Raleway font */
+    font-weight: 700; /* Use bold font weight */
+    color: #333333; /* Dark color */
+    text-align: center; /* Center align the text */
+    text-transform: uppercase; /* Convert text to uppercase */
+    margin: 0px;
+    letter-spacing: 2px; /* Add letter spacing for better readability */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow effect */
+  }
+  .routeToLogin{
+    margin:0px;
+  }
+  
 
   .justiceTitleReg {
     font-size: 2.3rem;
-    top: 10.5rem;
+    top:0px;
     left: 50%;
     transform: translateX(-50%);
     right: initial;
     white-space: nowrap; /* Ensure the text is displayed on a single line */
   }
   .sloganReg {
-    font-size: 1rem;
-    top: calc(2rem + 1.5rem); /* Adjust top position */
+    font-size: 0.8rem;
+    top: calc(0rem + 0rem - 100px); /* Move it up by 20px */
     left: 50%;
     transform: translateX(-50%);
     right: initial;
-    margin-top: 180px; /* Reduce top margin */
+    margin-top: 160px; /* Reduce top margin */
     margin-bottom: 4px; /* Reduce bottom margin */
     height: 2rem; /* Set the height for two lines of text */
     line-height: 1rem; /* Adjust line height for two lines of text */
-    white-space: nowrap; 
+    white-space: nowrap;
   }
+  
   .sloganReg1 {
-    font-size: 1rem;
-    top: calc(2rem + 1.5rem); /* Adjust top position */
+    font-size: 0.8rem;
+    top: calc(0rem + 0rem - 125px); /* Adjust top position */
     left: 50%;
     transform: translateX(-50%);
     right: initial;
@@ -234,17 +250,7 @@ h1 {
     white-space: nowrap; 
   }
   
-  .register-heading {
-    font-size: 1.8rem; /* Adjust the font size as needed */
-    font-family: 'Raleway', sans-serif; /* Use Raleway font */
-    font-weight: 700; /* Use bold font weight */
-    color: #333333; /* Dark color */
-    text-align: center; /* Center align the text */
-    margin-bottom: 20px; /* Add some space below */
-    text-transform: uppercase; /* Convert text to uppercase */
-    letter-spacing: 2px; /* Add letter spacing for better readability */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow effect */
-  }
+
 
   .input-field3 select {
     width: 222px;
@@ -272,8 +278,8 @@ h1 {
   .register-container {
     padding: 20px; /* Increase padding for better visual separation */
     width: 90%;
-    max-width: 290px;
-    margin: 240px auto 40px; /* Adjust margin for better positioning */
+    max-width: 240px;
+    margin: 210px auto 40px; /* Adjust margin for better positioning */
     display: flex;
     flex-direction: column;
     justify-content: center;
