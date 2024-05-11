@@ -64,11 +64,13 @@ const Login = () => {
       <img src={myImage} alt="Description" className="img" />
     </div>
     <h1 className='justiceTitleLogin'>Justice Portal</h1>
-    <h1 className='sloganLogin'>Bridging the Gap between Law and Fairness</h1>
+    {/* <h1 className='sloganLogin'>Bridging the Gap between Law and Fairness</h1> */}
+    <h1 className='sloganLogin'>Bridging the Gap between</h1>
+      <h1 className='sloganLogin1'>Law and Fairness</h1>
     </div>
     <div class="outer-container">
     <div className='login-container'>
-      <h1>Login</h1>
+      <h1 className='login-heading'>Login</h1>
       <form onSubmit={handleLogin} className="login-form">
         <TextField
           label="Email or Username" // Change label to reflect email or username
@@ -113,6 +115,7 @@ const Login = () => {
         onClose={handleCloseSnackbar}
         message={loginMessage}
       />
+      
     </div>
     </div>
     </>

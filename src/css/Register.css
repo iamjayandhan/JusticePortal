@@ -57,7 +57,23 @@
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow effect */
   position: absolute;
   top: calc(50% + 3.5rem); /* Position below the title */
-  left: 30%;
+  left: 21.2%;
+  transform: translate(-50%, -50%);
+}
+
+.sloganReg1 {
+  font-family: 'Raleway', sans-serif; /* Apply the same font as before */
+  font-size: 1.5rem; /* Adjust the font size as needed */
+  font-weight: 500; /* Use bold font weight */
+  color: #ac2121; /* Dark color */
+  text-align: center; /* Center align the text */
+  margin-top: 20px; /* Add some space above */
+  text-transform: uppercase; /* Convert text to uppercase */
+  letter-spacing: 2px; /* Add letter spacing for better readability */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow effect */
+  position: absolute;
+  top: calc(50% + 3.5rem); /* Position below the title */
+  left: 43%;
   transform: translate(-50%, -50%);
 }
 
@@ -87,6 +103,18 @@
 .input-field3 {
   margin-top: 20px;
   margin-bottom: 10px;
+}
+
+.input-field3 select {
+  width: 300px;
+  height: 55px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #666666;
+  outline: none;
 }
 
 .password-field {
@@ -145,29 +173,91 @@ h1 {
   margin-right: 10px;
 }
 
+.custom-select {
+  width: 300px;
+  height: 55px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #666666;
+  outline: none;
+}
 
-/* Media query for mobile devices */
+
 @media only screen and (max-width: 600px) {
+  .img-container {
+    display: flex;
+    justify-content: center; /* Center the image horizontally */
+  }
+  
+  .img {
+    left: 0px;
+    width: 80%; /* Adjust the width to make it responsive */
+    max-width: 120px; /* Set a maximum width */
+    height: auto;
+    position: relative;
+    margin-top: -110px; /* Move the image 50px up */
+  }
 
   .justiceTitleReg {
-    font-size: 2.5rem; /* Decrease font size for smaller screens */
-    margin: 0;
-    padding: 0;
-    position: absolute; /* Position the element absolutely */
-    top: 3rem; /* Position it 12rem from the top of the screen */
-    left: 12rem; /* Align the left edge with the left side of the screen */
-    right: 0; /* Align the right edge with the right side of the screen */
-    text-align: center; /* Center the text horizontally */
-}
-.sloganReg {
-  font-size: 1.2rem; /* Decrease font size for smaller screens */
-  margin-bottom: 20px; /* Add space below the slogan */
-  position: absolute; /* Position the element absolutely */
-  top: calc(6rem + 1.5rem); /* Position it below .justiceTitleLogin */
-  left:11.5rem; /* Move it slightly to the right */
-  right: 0rem; /* Move it slightly to the left */
-  text-align: center; /* Center the text horizontally */
-}
+    font-size: 2.3rem;
+    top: 10.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    right: initial;
+    white-space: nowrap; /* Ensure the text is displayed on a single line */
+  }
+  .sloganReg {
+    font-size: 1rem;
+    top: calc(2rem + 1.5rem); /* Adjust top position */
+    left: 50%;
+    transform: translateX(-50%);
+    right: initial;
+    margin-top: 180px; /* Reduce top margin */
+    margin-bottom: 4px; /* Reduce bottom margin */
+    height: 2rem; /* Set the height for two lines of text */
+    line-height: 1rem; /* Adjust line height for two lines of text */
+    white-space: nowrap; 
+  }
+  .sloganReg1 {
+    font-size: 1rem;
+    top: calc(2rem + 1.5rem); /* Adjust top position */
+    left: 50%;
+    transform: translateX(-50%);
+    right: initial;
+    margin-top: 200px; /* Reduce top margin */
+    margin-bottom: 4px; /* Reduce bottom margin */
+    height: 2rem; /* Set the height for two lines of text */
+    line-height: 1rem; /* Adjust line height for two lines of text */
+    white-space: nowrap; 
+  }
+  
+  .register-heading {
+    font-size: 1.8rem; /* Adjust the font size as needed */
+    font-family: 'Raleway', sans-serif; /* Use Raleway font */
+    font-weight: 700; /* Use bold font weight */
+    color: #333333; /* Dark color */
+    text-align: center; /* Center align the text */
+    margin-bottom: 20px; /* Add some space below */
+    text-transform: uppercase; /* Convert text to uppercase */
+    letter-spacing: 2px; /* Add letter spacing for better readability */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow effect */
+  }
+
+  .input-field3 select {
+    width: 222px;
+    height: 55px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #666666;
+    outline: none;
+  }
+
   .outer-container-reg {
     position: fixed;
     top: 0;
@@ -177,31 +267,34 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column; /* Stack child elements vertically */
+    flex-direction: column;
   }
-
-  .header-container {
-    margin-bottom: 20px; /* Add space between header and login container */
-  }
-
   .register-container {
-    padding: 20px; /* Adjust the padding for smaller screens */
-    width: 80%; /* Adjust width for smaller screens */
-    max-width: 400px; /* Set maximum width for better readability */
-    margin: 0 auto; /* Center the container horizontally */
-    display: flex; /* Use flexbox */
-    flex-direction: column; /* Stack child elements vertically */
-    justify-content: center; /* Center child elements vertically */
-    align-items: center; /* Center child elements horizontally */
-    text-align: center; /* Center text content */
+    padding: 20px; /* Increase padding for better visual separation */
+    width: 90%;
+    max-width: 290px;
+    margin: 240px auto 40px; /* Adjust margin for better positioning */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 1px solid #333; /* Add a solid border */
+    border-radius: 10px; /* Add border radius for rounded corners */
+    background-color: #fff; /* Ensure a white background */
+    box-shadow: 100 10 10px rgba(0, 0, 0, 0.2); /* Add a subtle shadow effect */
   }
   
   .input-field1,
   .input-field2,
-  .input-field3,
-  .password-field {
-    width: 100%; /* Make input fields full width */
-    max-width: 300px; /* Set maximum width for better readability */
-    margin-bottom: 20px; /* Add space below the input fields */
+  .input-field3 {
+    width: 100%;
+    max-width: 200px; /* Adjust max-width for smaller screens */
+    margin-bottom: 8px; /* Decrease margin for smaller screens */
+  }
+  .password-field{
+    width:100%;
+    max-width: 222px;
+    margin-bottom: 8px;
   }
 }

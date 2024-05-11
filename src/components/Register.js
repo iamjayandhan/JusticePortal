@@ -64,18 +64,21 @@ const Register = () => {
   };
 
   return (
-    <><div class="header-container">
+    <>
+    <div className="registration-container">
+    <div class="header-container">
     <div className="img-container">
         {/* Use the imported image with styles */}
         <img src={myImage} alt="Description" className="img" />
       </div>
       <h1 className='justiceTitleReg'>Justice Portal</h1>
-      <h1 className='sloganReg'>Bridging the Gap between Law and Fairness</h1>
+      <h1 className='sloganReg'>Bridging the Gap between</h1>
+      <h1 className='sloganReg1'>Law and Fairness</h1>
       </div>
 
     <div className='outer-container-reg'>
     <div className='register-container'>
-      <h1>Register</h1>
+      <h1 className='register-heading'>Register</h1>
       <form className="form" onSubmit={handleRegistration}>
         <TextField
           label="Username"
@@ -99,21 +102,10 @@ const Register = () => {
         />
         <br/>
         <div className="input-field3">
-        
         <select
   value={role}
   onChange={(e) => setRole(e.target.value)}
-  style={{
-    width: '300px',
-    height: '55px',
-    padding: '10px',
-    fontSize: '16px',
-    border: '1px solid #ccc',
-    borderRadius: '5px',
-    backgroundColor: '#fff',
-    color: '#666666',
-    outline: 'none',
-  }}
+  className="custom-select"
   required
 >
   <option value="" disabled>Role*</option>
@@ -167,7 +159,10 @@ const Register = () => {
         message="Registration successful!"
       />
     </div>
+    <h7></h7>
     </div>
+    </div>
+    
     </>
   );
 };

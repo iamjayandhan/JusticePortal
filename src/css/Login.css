@@ -59,8 +59,25 @@
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow effect */
   position: absolute;
   top: calc(50% + 2rem); /* Position below the title */
-  left: 30%;
+  left: 21.2%;
   transform: translate(-50%, -50%);
+  white-space: nowrap; /* Prevent text from wrapping */
+}
+.sloganLogin1 {
+  font-family: 'Raleway', sans-serif; /* Apply the same font as before */
+  font-size: 1.5rem; /* Adjust the font size as needed */
+  font-weight: 500; /* Use bold font weight */
+  color: #ac2121; /* Dark color */
+  text-align: center; /* Center align the text */
+  margin-top: 60px; /* Add some space above */
+  text-transform: uppercase; /* Convert text to uppercase */
+  letter-spacing: 2px; /* Add letter spacing for better readability */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow effect */
+  position: absolute;
+  top: calc(50% + 1rem); /* Position below the title */
+  left: 43%;
+  transform: translate(-50%, -50%);
+   white-space: nowrap; /* Prevent text from wrapping */
 }
 
 
@@ -133,29 +150,64 @@ h1 {
 }
 
 @media only screen and (max-width: 600px) {
+  .img-container {
+    display: flex;
+    justify-content: center; /* Center the image horizontally */
+  }
+  
+  .img {
+    left: 0px;
+    width: 80%; /* Adjust the width to make it responsive */
+    max-width: 120px; /* Set a maximum width */
+    height: auto;
+    position: relative;
+    margin-top: -110px; /* Move the image 50px up */
+  }
+
   .justiceTitleLogin {
-    font-size: 2.5rem; /* Decrease font size for smaller screens */
-    margin: 0;
-    padding: 0;
-    position: absolute; /* Position the element absolutely */
-    top: 8rem; /* Position it 12rem from the top of the screen */
-    left: 12rem; /* Align the left edge with the left side of the screen */
-    right: 0; /* Align the right edge with the right side of the screen */
-    text-align: center; /* Center the text horizontally */
+    font-size: 2.3rem;
+    top: 10.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    right: initial;
+    white-space: nowrap; /* Ensure the text is displayed on a single line */
 }
 .sloganLogin {
-  font-size: 1.2rem; /* Decrease font size for smaller screens */
-  margin-bottom: 20px; /* Add space below the slogan */
-  position: absolute; /* Position the element absolutely */
-  top: calc(10rem + 1.5rem); /* Position it below .justiceTitleLogin */
-  left:11.5rem; /* Move it slightly to the right */
-  right: 0rem; /* Move it slightly to the left */
-  text-align: center; /* Center the text horizontally */
+  font-size: 1rem;
+  top: calc(2rem + 1.5rem); /* Adjust top position */
+  left: 50%;
+  transform: translateX(-50%);
+  right: initial;
+  margin-top: 180px; /* Reduce top margin */
+  margin-bottom: 4px; /* Reduce bottom margin */
+  height: 2rem; /* Set the height for two lines of text */
+  line-height: 1rem; /* Adjust line height for two lines of text */
+  white-space: nowrap; 
+}
+.sloganLogin1 {
+  font-size: 1rem;
+  top: calc(2rem + 1.5rem); /* Adjust top position */
+  left: 50%;
+  transform: translateX(-50%);
+  right: initial;
+  margin-top: 200px; /* Reduce top margin */
+  margin-bottom: 4px; /* Reduce bottom margin */
+  height: 2rem; /* Set the height for two lines of text */
+  line-height: 1rem; /* Adjust line height for two lines of text */
+  white-space: nowrap; 
 }
 
-
-
-
+.login-heading {
+  font-size: 1.8rem; /* Adjust the font size as needed */
+  font-family: 'Raleway', sans-serif; /* Use Raleway font */
+  font-weight: 700; /* Use bold font weight */
+  color: #333333; /* Dark color */
+  text-align: center; /* Center align the text */
+  margin-bottom: 20px; /* Add some space below */
+  text-transform: uppercase; /* Convert text to uppercase */
+  letter-spacing: 2px; /* Add letter spacing for better readability */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow effect */
+}
 
   .outer-container {
     position: fixed;
@@ -175,18 +227,21 @@ h1 {
 
   .login-container {
     padding: 20px; /* Adjust padding for smaller screens */
-    width: 65%; /* Adjust width for smaller screens */
+    width: 90%; /* Adjust width for smaller screens */
     max-width: 300px; /* Set maximum width for better readability */
+    margin-top: 100px; /* Adjust margin top as needed */
     display: flex; /* Use flexbox */
     flex-direction: column; /* Stack child elements vertically */
     justify-content: center; /* Center child elements vertically */
     align-items: center; /* Center child elements horizontally */
     text-align: center; /* Center text content */
     position: relative;
+    border: 1px solid #333; /* Add a solid border */
+    border-radius: 10px; /* Add border radius for rounded corners */
+    background-color: #fff; /* Ensure a white background */
+    box-shadow: 100 10 10px rgba(0, 0, 0, 0.2); /* Add a subtle shadow effect */
   }
-
-
-
+  
 
   .img {
     width: 80px; /* Decrease image size for smaller screens */

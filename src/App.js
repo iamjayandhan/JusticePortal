@@ -25,6 +25,8 @@ const App = () => {
         const newBuffer = (prevBuffer + key).slice(-cheatCode.length);
         if (newBuffer === cheatCode) {
           setOpenSnackbar(true);
+          const audio = new Audio(require('../src/cheat_sound.mp3'));
+          audio.play();
           return '';
         }
         return newBuffer;
