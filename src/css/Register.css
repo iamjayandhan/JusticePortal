@@ -193,11 +193,13 @@ h1 {
   }
   
   .img {
-    width: 80px;
-    height: auto;
+    top:145px;
+    left: 0px;
+    width: 80%; /* Adjust the width to make it responsive */
+    max-width:65px; /* Set a maximum width */
+    max-height: 65px;
     position: relative;
-    right: 305px;
-    margin-top:10px;
+    margin-top: -110px; /* Move the image 50px up */
   }
 
   .register-heading {
@@ -218,7 +220,7 @@ h1 {
 
   .justiceTitleReg {
     font-size: 2.3rem;
-    top:0px;
+    top: 5rem;
     left: 50%;
     transform: translateX(-50%);
     right: initial;
@@ -226,7 +228,7 @@ h1 {
   }
   .sloganReg {
     font-size: 0.8rem;
-    top: calc(0rem + 0rem - 100px); /* Move it up by 20px */
+    top: calc(0rem + 0rem - 10px); /* Move it up by 20px */
     left: 50%;
     transform: translateX(-50%);
     right: initial;
@@ -239,7 +241,7 @@ h1 {
   
   .sloganReg1 {
     font-size: 0.8rem;
-    top: calc(0rem + 0rem - 125px); /* Adjust top position */
+    top: calc(0rem + 0rem - 35px); /* Adjust top position */
     left: 50%;
     transform: translateX(-50%);
     right: initial;

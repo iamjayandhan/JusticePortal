@@ -156,17 +156,18 @@ h1 {
   }
   
   .img {
+    top:145px;
     left: 0px;
     width: 80%; /* Adjust the width to make it responsive */
-    max-width: 80px; /* Set a maximum width */
-    height: auto;
+    max-width:65px; /* Set a maximum width */
+    max-height: 65px;
     position: relative;
     margin-top: -110px; /* Move the image 50px up */
   }
 
   .justiceTitleLogin {
     font-size: 2.3rem;
-    top: 0rem;
+    top: 5.5rem;
     left: 50%;
     transform: translateX(-50%);
     right: initial;
@@ -174,7 +175,7 @@ h1 {
 }
 .sloganLogin {
   font-size: 0.8rem;
-    top: calc(0rem + 0rem - 100px); /* Move it up by 20px */
+    top: calc(0rem + 0rem - 0px); /* Move it up by 20px */
     left: 50%;
     transform: translateX(-50%);
     right: initial;
@@ -186,7 +187,7 @@ h1 {
 }
 .sloganLogin1 {
   font-size: 0.8rem;
-    top: calc(0rem + 0rem - 125px); /* Adjust top position */
+    top: calc(0rem + 0rem - 20px); /* Adjust top position */
     left: 50%;
     transform: translateX(-50%);
     right: initial;
@@ -230,14 +231,14 @@ h1 {
     padding: 20px; /* Adjust padding for smaller screens */
     width: 90%; /* Adjust width for smaller screens */
     max-width: 230px; /* Set maximum width for better readability */
-    margin-top: 90px; /* Adjust margin top as needed */
+    margin-top: 150px; /* Adjust margin top as needed */
     display: flex; /* Use flexbox */
     flex-direction: column; /* Stack child elements vertically */
     justify-content: center; /* Center child elements vertically */
     align-items: center; /* Center child elements horizontally */
     text-align: center; /* Center text content */
     position: relative;
-    border: 1px solid #333; /* Add a solid border */
+    border: 2px solid #333; /* Add a solid border */
     border-radius: 10px; /* Add border radius for rounded corners */
     background-color: #fff; /* Ensure a white background */
     box-shadow: 100 10 10px rgba(0, 0, 0, 0.2); /* Add a subtle shadow effect */
