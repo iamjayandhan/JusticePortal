@@ -238,13 +238,16 @@ h1 {
     align-items: center; /* Center child elements horizontally */
     text-align: center; /* Center text content */
     position: relative;
-    border: 2px solid #333; /* Add a solid border */
+    border: 1px solid #333; /* Add a solid border */
     border-radius: 10px; /* Add border radius for rounded corners */
     background-color: #fff; /* Ensure a white background */
     box-shadow: 100 10 10px rgba(0, 0, 0, 0.2); /* Add a subtle shadow effect */
   }
   
 
+  .login-container:hover {
+    box-shadow: 10px 8px 16px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+  }
   .img {
     width: 80px; /* Decrease image size for smaller screens */
     margin-bottom: 20px; /* Add some space below the image */

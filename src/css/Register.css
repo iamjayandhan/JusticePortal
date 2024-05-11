@@ -19,13 +19,14 @@
   border: 2px solid;
   border-image: linear-gradient(to right, #ff00ff, #00ffff, #ff00ff);
   border-radius: 10px; /* Adjust the border radius as needed */
+  border: 1px solid #333; /* Add a solid border */
   box-shadow: 10px 16px 32px rgba(0, 0, 0, 0.1); /* Add a subtle shadow effect */
   background-color: #FFFFFF; /* Example background color */
   transition: box-shadow 0.3s ease; /* Add smooth transition for hover effect */
 }
 
 .register-container:hover {
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+  box-shadow: 10px 8px 8px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
 }
 
 
@@ -287,10 +288,13 @@ h1 {
     justify-content: center;
     align-items: center;
     text-align: center;
-    border: 1px solid #333; /* Add a solid border */
     border-radius: 10px; /* Add border radius for rounded corners */
+    border: 1px solid #333; /* Add a solid border */
     background-color: #fff; /* Ensure a white background */
-    box-shadow: 100 10 10px rgba(0, 0, 0, 0.2); /* Add a subtle shadow effect */
+    box-shadow: 1000 100 100px rgba(0, 0, 0, 0.2); /* Add a subtle shadow effect */
+  }
+  .register-container:hover {
+    box-shadow: 10px 8px 16px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
   }
   
   .input-field1,
