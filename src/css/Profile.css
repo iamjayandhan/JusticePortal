@@ -1,0 +1,79 @@
+/* profile.css */
+
+/* Common styles for both desktop and mobile */
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+  
+.title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+  
+.field-container {
+    margin-bottom: 20px;
+    display: flex; /* Use flexbox */
+    align-items: center; /* Align items vertically */
+    justify-content: space-between; /* Space items evenly */
+}
+  
+.field-label {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    font-weight: normal; /* Remove bold styling */
+}
+  
+.field-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+}
+  
+.field-actions {
+    display: flex; /* Use flexbox */
+    align-items: center; /* Align items vertically */
+    padding: 10px; /* Add padding */
+}
+  
+.button {
+    margin-left: 10px; /* Adjust margin */
+}
+
+/* Add space between buttons */
+.button + .button {
+    margin-left: 15px; /* Add space between buttons */
+}
+
+  /* Media query for mobile devices */
+  @media screen and (max-width: 600px) {
+    .container {
+      max-width: 90%;
+      padding: 10px;
+    }
+  
+    .title {
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+    }
+  
+    .field-label {
+      font-size: 1.2rem;
+      margin-bottom: 3px;
+    }
+  
+    .field-input {
+      padding: 8px;
+      font-size: 0.9rem;
+    }
+  
+    .field-actions {
+      margin-top: 8px;
+      padding: 8px; /* Add padding */
+    }
+  
+    .button {
+      margin-left: 8px; /* Adjust margin */
+    }
+  }

@@ -11,6 +11,7 @@ import MyCases from './components/MyCases';
 import Inbox from './components/Inbox';
 import ClientRequests from './components/ClientRequests';
 import Snackbar from '@mui/material/Snackbar'; // Import Snackbar component from Material-UI
+import Profile from './components/Profile';
 
 const App = () => {
   const isLoggedIn = Cookies.get('username') !== undefined;
@@ -58,6 +59,7 @@ const App = () => {
           <Route path="/my-cases" element={<MyCases />} />
           <Route path="/inbox" element={<Inbox />} />
           <Route path="/lawyers" element={<ClientRequests />} />
+          <Route path="/profile" element={<Profile/>}/>
         </Routes>
         <Snackbar
           open={openSnackbar}

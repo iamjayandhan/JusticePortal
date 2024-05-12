@@ -43,6 +43,7 @@ function NavBar() {
           {userRole === 'Owners/Clients' && <li><Link to="/lawyers" onClick={handleMenuItemClick}>Lawyers</Link></li>}
           <li><Link to="/my-cases" onClick={handleMenuItemClick}>My Cases</Link></li>
           <li><Link to="/inbox" onClick={handleMenuItemClick}>Inbox</Link></li>
+          <li><Link to="/profile" onClick={handleMenuItemClick}>Profile</Link></li>
           <li className={styles.userSection}>
             <span>{username}</span>
             <button onClick={handleLogout}>Logout</button>
