@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import styles from '../css/NavBar.module.css'; // Import CSS module
 import Cookies from 'js-cookie'; // Import Cookies
 import logo from '../components/Assets/court3.png'; // Import logo image
 
-
 function NavBar() {
   const navigate = useNavigate(); // Initialize useNavigate hook
+  const location = useLocation(); // Get current location
   const [isLoggedIn, setIsLoggedIn] = useState(Cookies.get('username') !== undefined);
   const username = Cookies.get('username');
   const userRole = Cookies.get('role');
@@ -30,16 +30,17 @@ function NavBar() {
     setIsMenuOpen(false); // Close the menu when a menu item is clicked
   };
 
+  // Determine if the current page is the secret page
+  const isSecretPage = location.pathname === '/secret-page';
+
   return (
-    isLoggedIn && (
+    isLoggedIn && !isSecretPage && ( // Hide navbar on secret page
       <nav className={styles.nav}>
-<div className={styles.logoContainer}>
-  <a href="/MainPage" className={styles.logoLink}>
-  <img src={logo} alt="Logo" className={styles.logo} onClick={() => console.log('Logo clicked')} />
-
-  </a>
-</div>
-
+        <div className={styles.logoContainer}>
+          <a href="/MainPage" className={styles.logoLink}>
+            <img src={logo} alt="Logo" className={styles.logo} onClick={() => console.log('Logo clicked')} />
+          </a>
+        </div>
         <div className={styles.menuToggle} onClick={toggleMenu}>
           <div className={styles.bar}></div>
           <div className={styles.bar}></div>

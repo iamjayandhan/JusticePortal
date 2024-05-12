@@ -12,6 +12,8 @@ import Inbox from './components/Inbox';
 import ClientRequests from './components/ClientRequests';
 import Snackbar from '@mui/material/Snackbar'; // Import Snackbar component from Material-UI
 import Profile from './components/Profile';
+import SecretPage from './components/SecretPage'; // Import the SecretPage component
+
 
 const App = () => {
   const isLoggedIn = Cookies.get('username') !== undefined;
@@ -25,11 +27,16 @@ const App = () => {
       setBuffer((prevBuffer) => {
         const newBuffer = (prevBuffer + key).slice(-cheatCode.length);
         if (newBuffer === cheatCode) {
-          setOpenSnackbar(true);
+          
           const audio = new Audio(require('../src/cheat_sound.mp3'));
           audio.play();
+          setOpenSnackbar(true);
+          setTimeout(() => {
+            window.location.href = "/secret-page";
+          }, 2000); // Delay for 2 seconds (2000 milliseconds)
           return '';
         }
+        
         return newBuffer;
       });
     };
@@ -60,6 +67,8 @@ const App = () => {
           <Route path="/inbox" element={<Inbox />} />
           <Route path="/lawyers" element={<ClientRequests />} />
           <Route path="/profile" element={<Profile/>}/>
+          <Route path="/secret-page" element={<SecretPage />} />
+
         </Routes>
         <Snackbar
           open={openSnackbar}
