@@ -175,7 +175,7 @@ button:hover {
   }
 
   .message {
-    max-width: 90%; /* Adjust message width for smaller screens */
+    max-width: 85%; /* Adjust message width for smaller screens */
   }
 
   .message-header {

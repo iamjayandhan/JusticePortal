@@ -4,11 +4,14 @@ import { db } from './firebase';
 import Cookies from 'js-cookie';
 import { TextField, Button } from '@mui/material';
 import '../css/Profile.css';
+import eyeOpen from './Assets/eye_open.png'; // Import eye_open icon
+import eyeClosed from './Assets/eye_closed.png'; // Import eye_closed icon
 
 const Profile = () => {
   const [userData, setUserData] = useState(null);
   const [editableFields, setEditableFields] = useState({ email: false, password: false });
   const [updateSuccess, setUpdateSuccess] = useState(false);
+  const [passwordVisible, setPasswordVisible] = useState(false); // State to toggle password visibility
 
   const username = Cookies.get('username');
 
@@ -22,7 +25,7 @@ const Profile = () => {
           const querySnapshot = await getDocs(q);
           if (!querySnapshot.empty) {
             querySnapshot.forEach((doc) => {
-              setUserData({ id: doc.id, ...doc.data() }); // Include the document ID in the userData
+              setUserData({ id: doc.id, ...doc.data() });
             });
           } else {
             console.log('No user found with the provided username');
@@ -44,7 +47,6 @@ const Profile = () => {
 
   const handleSaveField = async (field) => {
     try {
-      // Update the user document using the document ID
       await updateDoc(doc(db, 'users', userData.id), { [field]: userData[field] });
       setUpdateSuccess(true);
       setEditableFields({ ...editableFields, [field]: false });
@@ -55,7 +57,7 @@ const Profile = () => {
 
   const handleDiscardChanges = (field) => {
     setEditableFields({ ...editableFields, [field]: false });
-    setUserData({ ...userData }); // Reset the input value to original value
+    setUserData({ ...userData });
   };
 
   const handleInputChange = (e, field) => {
@@ -98,15 +100,27 @@ const Profile = () => {
           </div>
           <div className="field-container">
             {editableFields['password'] ? (
-              <TextField
-                label="Password"
-                type="password"
-                variant="outlined"
-                className="field-input"
-                fullWidth
-                value={userData.password}
-                onChange={(e) => handleInputChange(e, 'password')}
-              />
+              <div className="password-field">
+                <TextField
+                  label="Password"
+                  type={passwordVisible ? 'text' : 'password'}
+                  variant="outlined"
+                  className="field-input"
+                  fullWidth
+                  value={userData.password}
+                  onChange={(e) => handleInputChange(e, 'password')}
+                />
+                <span
+                  className="toggle-password"
+                  onClick={() => setPasswordVisible(!passwordVisible)}
+                >
+                  <img
+                    src={passwordVisible ? eyeOpen : eyeClosed}
+                    alt="Toggle Password"
+                    className="eye-icon"
+                  />
+                </span>
+              </div>
             ) : (
               <h2 className="field-label">Password: ********</h2>
             )}

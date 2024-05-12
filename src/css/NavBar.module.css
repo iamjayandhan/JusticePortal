@@ -11,7 +11,18 @@
     cursor: pointer;
     display: none; /* Initially hide the menu toggle on larger screens */
   }
+  
 
+  .logoContainer {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo {
+    width: 40px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 10px; /* Add margin to separate the logo from other elements */
+  }
   .bar {
     width: 25px;
     height: 3px;
@@ -81,6 +92,18 @@
       display: none; /* Initially hide the menu on smaller screens */
     }
 
+    .logoContainer {
+      display: flex;
+      align-items: center;
+    }
+    
+    .logo {
+      width: 40px; /* Adjust the width as needed */
+      height: auto; /* Maintain aspect ratio */
+      margin-right: 300px; /* Add margin to separate the logo from other elements */
+    }
+    
+    
     ul.active {
       display: flex; /* Display the menu when active */
     }

@@ -154,6 +154,13 @@ h2 {
   .modal h2 {
     font-size: 1.5rem;
   }
+  h2 {
+    font-size: 1.8rem;
+    color: #0f0f0f;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    text-align: center;
+  }
 
   .modal p {
     font-size: 14px;

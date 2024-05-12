@@ -1,69 +1,92 @@
 .add-case-page {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  .add-case-page h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .add-case-page label {
-    display: block;
-    margin-bottom: 10px;
-  }
-  
-  .add-case-page input[type="text"],
-  .add-case-page input[type="date"],
-  .add-case-page textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .add-case-page input[type="file"] {
-    margin-bottom: 15px;
-  }
-  
-  .add-case-page .button {
-    display: block;
-    width: 20%;
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  transition: box-shadow 0.3s ease;
+  border-radius: 10px;
+  box-shadow: 10px 16px 32px rgba(0, 0, 0, 0.1); /* Add a subtle shadow effect */
+  transition: box-shadow 0.3s ease; /* Add smooth transition for hover effect */
 
-  .add-case-page .button:hover {
-    background-color: #0056b3;
-  }
-  
+}
 
-  /* Media query for mobile view */
+.add-case-page:hover {
+  box-shadow: 10px 8px 8px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+}
+
+.add-case-page h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.add-case-page label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.add-case-page input[type="text"],
+.add-case-page input[type="date"],
+.add-case-page textarea {
+  width: calc(100% - 40px); /* Calculate width with space on left and right */
+  padding: 10px;
+  margin-bottom: 15px;
+  margin-right: 10px; /* Add margin on the right side */
+  margin-left: 10px; /* Add margin on the left side */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.add-case-page input[type="file"] {
+  width: calc(100% - 20px); /* Adjust width for file input */
+  padding: 10px;
+  margin-bottom: 15px;
+  margin-right: 10px; /* Add margin on the right side */
+  margin-left: 10px; /* Add margin on the left side */
+}
+
+.add-case-page .buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.add-case-page button {
+  width: 20%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-case-page button:hover {
+  background-color: #0056b3;
+}
+
+/* Media query for mobile view */
 @media screen and (max-width: 768px) {
   .add-case-page {
     max-width: 325px;
-    padding: 10px; /* Reduce padding for smaller screens */
+    padding: 10px;
   }
 
   .add-case-page h2 {
-    font-size: 20px; /* Decrease font size for smaller screens */
-    margin-bottom: 15px; /* Adjust margin for smaller screens */
+    font-size: 27px;
+    margin-bottom: 15px;
   }
 
   .add-case-page input[type="text"],
   .add-case-page input[type="date"],
-  .add-case-page textarea {
-    margin-bottom: 10px; /* Adjust margin for smaller screens */
-    width:300px;
+  .add-case-page textarea,
+  .add-case-page input[type="file"] {
+    margin-bottom: 10px;
   }
 
-  .add-case-page .button {
-    width: 100%; /* Make button full width for smaller screens */
+  /* .add-case-page .buttons {
+    flex-direction: column;
+  } */
+
+  .add-case-page button {
+    width: 30%;
+    margin-bottom: 10px;
   }
 }

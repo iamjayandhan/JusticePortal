@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from '../css/NavBar.module.css'; // Import CSS module
 import Cookies from 'js-cookie'; // Import Cookies
+import logo from '../components/Assets/court3.png'; // Import logo image
+
 
 function NavBar() {
   const navigate = useNavigate(); // Initialize useNavigate hook
@@ -31,6 +33,9 @@ function NavBar() {
   return (
     isLoggedIn && (
       <nav className={styles.nav}>
+          <div className={styles.logoContainer}>
+          <img src={logo} alt="Logo" className={styles.logo} />
+        </div>
         <div className={styles.menuToggle} onClick={toggleMenu}>
           <div className={styles.bar}></div>
           <div className={styles.bar}></div>
