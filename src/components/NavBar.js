@@ -33,9 +33,13 @@ function NavBar() {
   return (
     isLoggedIn && (
       <nav className={styles.nav}>
-          <div className={styles.logoContainer}>
-          <img src={logo} alt="Logo" className={styles.logo} />
-        </div>
+<div className={styles.logoContainer}>
+  <a href="/MainPage" className={styles.logoLink}>
+  <img src={logo} alt="Logo" className={styles.logo} onClick={() => console.log('Logo clicked')} />
+
+  </a>
+</div>
+
         <div className={styles.menuToggle} onClick={toggleMenu}>
           <div className={styles.bar}></div>
           <div className={styles.bar}></div>

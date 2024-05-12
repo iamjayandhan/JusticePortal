@@ -12,16 +12,17 @@
     display: none; /* Initially hide the menu toggle on larger screens */
   }
   
-
   .logoContainer {
     display: flex;
     align-items: center;
+    margin-right: auto; /* Move the logo to the left-most side */
   }
+  
   
   .logo {
     width: 40px; /* Adjust the width as needed */
     height: auto; /* Maintain aspect ratio */
-    margin-right: 10px; /* Add margin to separate the logo from other elements */
+    margin-left: 10px; /* Add margin to separate the logo from other elements */
   }
   .bar {
     width: 25px;
@@ -91,19 +92,18 @@
       z-index: 1;
       display: none; /* Initially hide the menu on smaller screens */
     }
+      
+.logoContainer {
+  display: flex;
+  align-items: center;
+  margin-right: auto; /* Move the logo to the left-most side */
+}
 
-    .logoContainer {
-      display: flex;
-      align-items: center;
-    }
-    
-    .logo {
-      width: 40px; /* Adjust the width as needed */
-      height: auto; /* Maintain aspect ratio */
-      margin-right: 300px; /* Add margin to separate the logo from other elements */
-    }
-    
-    
+.logoLink {
+  display: inline-block;
+  width: 100%; /* Ensure the link takes up the full width of its container */
+}
+
     ul.active {
       display: flex; /* Display the menu when active */
     }
