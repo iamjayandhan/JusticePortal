@@ -14,7 +14,6 @@ import Snackbar from '@mui/material/Snackbar'; // Import Snackbar component from
 import Profile from './components/Profile';
 import SecretPage from './components/SecretPage'; // Import the SecretPage component
 
-
 const App = () => {
   const isLoggedIn = Cookies.get('username') !== undefined;
   const [openSnackbar, setOpenSnackbar] = useState(false);

@@ -1,14 +1,23 @@
-.my-case-container {
-  border: 1px solid #ccc;
-  border-radius: 5px;
+.case-container {
+  border: 1px solid #e6e6e6;
+  border-radius: 10px;
   margin-bottom: 20px;
   padding: 20px;
-  max-width: 800px; /* Adjusted maximum width */
-  margin: 0 auto; /* Center the container horizontally */
   background-color: #f9f9f9; /* Light background color */
-  top:10px;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+  box-shadow: 10px 16px 32px rgba(0, 0, 0, 0.1); /* Add a subtle shadow effect */
 }
-  
+
+/* Blue theme for the case containers */
+.case-container:hover {
+  background-color: #e0f5ff; /* Light blue background color on hover */
+}
+
+/* Define hover animation for better interaction */
+.case-container:hover {
+  transform: translateY(-5px); /* Move the container slightly upwards on hover */
+  box-shadow: 10px 8px 8px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+}
   .case-item {
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -44,12 +53,33 @@
     margin-left: 5px;
   }
   
-  
+  .cancel-btn{
+    margin-left: 10px;
+  }
+  .input-field {
+    margin-right: 20px; /* Add margin to the right of the input fields */
+    flex: 1; /* Allow input fields to grow and take available space */
+  }
+  .file-link {
+    color: blue; /* Change the color of the file link when hovering over the file item */
+    /* Add any other styles you want to apply */
+  }
+  .file-link:hover {
+    background-color:rgba(0, 0, 0, 0);
+    color: blue;
+  }
 
-  /* Media query for mobile view */
+  .files-title{
+    margin:0;
+  }
+  .edit-case-title{
+    font-size: 1.8rem;
+  }
+ /* Media query for mobile view */
 @media screen and (max-width: 768px) {
-  .my-cases-container {
-    padding: 15px; /* Decrease padding for smaller screens */
+  .case-container {
+    position: relative; /* Ensure proper containment */
+    z-index: 1; /* Ensure the container appears above other content */
   }
 
   .case-item {
@@ -63,7 +93,28 @@
   .case-actions button {
     margin-right: 5px; /* Decrease margin-right for case action buttons on smaller screens */
   }
-  .input-field{
-    width: 290px;
+
+  .input-field {
+    width: calc(100% - 20px); /* Set input field width to fill available space */
+    margin-bottom: 10px; /* Add margin-bottom for spacing between input fields */
+  }
+  h4{
+    margin:0;
+  }
+  
+  .wanted-level {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+    font-weight: bold;
+  }
+  
+  .wanted-level img {
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
   }
 }

@@ -179,63 +179,78 @@ function MyCases() {
           {editingCaseId === caseItem.id ? (
             // If in editing mode, display input fields for updating case details
             <div className="edit-case-form">
-              <h3>Edit Case</h3>
+              <h3 className='edit-case-title'>Edit Case Details:</h3>
               {/* Add input fields for editing case details */}
               <div className="input-field">
-                <label htmlFor="edit-case-title">Case Title:</label>
+                <label htmlFor="edit-case-title"><b>Case Title:</b></label>
                 <input id="edit-case-title" type="text" value={editedCase.caseTitle || caseItem.caseTitle} onChange={(e) => setEditedCase({ ...editedCase, caseTitle: e.target.value })} />
               </div>
               <div className="input-field">
-                <label htmlFor="edit-case-description">Description:</label>
+                <label htmlFor="edit-case-description"><b>Description:</b></label>
                 <textarea id="edit-case-description" value={editedCase.caseDescription || caseItem.caseDescription} onChange={(e) => setEditedCase({ ...editedCase, caseDescription: e.target.value })} />
               </div>
               <div className="input-field">
-                <label htmlFor="edit-case-type">Type:</label>
+                <label htmlFor="edit-case-type"><b>Type:</b></label>
                 <input id="edit-case-type" type="text" value={editedCase.caseType || caseItem.caseType} onChange={(e) => setEditedCase({ ...editedCase, caseType: e.target.value })} />
               </div>
               <div className="input-field">
-                <label htmlFor="edit-case-assignee">Assignee:</label>
+                <label htmlFor="edit-case-assignee"><b>Assignee:</b></label>
                 <input id="edit-case-assignee" type="text" value={editedCase.caseAssignee || caseItem.caseAssignee} onChange={(e) => setEditedCase({ ...editedCase, caseAssignee: e.target.value })} />
               </div>
               <div className="existing-files">
-                <h4>Existing Files:</h4>
-                <ul>
+                <h4 className='files-title'>Existing Files:</h4>
+                <div className='files-list'>
                   {caseItem.files.map((file, index) => (
-                    <li key={index}>
-                      <a href={file.downloadURL} target="_blank" rel="noopener noreferrer" style={{ color: 'black' }}>
+                    <div className='file-item' key={index}>
+                      <a className='file-link' href={file.downloadURL} target="_blank" rel="noopener noreferrer" style={{ color: 'black' }}>
                         {file.filePath}
                       </a>
-                      <button onClick={() => handleDeleteFile(caseItem.id, file)}>Delete</button>
-                    </li>
+                      <button onClick={() => handleDeleteFile(caseItem.id, file)} style={{ marginLeft: '5px' }}>Delete</button>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
+
               <div className="input-field">
-                <label htmlFor="edit-case-files">Upload New File(s):</label>
+                <label htmlFor="edit-case-files"><b>Upload New File(s):</b></label>
                 <input id="edit-case-files" type="file" multiple onChange={(e) => handleFileChange(caseItem.id, e.target.files)} />
               </div>
 
               {/* Add other input fields as needed */}
               <button onClick={() => handleUpdateCase(caseItem.id)}>Update</button>
+              <button className='cancel-btn' onClick={() => {
+                    setEditingCaseId(null); // Exit editing mode
+                    setEditedCase({  // Reset editedCase state
+                        caseTitle: '',
+                        caseDescription: '',
+                        caseType: '',
+                        caseAssignee: '',
+                    });
+                }}>Cancel</button>
             </div>
           ) : (
             // If not in editing mode, display case details
             <>
-              <h3 className="case-title">{caseItem.caseTitle}</h3>
-              <p className="case-description">Description: {caseItem.caseDescription}</p>
-              <div className="case-details">
-                <p>Type: {caseItem.caseType}</p>
-                <p>Assignee: {caseItem.caseAssignee}</p>
-                <p>Filing Date: {new Date(caseItem.filingDateTime).toLocaleString()}</p>
-              </div>
-              <h4>Files:</h4>
-              <ul className="files-list">
-                {caseItem.files && caseItem.files.map((file) => (
-                  <li className="file-item" key={file.filePath}>
-                    <a className="file-link" href={file.downloadURL} target="_blank" rel="noopener noreferrer">{file.filePath}</a>
-                  </li>
-                ))}
-              </ul>
+               {/* Case details */}
+        <h3 className="case-title">Title: {caseItem.caseTitle}</h3>
+        <p className="case-description"><b>Description:</b> {caseItem.caseDescription}</p>
+        <div className="case-details">
+          <p><b>Type:</b> {caseItem.caseType}</p>
+          <p><b>Assignee:</b> {caseItem.caseAssignee}</p>
+          <p><b>Filing Date:</b> {new Date(caseItem.filingDateTime).toLocaleString()}</p>
+          <div>
+            <h4 className='files-title'>Files:</h4>
+            <div className="files-list">
+              {caseItem.files && caseItem.files.map((file, index) => (
+                <a className="file-link" href={file.downloadURL} target="_blank" rel="noopener noreferrer" key={index}>
+                  {file.filePath}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+
               <div className="case-actions">
                 <button onClick={() => handleDeleteCase(caseItem.id)}>Delete</button>
                 {/* Add edit button with onClick event to toggle editing mode */}
