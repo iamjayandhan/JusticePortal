@@ -91,7 +91,7 @@ function ClientRequests() {
 
   return (
     <div className="client-requests-container">
-      <h2>Make Request to Lawyer</h2>
+      <h2>Request Lawyer</h2>
       {isLoggedIn ? (
         <div className="request-form">
           <div className="input-field">
@@ -136,6 +136,10 @@ function ClientRequests() {
       ) : (
         <p>Please log in to make a request.</p>
       )}
+      <div class="page-footer">
+        <h7 className="msg">"This form is designed to facilitate the request for a preferred lawyer to represent you in your case."</h7>
+      </div>
+
     </div>
   );
   

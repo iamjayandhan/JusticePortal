@@ -1,7 +1,13 @@
 .client-requests-container {
     max-width: 600px;
     margin: 0 auto;
-    
+    box-shadow: 10px 16px 32px rgba(0, 0, 0, 0.1); /* Add a subtle shadow effect */
+    transition: box-shadow 0.3s ease; /* Add smooth transition for hover effect */
+    border-radius: 10px; /* Adjust the border radius as needed */    
+  }
+  .client-requests-container:hover{
+    box-shadow: 10px 8px 8px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+
   }
   
   .request-form {
@@ -52,6 +58,29 @@
   #request-message{
     width:537px;
   }
+
+  .page-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f8f9fa; /* Adjust the background color as needed */
+    padding: 10px; /* Adjust the padding as needed */
+    text-align: center; /* Align text to center */
+    font-size: 12px;
+    font-weight: normal;
+    color: #333; /* Adjust the text color as needed */
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Add shadow for visual separation */
+    white-space: nowrap; /* Prevent text wrapping */
+  }
+  .msg{
+    font-size: 15px;
+  font-weight: normal;
+  color: #333;
+  }
+  
+  
+  
   
 
   /* Media query for mobile view */
@@ -60,6 +89,13 @@
   .client-requests-container {
     max-width: 90%; /* Decrease max-width */
     margin-top: 20px; /* Add top margin */
+    box-shadow: 10px 16px 32px rgba(0, 0, 0, 0.1); /* Add a subtle shadow effect */
+    transition: box-shadow 0.3s ease; /* Add smooth transition for hover effect */
+    border-radius: 10px; /* Adjust the border radius as needed */    
+  }
+  .client-requests-container:hover{
+    box-shadow: 10px 8px 8px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+
   }
 
   .request-form {
@@ -75,4 +111,33 @@
     padding: 8px 15px; /* Decrease padding for buttons */
     font-size: 14px; /* Decrease font size for buttons */
   }
+
+  .page-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 95%; /* Set the width to 100% */
+    background-color: #f8f9fa; /* Adjust the background color as needed */
+    padding: 10px; /* Adjust the padding as needed */
+    text-align: center; /* Align text to center */
+    font-size: 12px;
+    font-weight: normal;
+    color: #333; /* Adjust the text color as needed */
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Add shadow for visual separation */
+    overflow: hidden; /* Prevent content from overflowing */
+    white-space: nowrap; /* Prevent text wrapping */
+  }
+  
+  .page-footer h7 {
+    display: inline-block;
+    vertical-align: middle;
+    white-space: normal; /* Allow text to wrap */
+    font-weight: 500;
+  }
+  
+  
+
+
+  
+  
 }
