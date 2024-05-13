@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route,Navigate } from 'react-router-dom';
 import MainPage from './components/MainPage';
 import AddCasePage from './components/AddCasePage';
 import NavBar from './components/NavBar';
@@ -57,16 +57,17 @@ const App = () => {
         {isLoggedIn && <NavBar />}
         <Routes>
           {!isLoggedIn && <Route path="/" element={<Register />} />}
-          <Route path="/MainPage" element={<MainPage />} />
-          <Route path="/add-case" element={<AddCasePage />} />
-          <Route path="/all-cases" element={<AllCases />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/my-cases" element={<MyCases />} />
-          <Route path="/inbox" element={<Inbox />} />
-          <Route path="/lawyers" element={<ClientRequests />} />
-          <Route path="/profile" element={<Profile/>}/>
-          <Route path="/secret-page" element={<SecretPage />} />
+          <Route path="/MainPage" element={isLoggedIn ? <MainPage /> : <Navigate to="/" />} />
+          <Route path="/add-case" element={isLoggedIn ? <AddCasePage /> : <Navigate to="/" />} />
+          <Route path="/all-cases" element={isLoggedIn ? <AllCases /> : <Navigate to="/" />} />
+          <Route path="/my-cases" element={isLoggedIn ? <MyCases /> : <Navigate to="/" />} />
+          <Route path="/inbox" element={isLoggedIn ? <Inbox /> : <Navigate to="/" />} />
+          <Route path="/lawyers" element={isLoggedIn ? <ClientRequests /> : <Navigate to="/" />} />
+          <Route path="/profile" element={isLoggedIn ? <Profile /> : <Navigate to="/" />} />
+          <Route path="/secret-page" element={isLoggedIn ? <SecretPage /> : <Navigate to="/" />} />
+
 
         </Routes>
         <Snackbar
