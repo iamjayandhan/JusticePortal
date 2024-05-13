@@ -4,6 +4,8 @@ import { collection, getDocs, addDoc, query, where } from 'firebase/firestore';
 import { ref, getDownloadURL } from 'firebase/storage'; // Import the necessary storage functions
 import Cookies from 'js-cookie';
 import '../css/Inbox.css';
+import { Snackbar } from '@mui/material'; // Import the Snackbar component
+
 
 function Inbox() {
   const [messages, setMessages] = useState([]);
@@ -12,7 +14,8 @@ function Inbox() {
   const [selectedCaseDetails, setSelectedCaseDetails] = useState(null); // New state variable
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [hearingDetails, setHearingDetails] = useState('');
-
+  const [snackbarOpen, setSnackbarOpen] = useState(false); // State for Snackbar visibility
+  const [snackbarMessage, setSnackbarMessage] = useState(''); // State for Snackbar message
   
 
   useEffect(() => {
@@ -118,6 +121,7 @@ function Inbox() {
         username: username,
         hearingDetails: hearingDetails,
         type: "hearingMsg",
+        caseTitle:caseTitle,
         timestamp: new Date()
       };
       console.log("New message:", newMessage);
@@ -125,6 +129,14 @@ function Inbox() {
       const messagesCollectionRef = collection(db, 'messages');
       await addDoc(messagesCollectionRef, newMessage);
       console.log("Message sent to recipient.");
+
+      setSnackbarMessage('Message sent to recipient!');
+      setSnackbarOpen(true);
+
+      setTimeout(() => {
+        setSnackbarMessage("You may close the case anytime.");
+        setSnackbarOpen(true);
+      }, 4000); 
   
       handleCloseModal();
     } catch (error) {
@@ -174,6 +186,10 @@ function Inbox() {
         {message.sender && (
           <p className="message-sender"><b>From:</b> {message.sender}</p>
         )}
+        {message.caseTitle && (
+          <p className="message-sender"><b>Case:</b> {message.caseTitle}</p>
+        )}
+
         {message.hearingDetails && (
           <p className="message-details"><b>Hearing Details:</b> {message.hearingDetails}</p>
         )}
@@ -232,6 +248,13 @@ function Inbox() {
     </div>
   </div>
 )}
+
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={3000} // Adjust duration as needed
+        onClose={() => setSnackbarOpen(false)}
+        message={snackbarMessage}
+      />
 
     </div>
   );
