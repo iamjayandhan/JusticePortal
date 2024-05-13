@@ -4,11 +4,15 @@ import { collection, addDoc, getDocs } from 'firebase/firestore';
 import { ref, getDownloadURL } from 'firebase/storage';
 import Cookies from 'js-cookie';
 import '../css/AllCases.css';
+import { Snackbar } from '@mui/material'; // Import the Snackbar component
+
 
 function AllCases() {
   const [cases, setCases] = useState([]);
   const [selectedCase, setSelectedCase] = useState(null);
   const [userRole, setUserRole] = useState('');
+  const [snackbarOpen, setSnackbarOpen] = useState(false); // State for Snackbar visibility
+  const [snackbarMessage, setSnackbarMessage] = useState(''); // State for Snackbar message
 
   useEffect(() => {
     const fetchCases = async () => {
@@ -88,6 +92,15 @@ function AllCases() {
       // Implement the logic to take the case
       console.log('Case taken by lawyer:', selectedCase.id);
 
+      setSnackbarMessage('Case successfully taken!');
+      setSnackbarOpen(true);
+
+      setTimeout(() => {
+        setSnackbarMessage("Please check your inbox for adding hearing details.");
+        setSnackbarOpen(true);
+      }, 4000); 
+
+
       // Store case details in the inbox
       const username = Cookies.get('username');
       const messageRef = collection(db, 'messages');
@@ -147,7 +160,12 @@ function AllCases() {
     </div>
   </div>
 )}
-
+    <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={3000} // Adjust duration as needed
+        onClose={() => setSnackbarOpen(false)}
+        message={snackbarMessage}
+      />
 
     </div>
   );

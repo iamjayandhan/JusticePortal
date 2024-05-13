@@ -141,7 +141,7 @@ button:hover {
 }
 /* Styles for reqMsg */
 .req-message {
-  background-color: #f0f9b6; /* Mint cream */
+  background-color: #F0F8FF; /* Mint cream */
 }
 
 /* Styles for hearingMsg */
@@ -194,7 +194,7 @@ button:hover {
   }
 
   .req-message {
-    background-color: #f0f9b6; /* Mint cream */
+    background-color: #F0F8FF; /* Mint cream */
   }
   
   /* Styles for hearingMsg */

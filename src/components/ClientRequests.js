@@ -3,6 +3,8 @@ import { db } from './firebase'; // Import the Firestore database instance
 import { collection, getDocs, where, query ,addDoc} from 'firebase/firestore';
 import Cookies from 'js-cookie';
 import '../css/ClientRequests.css';
+import { Snackbar } from '@mui/material'; // Import the Snackbar component
+
 
 function ClientRequests() {
   const [selectedCase, setSelectedCase] = useState('');
@@ -13,6 +15,8 @@ function ClientRequests() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Initialize as false
   const [loggedInUsername, setLoggedInUsername] = useState('');
   const [clientCases, setClientCases] = useState([]); // State to store client's cases
+  const [snackbarOpen, setSnackbarOpen] = useState(false); // State for Snackbar visibility
+  const [snackbarMessage, setSnackbarMessage] = useState(''); // State for Snackbar message
 
   useEffect(() => {
     const fetchLawyers = async () => {
@@ -80,12 +84,22 @@ function ClientRequests() {
       const requestsCollection = collection(db, 'requests');
       await addDoc(requestsCollection, request);
       console.log('Request sent successfully:', request);
-      // Optionally, you can reset the form fields after sending the request
+
+      setSnackbarMessage('Request sent successfully!');
+      setSnackbarOpen(true);
+
+      setTimeout(() => {
+        setSnackbarMessage("The lawyer will get back to you shortly.");
+        setSnackbarOpen(true);
+      }, 4000); 
+      
       setSelectedCase('');
       setRequestMessage('');
       setSelectedLawyer('');
     } catch (error) {
       console.error('Error sending request:', error);
+      setSnackbarMessage('Error sending request:'+error);
+      setSnackbarOpen(true);
     }
   };
 
@@ -140,6 +154,13 @@ function ClientRequests() {
         <h7 className="msg">"This form is designed to facilitate the request for a preferred lawyer to represent you in your case."</h7>
       </div>
 
+
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={3000} // Adjust duration as needed
+        onClose={() => setSnackbarOpen(false)}
+        message={snackbarMessage}
+      />
     </div>
   );
   
