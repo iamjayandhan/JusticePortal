@@ -94,6 +94,7 @@ function AllCases() {
       await addDoc(messageRef, {
         username,
         caseDetails: selectedCase,
+        type:"caseTaken",
       });
 
       setSelectedCase(null); // Reset selectedCase after taking the case
@@ -107,35 +108,33 @@ function AllCases() {
       <h2>ALL CASES</h2>
       {cases.map((caseItem) => (
         <div className="case-container" key={caseItem.id}>
-          <h3 className="case-title">{caseItem.caseTitle}</h3>
-          <p className="case-description">Description: {caseItem.caseDescription}</p>
+          <h3 className="case-title">Title: {caseItem.caseTitle}</h3>
+          <p className="case-description"><b>Description:</b> {caseItem.caseDescription}</p>
           {userRole === 'Lawyers/Attorneys' && (
             <button onClick={() => handleViewCaseDetails(caseItem)}>View Case Details</button>
           )}
         </div>
       ))}
       {/* Modal for case details */}
-{selectedCase && (
+      {selectedCase && (
   <div className="modal-allcases">
     <div className="modal-content-allcases">
       <h2>Case Details</h2>
-      <p>Case Title: {selectedCase.caseTitle}</p>
-      <p>Case Description: {selectedCase.caseDescription}</p>
-      <p>Client Name: {selectedCase.caseAssignee}</p>
-      <p>Case Type: {selectedCase.caseType}</p>
-      <p>Filling Date: {selectedCase.filingDateTime}</p>
+      <p><b>Case Title:</b> {selectedCase.caseTitle}</p>
+      <p><b>Case Description:</b> {selectedCase.caseDescription}</p>
+      <p><b>Client Name:</b> {selectedCase.caseAssignee}</p>
+      <p><b>Case Type:</b> {selectedCase.caseType}</p>
+      <p><b>Filling Date:</b> {selectedCase.filingDateTime}</p>
       
       {/* Display files attached to the case */}
       {selectedCase.files.length > 0 && (
         <div>
           <h3>Files Attached:</h3>
-          <ul className='ul-allcases'>
-            {selectedCase.files.map((file, index) => (
-              <li key={index}>
-                <a href={file.downloadURL} target="_blank" rel="noopener noreferrer" className="file-link">{file.filePath}</a>
-              </li>
-            ))}
-          </ul>
+          {selectedCase.files.map((file, index) => (
+            <p key={index}>
+              <a href={file.downloadURL} target="_blank" rel="noopener noreferrer" className="file-link">{file.filePath}</a>
+            </p>
+          ))}
         </div>
       )}
 
@@ -148,6 +147,7 @@ function AllCases() {
     </div>
   </div>
 )}
+
 
     </div>
   );

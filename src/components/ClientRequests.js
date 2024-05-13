@@ -74,6 +74,7 @@ function ClientRequests() {
         message: requestMessage,
         username: selectedLawyer,
         from: loggedInUsername,
+        type:"reqMsg",
         timestamp: new Date()
       };
       const requestsCollection = collection(db, 'requests');

@@ -4,6 +4,8 @@ import { collection, addDoc } from "firebase/firestore";
 import { ref, uploadBytes } from "firebase/storage";
 import '../css/AddCasePage.css';
 import Cookies from 'js-cookie';
+import { Snackbar } from '@mui/material';
+
 
 function AddCasePage() {
   const [caseTitle, setCaseTitle] = useState('');
@@ -12,6 +14,10 @@ function AddCasePage() {
   const [caseAssignee, setCaseAssignee] = useState('');
   const [filingDate, setFilingDate] = useState('');
   const [files, setFiles] = useState([]);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [snackbarSeverity, setSnackbarSeverity] = useState('success'); // To control the severity of the snackbar (success, error, warning, info)
+  
   const username = Cookies.get('username'); 
 
   const handleFileChange = (e) => {
@@ -32,9 +38,8 @@ function AddCasePage() {
 
       // Store text details in Firestore along with file references
       const currentDate = new Date();
-        const options = { timeZone: 'Asia/Kolkata' }; // IST time zone identifier
-        const localTimeString = currentDate.toLocaleString('en-US', options);
-        console.log(localTimeString);
+      const options = { timeZone: 'Asia/Kolkata' }; // IST time zone identifier
+      const localTimeString = currentDate.toLocaleString('en-US', options);
 
       await addDoc(collection(db, "cases"), {
         caseTitle,
@@ -48,14 +53,23 @@ function AddCasePage() {
 
       // Reset form fields
       resetForm();
+      setSnackbarMessage('Case added successfully!');
+      setSnackbarSeverity('success');
+      setOpenSnackbar(true);
 
-      alert("Case added successfully!");
+      // Set a timeout to display the second Snackbar after 2 or 3 seconds
+      setTimeout(() => {
+        setSnackbarMessage("Please proceed to 'My Cases' for verification");
+        setSnackbarSeverity('success');
+        setOpenSnackbar(true);
+      }, 4000); // Delay the execution of the second Snackbar update by 2000 milliseconds (2 seconds)
     } catch (error) {
       console.error("Error adding case: ", error);
-      alert("An error occurred while adding the case. Please try again.");
+      setSnackbarMessage('An error occurred while adding the case. Please try again.');
+      setSnackbarSeverity('error');
+      setOpenSnackbar(true);
     }
   };
-
 
   const resetForm = () => {
     setCaseTitle('');
@@ -64,6 +78,7 @@ function AddCasePage() {
     setCaseAssignee('');
     setFilingDate('');
     setFiles([]);
+    window.location.reload(); // Refresh the page
   };
 
   return (
@@ -71,23 +86,23 @@ function AddCasePage() {
       <h2>ADD CASE</h2>
       <form onSubmit={handleSubmit}>
         <label>
-          Case Title:
+          <b>Case Title:</b>
           <input type="text" value={caseTitle} onChange={(e) => setCaseTitle(e.target.value)} required />
         </label>
         <label>
-          Case Description:
+          <b>Case Description:</b>
           <textarea value={caseDescription} onChange={(e) => setCaseDescription(e.target.value)} required />
         </label>
         <label>
-          Case Type:
+          <b>Case Type:</b>
           <input type="text" value={caseType} onChange={(e) => setCaseType(e.target.value)} required />
         </label>
         <label>
-          Client Name:
+          <b>Client Name:</b>
           <input type="text" value={caseAssignee} onChange={(e) => setCaseAssignee(e.target.value)} required />
         </label>
         <label>
-          Upload File(s):
+          <b>Upload File(s):</b>
           <input type="file" multiple onChange={handleFileChange} required />
         </label>
         <div className="buttons">
@@ -95,9 +110,16 @@ function AddCasePage() {
           <button type="button" onClick={resetForm}>Reset</button>
         </div>
       </form>
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={3000}
+        onClose={() => setOpenSnackbar(false)}
+        message={snackbarMessage}
+        severity={snackbarSeverity}
+      />
+
     </div>
   );
-  
 }
 
 export default AddCasePage;

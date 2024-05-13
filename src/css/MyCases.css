@@ -63,6 +63,7 @@
   .file-link {
     color: blue; /* Change the color of the file link when hovering over the file item */
     /* Add any other styles you want to apply */
+    margin-right: 20px;
   }
   .file-link:hover {
     background-color:rgba(0, 0, 0, 0);

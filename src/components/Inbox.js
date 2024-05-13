@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { db, storage } from './firebase'; // Import the Firestore database instance and Firebase storage instance
-import { collection, getDocs, setDoc, addDoc, query, where } from 'firebase/firestore';
+import { collection, getDocs, addDoc, query, where } from 'firebase/firestore';
 import { ref, getDownloadURL } from 'firebase/storage'; // Import the necessary storage functions
 import Cookies from 'js-cookie';
 import '../css/Inbox.css';
@@ -12,6 +12,8 @@ function Inbox() {
   const [selectedCaseDetails, setSelectedCaseDetails] = useState(null); // New state variable
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [hearingDetails, setHearingDetails] = useState('');
+
+  
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -33,6 +35,8 @@ function Inbox() {
           // Fetch and process messages from the 'messages' collection
           for (const doc of messagesSnapshot.docs) {
             const messageData = doc.data();
+            console.log("Messages data:", messagesData);
+
             // If the message is addressed to the current user, process it
             if (messageData.username === cookieUsername) {
               if (messageData.type === 'case') { // Check if the message is of type 'case'
@@ -50,6 +54,7 @@ function Inbox() {
                   }
                 }
                 // Push the message with case details to messagesData
+
                 messagesData.push({ id: doc.id, ...messageData, caseDetails: { ...caseDetailsData, files: caseFiles } });
               } else { // Handle other message types
                 messagesData.push({ id: doc.id, ...messageData });
@@ -60,7 +65,7 @@ function Inbox() {
           // Fetch and process messages from the 'requests' collection
           requestsSnapshot.forEach((doc) => {
             const requestData = doc.data();
-            messagesData.push({ id: doc.id, ...requestData, type: 'request' });
+            messagesData.push({ id: doc.id, ...requestData, type: 'reqMsg' });
           });
       
           setMessages(messagesData);
@@ -108,33 +113,29 @@ function Inbox() {
     console.log("Case title:", caseTitle);
   
     try {
-      const caseDocRef = collection(db, 'cases');
-      const querySnapshot = await getDocs(query(caseDocRef, where('caseTitle', '==', caseTitle), where('username', '==', username)));
-      if (!querySnapshot.empty) {
-        const caseDoc = querySnapshot.docs[0];
-        await setDoc(caseDoc.ref, { hearingDetails }, { merge: true });
-        console.log("Hearing details saved to case document.");
+      const newMessage = {
+        sender: loggedInUsername,
+        username: username,
+        hearingDetails: hearingDetails,
+        type: "hearingMsg",
+        timestamp: new Date()
+      };
+      console.log("New message:", newMessage);
   
-        const newMessage = {
-          sender: loggedInUsername,
-          username: username,
-          hearingDetails: hearingDetails,
-          timestamp: new Date()
-        };
-        console.log("New message:", newMessage);
+      const messagesCollectionRef = collection(db, 'messages');
+      await addDoc(messagesCollectionRef, newMessage);
+      console.log("Message sent to recipient.");
   
-        const messagesCollectionRef = collection(db, 'messages');
-        await addDoc(messagesCollectionRef, newMessage);
-        console.log("Message sent to recipient.");
-  
-        handleCloseModal();
-      } else {
-        console.log("No case found with title:", caseTitle, "and username:", username);
-      }
+      handleCloseModal();
     } catch (error) {
       console.error("Error sending hearing details:", error);
     }
+
+
+
+    
   };
+  
   
   
   
@@ -145,55 +146,75 @@ function Inbox() {
         <h2>INBOX</h2>
       </div>
       {messages.map((message) => (
-        <div className="message" key={message.id}>
-          <div className="message-header">
-            <div className="message-info">
-              {message.sender && (
-                <p className="message-sender">From: {message.sender}</p>
-              )}
-              {message.from && (
-                <p className="message-sender">From: {message.from}</p>
-              )}
-              {message.caseTitle && (
-                <p className="message-details">Case Title: {message.caseTitle}</p>
-              )}
-              {message.message && (
-                <p className="message-details">Message: {message.message}</p>
-              )}
-              {message.hearingDetails && (
-                <p className="message-details">Hearing Details: {message.hearingDetails}</p>
-              )}
-
-              <p className="message-timestamp">Received: {message.timestamp ? new Date(message.timestamp.toDate()).toLocaleString() : ''}</p>
-            </div>
+  <div className={`message ${getMessageTypeColor(message.type)}`} key={message.id}>
+    {message.type === "reqMsg" && (
+      <>
+        {message.type && (
+          <p className="message-sender"><b>Type:</b> {message.type}</p>
+        )}
+        {message.from && (
+          <p className="message-sender"><b>From:</b> {message.from}</p>
+        )}
+        {message.caseTitle && (
+          <p className="message-details"><b>Case Title:</b> {message.caseTitle}</p>
+        )}
+        {message.message && (
+          <p className="message-details"><b>Message:</b> {message.message}</p>
+        )}
+        {message.timestamp && (
+          <p className="message-timestamp"><b>Received:</b> {message.timestamp ? new Date(message.timestamp.toDate()).toLocaleString() : ''}</p>
+        )}
+      </>
+    )}
+    {message.type === "hearingMsg" && (
+      <>
+        {message.type && (
+          <p className="message-sender"><b>Type:</b> {message.type}</p>
+        )}
+        {message.sender && (
+          <p className="message-sender"><b>From:</b> {message.sender}</p>
+        )}
+        {message.hearingDetails && (
+          <p className="message-details"><b>Hearing Details:</b> {message.hearingDetails}</p>
+        )}
+        {message.timestamp && (
+          <p className="message-timestamp"><b>Received:</b> {message.timestamp ? new Date(message.timestamp.toDate()).toLocaleString() : ''}</p>
+        )}
+      </>
+    )}
+    {message.type === "caseTaken" && (
+      <>
+        {message.type && (
+          <p className="message-sender"><b>Type:</b> {message.type}</p>
+        )}
+        {message.caseDetails && (
+          <div className="message-details">
+            <p><b>Title:</b> {message.caseDetails.caseTitle}</p>
+            <p><b>Assignee:</b> {message.caseDetails.caseAssignee}</p>
+            <p><b>Case Type:</b> {message.caseDetails.caseType}</p>
+            <p><b>Case Description:</b> {message.caseDetails.caseDescription}</p>
+            <p><b>Filing Date:</b> {message.caseDetails.filingDateTime}</p>
+            <p><b>Username:</b> {message.caseDetails.username}</p>
+            {message.caseDetails.files && (
+              <div className="file-links">
+                <p><b>Files:</b></p>
+                {message.caseDetails.files.map((file, index) => (
+                  <p key={index}>
+                    <a href={file.downloadURL} target="_blank" rel="noopener noreferrer">
+                      File {index + 1}: {getFileName(file.filePath)}
+                    </a>
+                  </p>
+                ))}
+              </div>
+            )}
+            <button onClick={() => handleAddHearing(message.caseDetails.id, message.caseDetails)}>Add Hearing Details</button>
           </div>
-          {message.caseDetails && (
-            <div className="message-details">
-              <p>Case Title: {message.caseDetails.caseTitle}</p>
-              <p>Case Assignee: {message.caseDetails.caseAssignee}</p>
-              <p>Case Type: {message.caseDetails.caseType}</p>
-              <p>Case Description: {message.caseDetails.caseDescription}</p>
-              <p>Filing Date: {message.caseDetails.filingDateTime}</p>
-              <p>Username: {message.caseDetails.username}</p>
-              {message.caseDetails.files && (
-                <div className="file-links">
-                  <p>Files:</p>
-                  <ul>
-                    {message.caseDetails.files.map((file, index) => (
-                      <li key={index}>
-                        <a href={file.downloadURL} target="_blank" rel="noopener noreferrer">
-                          File {index + 1}: {getFileName(file.filePath)}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              <button onClick={() => handleAddHearing(message.caseDetails.id, message.caseDetails)}>Add Hearing Details</button>
-            </div>
-          )}
-        </div>
-      ))}
+        )}
+      </>
+    )}
+  </div>
+))}
+
       {isModalOpen && (
   <div className="modal">
     <div className="modal-content">
@@ -219,6 +240,19 @@ function Inbox() {
   function getFileName(filePath) {
     const parts = filePath.split('/');
     return parts[parts.length - 1];
+  }
+
+  function getMessageTypeColor(type) {
+    switch (type) {
+      case "reqMsg":
+        return "req-message"; // Define your CSS class for reqMsg
+      case "hearingMsg":
+        return "hearing-message"; // Define your CSS class for hearingMsg
+      case "caseTaken":
+        return "case-taken-message"; // Define your CSS class for caseTaken
+      default:
+        return ""; // Default class if no type matches
+    }
   }
 }
 
