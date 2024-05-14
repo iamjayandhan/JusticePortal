@@ -6,6 +6,7 @@ import { TextField, Button, Snackbar } from '@mui/material'; import eyeOpen from
 import eyeClosed from './Assets/eye_closed.png'; // Import eye_closed icon
 import '../css/Register.css'; // Import Register.css for styling
 import myImage from './Assets/court2.png';
+import axios from 'axios';
 
 const Register = () => {
   const [username, setUsername] = useState('');
@@ -43,6 +44,34 @@ const Register = () => {
       Cookies.set('username', lowercaseUsername);
       const UserRole = role.substring(5);
       Cookies.set('role', UserRole);
+      Cookies.set('email',email);
+
+      const body={
+        name: username,
+        intro: "Welcome to Justice Portal, your trusted platform for legal assistance and services!",
+        action: {
+            instructions: 'To start exploring our services, please click the button below:',
+            button: {
+                color: '#22BC66', // Optional action button color
+                text: 'Explore!',
+                link: 'https://justice-portal.vercel.app/MainPage'
+            }
+        },
+        
+        outro: "Thank you for choosing Justice Portal. We are dedicated to serving you and ensuring your legal needs are met with professionalism and care."
+    }
+
+      // After successful registration, send user's email to the server
+      axios.post('http://localhost:5000/api/product/getbill', { userEmail: email,userName:username ,mailBody:body})
+      .then(response => {
+        console.log('Response:', response.data); // Log the response data
+        // Handle response
+      })
+      .catch(error => {
+        console.error('Error during registration:', error);
+        // Handle error
+      });
+
   
       setRegistrationSuccess(true); // Set success message visibility
       setRegistrationMessage('Registration successful! Redirecting...');
@@ -52,6 +81,7 @@ const Register = () => {
       setTimeout(() => {
         // Redirect to LoginPage after registration
         window.location.href = '/MainPage';
+
       }, 1000);
     } catch (error) {
       console.error('Error during registration:', error);

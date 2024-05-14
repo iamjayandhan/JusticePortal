@@ -67,8 +67,6 @@ const App = () => {
           <Route path="/lawyers" element={isLoggedIn ? <ClientRequests /> : <Navigate to="/" />} />
           <Route path="/profile" element={isLoggedIn ? <Profile /> : <Navigate to="/" />} />
           <Route path="/secret-page" element={isLoggedIn ? <SecretPage /> : <Navigate to="/" />} />
-
-
         </Routes>
         <Snackbar
           open={openSnackbar}

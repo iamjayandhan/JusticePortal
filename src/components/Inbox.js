@@ -5,7 +5,7 @@ import { ref, getDownloadURL } from 'firebase/storage'; // Import the necessary 
 import Cookies from 'js-cookie';
 import '../css/Inbox.css';
 import { Snackbar } from '@mui/material'; // Import the Snackbar component
-
+import axios from 'axios';
 
 function Inbox() {
   const [messages, setMessages] = useState([]);
@@ -111,9 +111,10 @@ function Inbox() {
       return;
     }
   
-    const { username, caseTitle } = selectedCaseDetails;
+    const { username, caseTitle,email } = selectedCaseDetails;
     console.log("Recipient username:", username);
     console.log("Case title:", caseTitle);
+    console.log("Email:",email);
   
     try {
       const newMessage = {
@@ -121,14 +122,34 @@ function Inbox() {
         username: username,
         hearingDetails: hearingDetails,
         type: "hearingMsg",
+        email:email,
         caseTitle:caseTitle,
         timestamp: new Date()
       };
       console.log("New message:", newMessage);
-  
+      
       const messagesCollectionRef = collection(db, 'messages');
       await addDoc(messagesCollectionRef, newMessage);
       console.log("Message sent to recipient.");
+
+      const body = {
+        name: username,
+        intro: `The case title is: ${caseTitle},\nLawyer: ${loggedInUsername}.\nYour hearing details are: ${hearingDetails}.`,
+        outro: "Thank you for choosing Justice Portal. We are dedicated to serving you and ensuring your legal needs are met with professionalism and care."
+    };
+    
+    
+
+      // After successful registration, send user's email to the server
+      axios.post('http://localhost:5000/api/product/getbill', { userEmail: email,userName:username ,mailBody:body,subject:"Case hearing information" })
+      .then(response => {
+        console.log('Response:', response.data); // Log the response data
+        // Handle response
+      })
+      .catch(error => {
+        console.error('Error during registration:', error);
+        // Handle error
+      });
 
       setSnackbarMessage('Message sent to recipient!');
       setSnackbarOpen(true);

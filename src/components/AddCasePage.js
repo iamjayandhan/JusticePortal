@@ -46,6 +46,7 @@ function AddCasePage() {
         caseDescription,
         caseType,
         caseAssignee,
+        email:Cookies.get('email'),
         filingDateTime: localTimeString,
         files: uploadedFiles.map(fileRef => fileRef.fullPath), // Store file references
         username: username,
