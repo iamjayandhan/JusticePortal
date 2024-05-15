@@ -15,7 +15,7 @@ app.options('/api/product/getbill', (req, res) => {
     res.status(200).end();
   });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8000;
 
 
 app.use(express.json());
