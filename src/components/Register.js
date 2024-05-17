@@ -61,16 +61,17 @@ const Register = () => {
         outro: "Thank you for choosing Justice Portal. We are dedicated to serving you and ensuring your legal needs are met with professionalism and care."
     }
 
-      // After successful registration, send user's email to the server
-      axios.post('http://localhost:5000/api/product/getbill', { userEmail: email,userName:username ,mailBody:body})
-      .then(response => {
+// After successful registration, send user's email to the server
+axios.post('https://justiceportalserver.vercel.app/api/product/getbill', { userEmail: email, userName: username, mailBody: body })
+    .then(response => {
         console.log('Response:', response.data); // Log the response data
         // Handle response
-      })
-      .catch(error => {
+    })
+    .catch(error => {
         console.error('Error during registration:', error);
         // Handle error
-      });
+    });
+
 
   
       setRegistrationSuccess(true); // Set success message visibility
