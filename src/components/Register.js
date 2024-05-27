@@ -62,7 +62,7 @@ const Register = () => {
     }
 
 // After successful registration, send user's email to the server
-axios.post('https://justiceportalserver.vercel.app/api/product/getbill', { userEmail: email, userName: username, mailBody: body })
+axios.post('https://justice-portal-server.vercel.app/api/product/getbill', { userEmail: email, userName: username, mailBody: body })
     .then(response => {
         console.log('Response:', response.data); // Log the response data
         // Handle response
