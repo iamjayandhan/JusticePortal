@@ -28,7 +28,7 @@ function MyCases() {
         const casesCollection = collection(db, "cases");
         const userCasesQuery = query(casesCollection, where('username', '==', cookieUsername));
         const querySnapshot = await getDocs(userCasesQuery);
-    
+
         if (!querySnapshot.empty) {
           const casesData = [];
           for (const doc of querySnapshot.docs) {
@@ -60,68 +60,56 @@ function MyCases() {
         console.error("Error fetching cases:", error);
       }
     };
-    
 
     fetchCases();
   }, []);
 
   const handleDeleteFile = async (caseId, file) => {
     try {
-      // Ensure filePath is a string
       const filePath = typeof file.filePath === 'string' ? file.filePath : '';
-  
-      // Delete file from Firebase Storage
       const fileRef = ref(storage, filePath);
       await deleteObject(fileRef);
-      
-      // Update Firestore to remove file reference
+
       const updatedFiles = cases.find((item) => item.id === caseId).files.filter((f) => f.filePath !== filePath);
       await updateDoc(doc(db, 'cases', caseId), { files: updatedFiles });
-  
-      // Update local state to reflect the changes
+
       setCases((prevCases) =>
         prevCases.map((item) =>
           item.id === caseId ? { ...item, files: updatedFiles } : item
         )
       );
-      
+
       console.log('File deleted successfully.');
     } catch (error) {
       console.error('Error deleting file:', error);
     }
   };
-  
+
   const handleFileChange = async (caseId, newFiles) => {
     try {
-      // Convert newFiles to an array if it's not already one
       const filesArray = Array.from(newFiles);
-  
-      // Upload new files to Firebase Storage
+
       const uploadedFiles = await Promise.all(filesArray.map(async (file) => {
         const storageRef = ref(storage, `cases/${file.name}`);
         await uploadBytes(storageRef, file);
         return { filePath: storageRef.fullPath, downloadURL: await getDownloadURL(storageRef) };
       }));
-      
-      // Update Firestore to add new file references
+
       const updatedFiles = [...cases.find((item) => item.id === caseId).files, ...uploadedFiles];
       await updateDoc(doc(db, 'cases', caseId), { files: updatedFiles });
-  
-      // Update local state to reflect the changes
+
       setCases((prevCases) =>
         prevCases.map((item) =>
           item.id === caseId ? { ...item, files: updatedFiles } : item
         )
       );
-  
+
       console.log('New file(s) uploaded successfully.');
     } catch (error) {
       console.error('Error uploading file(s):', error);
     }
   };
-  
 
-  // Function to delete a case
   const handleDeleteCase = async (caseId) => {
     try {
       await deleteDoc(doc(db, 'cases', caseId));
@@ -132,29 +120,27 @@ function MyCases() {
     }
   };
 
-  // Function to toggle editing mode
   const toggleEditingMode = (caseId) => {
+    const caseToEdit = cases.find((item) => item.id === caseId);
     setEditingCaseId(caseId === editingCaseId ? null : caseId);
-    // Reset editedCase state when exiting editing mode
     if (caseId !== editingCaseId) {
       setEditedCase({
-        caseTitle: '',
-        caseDescription: '',
-        caseType: '',
-        caseAssignee: '',
+        caseTitle: caseToEdit.caseTitle,
+        caseDescription: caseToEdit.caseDescription,
+        caseType: caseToEdit.caseType,
+        caseAssignee: caseToEdit.caseAssignee,
       });
     }
   };
 
-  // Function to handle case update
   const handleUpdateCase = async (caseId) => {
     try {
       const updatedCaseData = {
         id: caseId,
-        caseTitle: editedCase.caseTitle,
-        caseDescription: editedCase.caseDescription,
-        caseType: editedCase.caseType,
-        caseAssignee: editedCase.caseAssignee,
+        caseTitle: editedCase.caseTitle || cases.find(item => item.id === caseId).caseTitle,
+        caseDescription: editedCase.caseDescription || cases.find(item => item.id === caseId).caseDescription,
+        caseType: editedCase.caseType || cases.find(item => item.id === caseId).caseType,
+        caseAssignee: editedCase.caseAssignee || cases.find(item => item.id === caseId).caseAssignee,
         username: username,
       };
       await updateDoc(doc(db, 'cases', caseId), updatedCaseData);
@@ -175,27 +161,43 @@ function MyCases() {
       <h2>MY CASES</h2>
       {cases.map((caseItem) => (
         <div className="case-container" key={caseItem.id}>
-          {/* Check if the current case is in editing mode */}
           {editingCaseId === caseItem.id ? (
-            // If in editing mode, display input fields for updating case details
             <div className="edit-case-form">
               <h3 className='edit-case-title'>Edit Case Details:</h3>
-              {/* Add input fields for editing case details */}
               <div className="input-field">
                 <label htmlFor="edit-case-title"><b>Case Title:</b></label>
-                <input id="edit-case-title" type="text" value={editedCase.caseTitle || caseItem.caseTitle} onChange={(e) => setEditedCase({ ...editedCase, caseTitle: e.target.value })} />
+                <input
+                  id="edit-case-title"
+                  type="text"
+                  value={editedCase.caseTitle}
+                  onChange={(e) => setEditedCase({ ...editedCase, caseTitle: e.target.value })}
+                />
               </div>
               <div className="input-field">
                 <label htmlFor="edit-case-description"><b>Description:</b></label>
-                <textarea id="edit-case-description" value={editedCase.caseDescription || caseItem.caseDescription} onChange={(e) => setEditedCase({ ...editedCase, caseDescription: e.target.value })} />
+                <textarea
+                  id="edit-case-description"
+                  value={editedCase.caseDescription}
+                  onChange={(e) => setEditedCase({ ...editedCase, caseDescription: e.target.value })}
+                />
               </div>
               <div className="input-field">
                 <label htmlFor="edit-case-type"><b>Type:</b></label>
-                <input id="edit-case-type" type="text" value={editedCase.caseType || caseItem.caseType} onChange={(e) => setEditedCase({ ...editedCase, caseType: e.target.value })} />
+                <input
+                  id="edit-case-type"
+                  type="text"
+                  value={editedCase.caseType}
+                  onChange={(e) => setEditedCase({ ...editedCase, caseType: e.target.value })}
+                />
               </div>
               <div className="input-field">
                 <label htmlFor="edit-case-assignee"><b>Assignee:</b></label>
-                <input id="edit-case-assignee" type="text" value={editedCase.caseAssignee || caseItem.caseAssignee} onChange={(e) => setEditedCase({ ...editedCase, caseAssignee: e.target.value })} />
+                <input
+                  id="edit-case-assignee"
+                  type="text"
+                  value={editedCase.caseAssignee}
+                  onChange={(e) => setEditedCase({ ...editedCase, caseAssignee: e.target.value })}
+                />
               </div>
               <div className="existing-files">
                 <h4 className='files-title'>Existing Files:</h4>
@@ -215,60 +217,50 @@ function MyCases() {
                 <label htmlFor="edit-case-files"><b>Upload New File(s):</b></label>
                 <input id="edit-case-files" type="file" multiple onChange={(e) => handleFileChange(caseItem.id, e.target.files)} />
               </div>
-
-              {/* Add other input fields as needed */}
               <button onClick={() => handleUpdateCase(caseItem.id)}>Update</button>
               <button className='cancel-btn' onClick={() => {
-                    setEditingCaseId(null); // Exit editing mode
-                    setEditedCase({  // Reset editedCase state
-                        caseTitle: '',
-                        caseDescription: '',
-                        caseType: '',
-                        caseAssignee: '',
-                    });
-                }}>Cancel</button>
+                setEditingCaseId(null); // Exit editing mode
+                setEditedCase({
+                  caseTitle: '',
+                  caseDescription: '',
+                  caseType: '',
+                  caseAssignee: '',
+                });
+              }}>Cancel</button>
             </div>
           ) : (
-            // If not in editing mode, display case details
             <>
-               {/* Case details */}
-        <h3 className="case-title">Title: {caseItem.caseTitle}</h3>
-        <p className="case-description"><b>Description:</b> {caseItem.caseDescription}</p>
-        <div className="case-details">
-          <p><b>Type:</b> {caseItem.caseType}</p>
-          <p><b>Assignee:</b> {caseItem.caseAssignee}</p>
-          <p><b>Filing Date:</b> {new Date(caseItem.filingDateTime).toLocaleString()}</p>
-          <div>
-            <h4 className='files-title'>Files:</h4>
-            <div className="files-list">
-              {caseItem.files && caseItem.files.map((file, index) => (
-                <a className="file-link" href={file.downloadURL} target="_blank" rel="noopener noreferrer" key={index}>
-                  {file.filePath}
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-
-
+              <h3 className="case-title">Title: {caseItem.caseTitle}</h3>
+              <p className="case-description"><b>Description:</b> {caseItem.caseDescription}</p>
+              <div className="case-details">
+                <p><b>Type:</b> {caseItem.caseType}</p>
+                <p><b>Assignee:</b> {caseItem.caseAssignee}</p>
+                <p><b>Filing Date:</b> {new Date(caseItem.filingDateTime).toLocaleString()}</p>
+                <div>
+                  <h4 className='files-title'>Files:</h4>
+                  <div className="files-list">
+                    {caseItem.files && caseItem.files.map((file, index) => (
+                      <a className="file-link" href={file.downloadURL} target="_blank" rel="noopener noreferrer" key={index}>
+                        {file.filePath}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
               <div className="case-actions">
                 <button onClick={() => handleDeleteCase(caseItem.id)}>Delete</button>
-                {/* Add edit button with onClick event to toggle editing mode */}
                 <button onClick={() => toggleEditingMode(caseItem.id)}>Edit</button>
               </div>
             </>
           )}
         </div>
       ))}
-
-
-<div className="wanted-level">
+      <div className="wanted-level">
         <span>Wanted Level:</span>
         {Array.from({ length: wantedLevel }, (_, index) => (
           <img key={index} src={starImage} alt="star" />
         ))}
       </div>
-
     </div>
   );
 }

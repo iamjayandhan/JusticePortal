@@ -33,7 +33,8 @@ const Login = () => {
           setLoginMessage('Authenticating...');
           Cookies.set('username', userDoc.username); // Set username
           const userRole = userDoc.role.substring(5);
-          Cookies.set('role', userRole);  
+          Cookies.set('role', userRole); 
+          Cookies.set('email', userDoc.email);
           setTimeout(() => {
             window.location.href = '/MainPage';
           }, 100);
