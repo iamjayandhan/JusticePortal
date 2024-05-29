@@ -16,6 +16,7 @@ function NavBar() {
   const handleLogout = () => {
     Cookies.remove('username'); // Remove the 'username' cookie
     Cookies.remove('role');
+    Cookies.remove('email');
     setIsLoggedIn(false); // Update isLoggedIn state
     navigate('/login'); // Redirect to the login page
   };
