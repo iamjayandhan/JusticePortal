@@ -152,6 +152,7 @@ button{
   ul li{
     margin: 0; /* Remove all margin spaces */
     padding: 0; /* Remove all padding */
+    margin-bottom: 10px;
   }
 
   .modal h2 {
