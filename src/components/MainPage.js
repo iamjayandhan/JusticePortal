@@ -1,44 +1,109 @@
-// components/MainPage.js
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../css/MainPage.css';
+import court1 from './Assets/bans2.png';
+import court2 from './Assets/bans1.png';
+import court3 from './Assets/bans8.png';
+import Cookies from 'js-cookie';
+import image1 from './Assets/img.png';
+import image2 from './Assets/img2.png';
+import image3 from './Assets/img3.png';
+
 
 function MainPage() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [username, setUsername] = useState('');
+  const slides = [court1, court2, court3];
+
+  useEffect(() => {
+    const user = Cookies.get('username'); // Assuming the cookie name is 'username'
+    if (user) {
+      setUsername(user);
+    }
+  }, []);
+
+  const handlePrev = () => {
+    setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+  };
+
+  const handleNext = () => {
+    setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+  };
+
   return (
     <div className='mainpage-container'>
-      <h1 className='maintitle'>Welcome to the Justice Portal</h1>
-      <p className='mainp'>
-        The Justice Portal revolutionizes case management processes by providing a centralized platform for seamless scheduling, tracking, and monitoring of various types of cases across diverse legal domains.
-      </p>
-      <h2 className='mainh2'>KEY FEATURES</h2>
-          <div style={styles.listItemContainer}>
-      <div style={styles.listItem}>Efficient scheduling of hearings</div>
-      <div style={styles.listItem}>Real-time case tracking</div>
-      <div style={styles.listItem}>User-friendly interface for all stakeholders</div>
+      <header className='mainpage-header'>
+        <div className='carousel' style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
+          {slides.map((slide, index) => (
+            <div className='carousel-slide' key={index}>
+              <img src={slide} alt={`Justice Portal Banner ${index + 1}`} />
+            </div>
+          ))}
+        </div>
+        <button className='carousel-button prev' onClick={handlePrev}>‹</button>
+        <button className='carousel-button next' onClick={handleNext}>›</button>
+      </header>
+      
+      <div className="first-container">
+        <h1 className='greet'>Hello {username}!</h1>
+        <h1 className='main-title'>Welcome to Justice Portal</h1>
+        <div>
+        <p className='main-description'>
+  <strong>Welcome to the Justice Portal</strong>, where legal efficiency meets technological innovation. Our platform revolutionizes case management processes by providing a centralized hub for seamless scheduling, real-time tracking, and comprehensive monitoring of various types of cases across diverse legal domains.
+</p>
+<p className='main-description'>
+  Join us in our <strong>mission to enhance the efficiency and effectiveness of judicial proceedings</strong> while upholding the principles of fairness and access to justice for all. Together, let's shape the future of legal practice.
+</p>
+
+</div>
+
+
+      </div>
+      <div className="second-container">
+  <section className='features-section'>
+    <h2 className='section-title'>OUR KEY FEATURES</h2>
+    <div className='features-list'>
+      <div className='feature-item'>Automated Case Management</div>
+      <div className='feature-item'>Advanced Analytics Dashboard</div>
+      <div className='feature-item'>Integrated Document Management</div>
+      <div className='feature-item'>Secure Communication Channels</div>
+      <div className='feature-item'>Customizable User Permissions</div>
     </div>
+  </section>
+</div>
 
 
-      <h2 className='mainh2'>OUR MISSION</h2>
-      <p className='mainp'>
-        Our mission is to enhance the efficiency and effectiveness of judicial proceedings while upholding the principles of fairness and access to justice for all.
-      </p>
+      <div className="last-container">
+        <section className='mission-section'>
+          <h2 className='section-title'>OUR MISSION</h2>
+          <p className='mission-description'>
+            Our mission is to enhance the efficiency and effectiveness of judicial proceedings while upholding the principles of fairness and access to justice for all.
+          </p>
+          <div className='mission-images'>
+            {/* Placeholder images for mission */}
+            <div className='mission-image'>
+              <img src={image1} alt='Mission Image' className='mission-image-img' />
+          </div>
+
+            <div className='mission-image'>
+            <img src={image2} alt='Mission Image' className='mission-image-img' />
+
+            </div>
+            <div className='mission-image'>
+            <img src={image3} alt='Mission Image' className='mission-image-img' />
+
+            </div>
+          </div>
+        </section>
+      </div>
+      <div className='footer'>
+        <div className='footer-content'>
+          <h3>Contact Us</h3>
+          <p>Email: justiceportal22@gmail.com</p>
+          <p>Phone: 123-456-7890</p>
+        </div>
+      </div>
     </div>
   );
 }
 
 export default MainPage;
-
-
-const styles = {
-  listItemContainer: {
-    display: 'flex',
-  },
-  listItem: {
-    fontSize: '1.1rem',
-    color: '#455A64',
-    lineHeight: '1.6',
-    marginRight: '20px', // Add spacing between items horizontally
-    marginBottom: '10px', // Add spacing between items vertically
-  },
-};
-
-

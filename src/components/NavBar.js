@@ -40,6 +40,7 @@ function NavBar() {
         <div className={styles.logoContainer}>
           <a href="/MainPage" className={styles.logoLink}>
             <img src={logo} alt="Logo" className={styles.logo} onClick={() => console.log('Logo clicked')} />
+            <span className={styles.logoText}>Justice Portal</span> {/* Text near the logo */}
           </a>
         </div>
         <div className={styles.menuToggle} onClick={toggleMenu}>

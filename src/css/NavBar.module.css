@@ -12,6 +12,9 @@
     display: none; /* Initially hide the menu toggle on larger screens */
   }
   
+  .logoLink{
+    text-decoration: none;
+  }
   .logoContainer {
     display: flex;
     align-items: center;
@@ -35,7 +38,7 @@
   ul {
     list-style-type: none;
     margin: 0;
-    padding: 0;
+    padding-top: 10px;
     display: flex;
     justify-content: flex-end; /* Align items to the right */
   }
@@ -52,7 +55,7 @@
   ul li a {
     color: #fff;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
     padding: 10px 15px;
     border-radius: 5px;
@@ -72,6 +75,18 @@
   .userSection span {
     margin-right: 10px;
     color: #fff;
+    font-size: 18px;
+    margin-top:-10px;
+  }
+
+  .logoText {
+    font-size: 1.8rem; /* Increase font size */
+    margin-left: 5px; /* Adjust margin as needed */
+    color: white; /* Make text white */
+    text-decoration: none; /* Remove underline */
+    position: relative; /* Position the text relative to the parent */
+    top: -8px; /* Move up slightly */
+    left:10px;
   }
 
   /* Media query for mobile view */
@@ -115,4 +130,14 @@
     ul li:first-child {
       margin-top: 0; /* Reset margin for the first menu item */
     }
+    .logoText {
+      font-size: 1.5rem; /* Increase font size */
+      margin-left: 5px; /* Adjust margin as needed */
+      color: white; /* Make text white */
+      text-decoration: none; /* Remove underline */
+      position: relative; /* Position the text relative to the parent */
+      top: -8px; /* Move up slightly */
+      left:10px;
+    }
+    
   }
