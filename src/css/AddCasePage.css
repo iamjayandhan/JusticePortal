@@ -5,6 +5,7 @@
   transition: box-shadow 0.3s ease;
   border-radius: 10px;
   box-shadow: 10px 16px 32px rgba(0, 0, 0, 0.1); /* Add a subtle shadow effect */
+  background-color: #fff;
   transition: box-shadow 0.3s ease; /* Add smooth transition for hover effect */
 
 }
@@ -60,6 +61,9 @@
 
 .add-case-page button:hover {
   background-color: #0056b3;
+}
+.heads{
+  color: #fff;
 }
 
 /* Media query for mobile view */

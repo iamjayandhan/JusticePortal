@@ -5,7 +5,7 @@ import Cookies from 'js-cookie';
 import { TextField, Button, Snackbar } from '@mui/material'; import eyeOpen from './Assets/eye_open.png'; // Import eye_open icon
 import eyeClosed from './Assets/eye_closed.png'; // Import eye_closed icon
 import '../css/Register.css'; // Import Register.css for styling
-import myImage from './Assets/court2.png';
+import myImage from './Assets/court3.png';
 import axios from 'axios';
 
 const Register = () => {

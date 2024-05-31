@@ -118,7 +118,7 @@ function AllCases() {
 
   return (
     <div>
-      <h2>ALL CASES</h2>
+      <h2 style={{color:'#fff'}}>ALL CASES</h2>
       {cases.map((caseItem) => (
         <div className="case-container" key={caseItem.id}>
           <h3 className="case-title">Title: {caseItem.caseTitle}</h3>

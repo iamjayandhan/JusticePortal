@@ -105,7 +105,7 @@ function ClientRequests() {
 
   return (
     <div className="client-requests-container">
-      <h2>Request Lawyer</h2>
+      <h2 style={{color:'#fff'}}>REQUEST LAWYER</h2>
       {isLoggedIn ? (
         <div className="request-form">
           <div className="input-field">

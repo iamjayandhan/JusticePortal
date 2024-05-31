@@ -9,6 +9,7 @@
   background-color: #FFFFFF; /* Example background color */
   transition: box-shadow 0.3s ease; /* Add smooth transition for hover effect */
   margin-top:20px;
+  border-radius: 10px;
 }
 .container:hover{
   box-shadow: 10px 8px 8px rgba(0, 0, 0, 0.2); 
@@ -19,8 +20,10 @@
   margin-top:-2rem;
 }
 .title {
+  padding-top: 2rem;
     font-size: 2rem;
     margin-bottom: 20px;
+    color: #fff;
 }
   
 .field-container {

@@ -66,8 +66,10 @@ const Profile = () => {
   };
 
   return (
+    <>
+    <h1 className="title">User Profile</h1>
+
     <div className="container">
-      <h1 className="title">User Profile</h1>
       {userData && (
         <div>
           <div className="field-container">
@@ -139,6 +141,7 @@ const Profile = () => {
         </div>
       )}
     </div>
+    </>
   );
 };
 

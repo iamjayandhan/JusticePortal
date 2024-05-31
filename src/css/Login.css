@@ -1,5 +1,14 @@
+
 @import url(https://fonts.googleapis.com/css?family=Lato:300,700,300italic);
 
+html,body{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: url('../components/Assets/wallpaper.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
 .outer-container {
   position: absolute;
   top: 0;
@@ -11,32 +20,39 @@
   align-items: center;
 }
 
-
 .login-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding:50px; /* Adjust the padding as needed */
+  padding: 50px; /* Adjust the padding as needed */
   border: 2px solid;
   border-image: linear-gradient(to right, #ff00ff, #00ffff, #ff00ff);
   border-radius: 10px; /* Adjust the border radius as needed */
   box-shadow: 10px 16px 32px rgba(0, 0, 0, 0.1); /* Add a subtle shadow effect */
-  border: 1px solid #333; 
-  background-color: #FFFFFF; /* Example background color */
-  transition: box-shadow 0.3s ease; /* Add smooth transition for hover effect */
+  background-color: rgba(255, 255, 255, 0.25); /* Semi-transparent background */
+  backdrop-filter: blur(10px); /* Apply blur effect */
+  border: 1px solid rgba(255, 255, 255, 0.7); /* Light border */
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.5); /* Subtle shadow */
+  overflow: hidden; /* Clip content to the box */
+  z-index: 9999; /* Ensure the container appears above other elements */
+  position: fixed; /* Fix the container in position */
+  width: 100%;
+  max-width: 260px; /* Set maximum width for better readability */
+  text-align: center; /* Center text content */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and box-shadow */
 }
+
 
 .login-container:hover {
-  box-shadow: 10px 8px 8px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.5); /* Enhance shadow on hover */
 }
-
 
 .justiceTitleLogin {
   font-family: 'Raleway', sans-serif; /* Apply the same font as before */
   font-size: 3.5rem; /* Adjust the font size as needed */
   font-weight: 700; /* Use bold font weight */
-  color: #333333; /* Dark color */
+  color: #fff; /* Dark color */
   text-align: center; /* Center align the text */
   margin-bottom: 20px; /* Add some space below */
   text-transform: uppercase; /* Convert text to uppercase */
@@ -52,7 +68,7 @@
   font-family: 'Raleway', sans-serif; /* Apply the same font as before */
   font-size: 1.5rem; /* Adjust the font size as needed */
   font-weight: 500; /* Use bold font weight */
-  color: #ac2121; /* Dark color */
+  color: #fff; /* Dark color */
   text-align: center; /* Center align the text */
   margin-top: 44px; /* Add some space above */
   text-transform: uppercase; /* Convert text to uppercase */
@@ -68,7 +84,7 @@
   font-family: 'Raleway', sans-serif; /* Apply the same font as before */
   font-size: 1.5rem; /* Adjust the font size as needed */
   font-weight: 500; /* Use bold font weight */
-  color: #ac2121; /* Dark color */
+  color: #fff; /* Dark color */
   text-align: center; /* Center align the text */
   margin-top: 60px; /* Add some space above */
   text-transform: uppercase; /* Convert text to uppercase */
@@ -148,6 +164,9 @@ h1 {
   text-transform: uppercase; /* Convert text to uppercase */
   letter-spacing: 2px; /* Add letter spacing for better readability */
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow effect */
+}
+.note{
+  color: white;
 }
 
 @media only screen and (max-width: 600px) {
@@ -232,23 +251,17 @@ h1 {
     padding: 20px; /* Adjust padding for smaller screens */
     width: 90%; /* Adjust width for smaller screens */
     max-width: 230px; /* Set maximum width for better readability */
-    margin-top: 150px; /* Adjust margin top as needed */
-    display: flex; /* Use flexbox */
-    flex-direction: column; /* Stack child elements vertically */
-    justify-content: center; /* Center child elements vertically */
-    align-items: center; /* Center child elements horizontally */
-    text-align: center; /* Center text content */
-    position: relative;
-    border: 1px solid #333; /* Add a solid border */
-    border-radius: 10px; /* Add border radius for rounded corners */
-    background-color: #fff; /* Ensure a white background */
-    box-shadow: 100 10 10px rgba(0, 0, 0, 0.2); /* Add a subtle shadow effect */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center the container */
   }
   
 
+  
   .login-container:hover {
-    box-shadow: 10px 8px 16px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+    box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.5); /* Enhance shadow on hover */
   }
+
   .img {
     width: 80px; /* Decrease image size for smaller screens */
     margin-bottom: 20px; /* Add some space below the image */

@@ -176,7 +176,7 @@ function Inbox() {
   return (
     <div className="inbox-container">
       <div class="inbox-heading">
-        <h2>INBOX</h2>
+        <h2 style={{color:'#fff'}}>INBOX</h2>
       </div>
       {messages.map((message) => (
   <div className={`message ${getMessageTypeColor(message.type)}`} key={message.id}>

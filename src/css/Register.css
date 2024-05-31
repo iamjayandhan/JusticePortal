@@ -1,3 +1,4 @@
+
 /* Register.css */
 .outer-container-reg {
   position: absolute;
@@ -11,30 +12,36 @@
 }
 
 .register-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  padding:50px; /* Adjust the padding as needed */
+  padding: 50px; /* Adjust the padding as needed */
   border: 2px solid;
   border-image: linear-gradient(to right, #ff00ff, #00ffff, #ff00ff);
   border-radius: 10px; /* Adjust the border radius as needed */
-  border: 1px solid #333; /* Add a solid border */
   box-shadow: 10px 16px 32px rgba(0, 0, 0, 0.1); /* Add a subtle shadow effect */
-  background-color: #FFFFFF; /* Example background color */
-  transition: box-shadow 0.3s ease; /* Add smooth transition for hover effect */
+  background-color: rgba(255, 255, 255, 0.25); /* Semi-transparent background */
+  backdrop-filter: blur(10px); /* Apply blur effect */
+  border: 1px solid rgba(255, 255, 255, 0.7); /* Light border */
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.5); /* Subtle shadow */
+  overflow: hidden; /* Clip content to the box */
+  z-index: 9999; /* Ensure the container appears above other elements */
+  position: fixed; /* Fix the container in position */
+  width: 100%;
+  max-width: 300px; /* Set maximum width for better readability */
+  text-align: center; /* Center text content */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .register-container:hover {
-  box-shadow: 10px 8px 8px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.5); /* Enhance shadow on hover */
 }
+
 
 
 .justiceTitleReg {
   font-family: 'Raleway', sans-serif; /* Apply the same font as before */
   font-size: 3.5rem; /* Adjust the font size as needed */
   font-weight: 700; /* Use bold font weight */
-  color: #333333; /* Dark color */
+  color: #fff; /* Dark color */
   text-align: center; /* Center align the text */
   margin-bottom: 20px; /* Add some space below */
   text-transform: uppercase; /* Convert text to uppercase */
@@ -50,7 +57,7 @@
   font-family: 'Raleway', sans-serif; /* Apply the same font as before */
   font-size: 1.5rem; /* Adjust the font size as needed */
   font-weight: 500; /* Use bold font weight */
-  color: #ac2121; /* Dark color */
+  color: #fff; /* Dark color */
   text-align: center; /* Center align the text */
   margin-top: 20px; /* Add some space above */
   text-transform: uppercase; /* Convert text to uppercase */
@@ -66,7 +73,7 @@
   font-family: 'Raleway', sans-serif; /* Apply the same font as before */
   font-size: 1.5rem; /* Adjust the font size as needed */
   font-weight: 500; /* Use bold font weight */
-  color: #ac2121; /* Dark color */
+  color: #fff; /* Dark color */
   text-align: center; /* Center align the text */
   margin-top: 20px; /* Add some space above */
   text-transform: uppercase; /* Convert text to uppercase */
@@ -111,10 +118,10 @@
   height: 55px;
   padding: 10px;
   font-size: 16px;
-  border: 1px solid #ccc;
+  border: 1px solid #333333;
   border-radius: 5px;
-  background-color: #fff;
-  color: #666666;
+  background-color: transparent;
+  color: #333;
   outline: none;
 }
 
@@ -157,7 +164,7 @@ h1 {
   font-size: 2.5rem; /* Adjust the font size as needed */
   font-family: 'Raleway', sans-serif; /* Use Raleway font */
   font-weight: 700; /* Use bold font weight */
-  color: #333333; /* Dark color */
+  color: #fff; /* Dark color */
   text-align: center; /* Center align the text */
   margin-bottom: 20px; /* Add some space below */
   text-transform: uppercase; /* Convert text to uppercase */
@@ -181,11 +188,14 @@ h1 {
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: #fff;
+  background-color: transparent;
   color: #666666;
   outline: none;
 }
 
+.routeToLogin{
+  padding-top: 10px;
+}
 
 @media only screen and (max-width: 600px) {
   .img-container {
@@ -260,10 +270,10 @@ h1 {
     height: 55px;
     padding: 10px;
     font-size: 16px;
-    border: 1px solid #ccc;
+    border: 1px solid #333;
     border-radius: 5px;
-    background-color: #fff;
-    color: #666666;
+    background-color: transparent;
+    color: #333333;
     outline: none;
   }
 
@@ -279,22 +289,15 @@ h1 {
     flex-direction: column;
   }
   .register-container {
-    padding: 20px; /* Increase padding for better visual separation */
-    width: 90%;
-    max-width: 240px;
-    margin: 210px auto 40px; /* Adjust margin for better positioning */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    border-radius: 10px; /* Add border radius for rounded corners */
-    border: 1px solid #333; /* Add a solid border */
-    background-color: #fff; /* Ensure a white background */
-    box-shadow: 1000 100 100px rgba(0, 0, 0, 0.2); /* Add a subtle shadow effect */
+    padding: 20px; /* Adjust padding for smaller screens */
+    width: 90%; /* Adjust width for smaller screens */
+    max-width: 230px; /* Set maximum width for better readability */
+    top: 56%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center the container */
   }
   .register-container:hover {
-    box-shadow: 10px 8px 16px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+    box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.5); /* Enhance shadow on hover */
   }
   
   .input-field1,

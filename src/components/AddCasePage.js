@@ -83,8 +83,9 @@ function AddCasePage() {
   };
 
   return (
+    <>
+    <h2 className='heads'>ADD CASE</h2>
     <div className="add-case-page">
-      <h2>ADD CASE</h2>
       <form onSubmit={handleSubmit}>
         <label>
           <b>Case Title:</b>
@@ -120,6 +121,7 @@ function AddCasePage() {
       />
 
     </div>
+    </>
   );
 }
 

@@ -6,7 +6,7 @@ import { TextField, Button, Snackbar } from '@mui/material';
 import eyeOpen from './Assets/eye_open.png';
 import eyeClosed from './Assets/eye_closed.png';
 import '../css/Login.css';
-import myImage from './Assets/court2.png';
+import myImage from './Assets/court3.png';
 
 const Login = () => {
   const [identifier, setIdentifier] = useState(''); // Change 'username' to 'identifier' to accommodate both email and username
@@ -58,7 +58,7 @@ const Login = () => {
   };
 
   return (
-  <>
+  <div className='login-page-bg'>
   <div class="header-container-login">
   <div className="img-container">
       {/* Use the imported image with styles */}
@@ -119,7 +119,7 @@ const Login = () => {
       
     </div>
     </div>
-    </>
+    </div>
   );
 };
 

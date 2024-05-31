@@ -6,6 +6,7 @@
   display: flex; /* Add flex display */
   flex-wrap: wrap; /* Ensure containers wrap on smaller screens */
   justify-content: center; /* Center containers horizontally */
+  background-color: #fff;
 }
 
 .mainpage-header {

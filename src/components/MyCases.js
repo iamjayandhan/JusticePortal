@@ -158,7 +158,7 @@ function MyCases() {
 
   return (
     <div>
-      <h2>MY CASES</h2>
+      <h2 style={{color:'#fff'}}>MY CASES</h2>
       {cases.map((caseItem) => (
         <div className="case-container" key={caseItem.id}>
           {editingCaseId === caseItem.id ? (
