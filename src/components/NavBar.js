@@ -52,7 +52,7 @@ function NavBar() {
           <li><Link to="/MainPage" onClick={handleMenuItemClick}>Home</Link></li>
           <li><Link to="/add-case" onClick={handleMenuItemClick}>Add Case</Link></li>
           {userRole !== 'Owners/Clients' && <li><Link to="/all-cases" onClick={handleMenuItemClick}>All Cases</Link></li>}
-          {userRole === 'Owners/Clients' && <li><Link to="/lawyers" onClick={handleMenuItemClick}>Lawyers</Link></li>}
+          <li><Link to="/lawyers" onClick={handleMenuItemClick}>Lawyers</Link></li>
           <li><Link to="/my-cases" onClick={handleMenuItemClick}>My Cases</Link></li>
           <li><Link to="/inbox" onClick={handleMenuItemClick}>Inbox</Link></li>
           <li><Link to="/profile" onClick={handleMenuItemClick}>Profile</Link></li>
