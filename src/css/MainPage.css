@@ -17,6 +17,17 @@
   height: 300px; /* Set a fixed height for the banner */
 }
 
+.search-bar {
+  display: block;
+  width: 20%;
+  margin: 20px auto;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+
 .carousel {
   display: flex;
   transition: transform 0.5s ease;
@@ -224,6 +235,10 @@
     height: 225px; /* Set a fixed height for the banner */
   }
 
+  .search-bar {
+    width: 50%;
+  }
+  
   .carousel {
     height: 70%;
   }
