@@ -14,6 +14,7 @@ import Snackbar from '@mui/material/Snackbar';
 import Profile from './components/Profile';
 import SecretPage from './components/SecretPage';
 import Loader from './components/Loader'; // Import the Loader component
+import ContactForm from './components/ContactForm';
 
 const App = () => {
   const isLoggedIn = Cookies.get('username') !== undefined;
@@ -78,6 +79,7 @@ const App = () => {
           <Route path="/inbox" element={isLoggedIn ? <Inbox /> : <Navigate to="/" />} />
           <Route path="/lawyers" element={isLoggedIn ? <ClientRequests /> : <Navigate to="/" />} />
           <Route path="/profile" element={isLoggedIn ? <Profile /> : <Navigate to="/" />} />
+          <Route path="/contact" element={isLoggedIn ? <ContactForm /> : <Navigate to="/" />} />
           <Route path="/secret-page" element={isLoggedIn ? <SecretPage /> : <Navigate to="/" />} />
         </Routes>
         <Snackbar
