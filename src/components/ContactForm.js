@@ -4,18 +4,15 @@ import '../css/ContactForm.css';
 
 function ContactForm() {
   const [showModal, setShowModal] = useState(false);
-  const [submitted, setSubmitted] = useState(false); // Track form submission status
-
   const [state, handleSubmit] = useForm("xayzekok");
 
   const handleFormSubmit = async (event) => {
     event.preventDefault(); // Prevent default form submission
 
-    await handleSubmit(event); // Call handleSubmit
+    const result = await handleSubmit(event); // Call handleSubmit and await its result
 
     // If form submission is successful, show modal
-    if (state.succeeded && !submitted) {
-      setSubmitted(true); // Set form submission status to true
+    if (result.succeeded) {
       setShowModal(true); // Show modal
     }
   };
@@ -28,7 +25,7 @@ function ContactForm() {
 
   return (
     <>
-      <h2 style={{ color: '#fff' }}>INBOX</h2>
+      <h2 style={{ color: '#fff' }}>CONTACT</h2>
 
       <div className="form-container">
         <form onSubmit={handleFormSubmit}>
