@@ -16,7 +16,6 @@ function Inbox() {
   const [hearingDetails, setHearingDetails] = useState('');
   const [snackbarOpen, setSnackbarOpen] = useState(false); // State for Snackbar visibility
   const [snackbarMessage, setSnackbarMessage] = useState(''); // State for Snackbar message
-  
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -57,7 +56,6 @@ function Inbox() {
                   }
                 }
                 // Push the message with case details to messagesData
-
                 messagesData.push({ id: doc.id, ...messageData, caseDetails: { ...caseDetailsData, files: caseFiles } });
               } else { // Handle other message types
                 messagesData.push({ id: doc.id, ...messageData });
@@ -71,6 +69,13 @@ function Inbox() {
             messagesData.push({ id: doc.id, ...requestData, type: 'reqMsg' });
           });
       
+          // Sort messages by timestamp
+          messagesData.sort((a, b) => {
+            const timestampA = parseTimestamp(a.timestamp);
+            const timestampB = parseTimestamp(b.timestamp);
+            return timestampB - timestampA;
+          });
+      
           setMessages(messagesData);
         } else {
           console.log("No username found in cookies.");
@@ -79,16 +84,21 @@ function Inbox() {
         console.error("Error fetching messages:", error);
       }
     };
-    
-    
-    
-    
-    
-    
-    
 
     fetchMessages();
   }, []);
+
+  const parseTimestamp = (timestamp) => {
+    if (!timestamp) return new Date(0); // Default to epoch if no timestamp
+    if (timestamp instanceof Date) {
+      return timestamp;
+    } else if (timestamp.toDate) {
+      return timestamp.toDate();
+    } else if (typeof timestamp === 'string') {
+      return new Date(timestamp);
+    }
+    return new Date(0); // Default to epoch if no valid timestamp
+  };
 
   const handleAddHearing = (caseId, caseDetails) => {
     setSelectedCaseId(caseId);
@@ -111,10 +121,10 @@ function Inbox() {
       return;
     }
   
-    const { username, caseTitle,email } = selectedCaseDetails;
+    const { username, caseTitle, email } = selectedCaseDetails;
     console.log("Recipient username:", username);
     console.log("Case title:", caseTitle);
-    console.log("Email:",email);
+    console.log("Email:", email);
   
     try {
       const newMessage = {
@@ -122,8 +132,8 @@ function Inbox() {
         username: username,
         hearingDetails: hearingDetails,
         type: "hearingMsg",
-        email:email,
-        caseTitle:caseTitle,
+        email: email,
+        caseTitle: caseTitle,
         timestamp: new Date()
       };
       console.log("New message:", newMessage);
@@ -136,20 +146,18 @@ function Inbox() {
         name: username,
         intro: `The case title is: ${caseTitle},\nLawyer: ${loggedInUsername}.\nYour hearing details are: ${hearingDetails}.`,
         outro: "Thank you for choosing Justice Portal. We are dedicated to serving you and ensuring your legal needs are met with professionalism and care."
-    };
-    
-    
+      };
 
       // After successful registration, send user's email to the server
-      axios.post('http://localhost:5000/api/product/getbill', { userEmail: email,userName:username ,mailBody:body,subject:"Case hearing information" })
-      .then(response => {
-        console.log('Response:', response.data); // Log the response data
-        // Handle response
-      })
-      .catch(error => {
-        console.error('Error during registration:', error);
-        // Handle error
-      });
+      axios.post('http://localhost:5000/api/product/getbill', { userEmail: email, userName: username, mailBody: body, subject: "Case hearing information" })
+        .then(response => {
+          console.log('Response:', response.data); // Log the response data
+          // Handle response
+        })
+        .catch(error => {
+          console.error('Error during registration:', error);
+          // Handle error
+        });
 
       setSnackbarMessage('Message sent to recipient!');
       setSnackbarOpen(true);
@@ -163,112 +171,103 @@ function Inbox() {
     } catch (error) {
       console.error("Error sending hearing details:", error);
     }
-
-
-
-    
   };
-  
-  
-  
-  
 
   return (
     <div className="inbox-container">
-      <div class="inbox-heading">
-        <h2 style={{color:'#fff'}}>INBOX</h2>
+      <div className="inbox-heading">
+        <h2 style={{ color: '#fff' }}>INBOX</h2>
       </div>
       {messages.map((message) => (
-  <div className={`message ${getMessageTypeColor(message.type)}`} key={message.id}>
-    {message.type === "reqMsg" && (
-      <>
-        {message.type && (
-          <p className="message-sender"><b>Type:</b> {message.type}</p>
-        )}
-        {message.from && (
-          <p className="message-sender"><b>From:</b> {message.from}</p>
-        )}
-        {message.caseTitle && (
-          <p className="message-details"><b>Case Title:</b> {message.caseTitle}</p>
-        )}
-        {message.message && (
-          <p className="message-details"><b>Message:</b> {message.message}</p>
-        )}
-        {message.timestamp && (
-          <p className="message-timestamp"><b>Received:</b> {message.timestamp ? new Date(message.timestamp.toDate()).toLocaleString() : ''}</p>
-        )}
-      </>
-    )}
-    {message.type === "hearingMsg" && (
-      <>
-        {message.type && (
-          <p className="message-sender"><b>Type:</b> {message.type}</p>
-        )}
-        {message.sender && (
-          <p className="message-sender"><b>From:</b> {message.sender}</p>
-        )}
-        {message.caseTitle && (
-          <p className="message-sender"><b>Case:</b> {message.caseTitle}</p>
-        )}
-
-        {message.hearingDetails && (
-          <p className="message-details"><b>Hearing Details:</b> {message.hearingDetails}</p>
-        )}
-        {message.timestamp && (
-          <p className="message-timestamp"><b>Received:</b> {message.timestamp ? new Date(message.timestamp.toDate()).toLocaleString() : ''}</p>
-        )}
-      </>
-    )}
-    {message.type === "caseTaken" && (
-      <>
-        {message.type && (
-          <p className="message-sender"><b>Type:</b> {message.type}</p>
-        )}
-        {message.caseDetails && (
-          <div className="message-details">
-            <p><b>Title:</b> {message.caseDetails.caseTitle}</p>
-            <p><b>Assignee:</b> {message.caseDetails.caseAssignee}</p>
-            <p><b>Case Type:</b> {message.caseDetails.caseType}</p>
-            <p><b>Case Description:</b> {message.caseDetails.caseDescription}</p>
-            <p><b>Filing Date:</b> {message.caseDetails.filingDateTime}</p>
-            <p><b>Username:</b> {message.caseDetails.username}</p>
-            {message.caseDetails.files && (
-              <div className="file-links">
-                <p><b>Files:</b></p>
-                {message.caseDetails.files.map((file, index) => (
-                  <p key={index}>
-                    <a href={file.downloadURL} target="_blank" rel="noopener noreferrer">
-                      File {index + 1}: {getFileName(file.filePath)}
-                    </a>
-                  </p>
-                ))}
-              </div>
-            )}
-            <button onClick={() => handleAddHearing(message.caseDetails.id, message.caseDetails)}>Add Hearing Details</button>
-          </div>
-        )}
-      </>
-    )}
-  </div>
-))}
+        <div className={`message ${getMessageTypeColor(message.type)}`} key={message.id}>
+          {message.type === "reqMsg" && (
+            <>
+              {message.type && (
+                <p className="message-sender"><b>Type:</b> {message.type}</p>
+              )}
+              {message.from && (
+                <p className="message-sender"><b>From:</b> {message.from}</p>
+              )}
+              {message.caseTitle && (
+                <p className="message-details"><b>Case Title:</b> {message.caseTitle}</p>
+              )}
+              {message.message && (
+                <p className="message-details"><b>Message:</b> {message.message}</p>
+              )}
+              {message.timestamp && (
+                <p className="message-timestamp"><b>Received:</b> {message.timestamp ? parseTimestamp(message.timestamp).toLocaleString() : ''}</p>
+              )}
+            </>
+          )}
+          {message.type === "hearingMsg" && (
+            <>
+              {message.type && (
+                <p className="message-sender"><b>Type:</b> {message.type}</p>
+              )}
+              {message.sender && (
+                <p className="message-sender"><b>From:</b> {message.sender}</p>
+              )}
+              {message.caseTitle && (
+                <p className="message-sender"><b>Case:</b> {message.caseTitle}</p>
+              )}
+              {message.hearingDetails && (
+                <p className="message-details"><b>Hearing Details:</b> {message.hearingDetails}</p>
+              )}
+              {message.timestamp && (
+                <p className="message-timestamp"><b>Received:</b> {message.timestamp ? parseTimestamp(message.timestamp).toLocaleString() : ''}</p>
+              )}
+            </>
+          )}
+          {message.type === "caseTaken" && (
+            <>
+              {message.type && (
+                <p className="message-sender"><b>Type:</b> {message.type}</p>
+              )}
+              {message.caseDetails && (
+                <div className="message-details">
+                  <p><b>Title:</b> {message.caseDetails.caseTitle}</p>
+                  <p><b>Assignee:</b> {message.caseDetails.caseAssignee}</p>
+                  <p><b>Case Type:</b> {message.caseDetails.caseType}</p>
+                  <p><b>Case Description:</b> {message.caseDetails.caseDescription}</p>
+                  <p><b>Filing Date:</b> {message.caseDetails.filingDateTime}</p>
+                  <p><b>Username:</b> {message.caseDetails.username}</p>
+                  {message.caseDetails.files && (
+                    <div className="file-links">
+                      <p><b>Files:</b></p>
+                      {message.caseDetails.files.map((file, index) => (
+                        <p key={index}>
+                          <a href={file.downloadURL} target="_blank" rel="noopener noreferrer">
+                            File {index + 1}: {getFileName(file.filePath)}
+                          </a>
+                        </p>
+                      ))}
+                    </div>
+                  )}
+                  <button onClick={() => handleAddHearing(message.caseDetails.id, message.caseDetails)}>Add Hearing Details</button>
+                </div>
+              )}
+            </>
+          )}
+        </div>
+      ))}
 
       {isModalOpen && (
-  <div className="modal">
-    <div className="modal-content">
-      <span className="close" onClick={handleCloseModal}>&times;</span>
-      <h3>Add Hearing Details</h3>
-      <textarea
-        value={hearingDetails}
-        onChange={(e) => setHearingDetails(e.target.value)}
-        placeholder="Enter hearing details..."
-      ></textarea>
-      <div className="modal-buttons">
-        <button onClick={() => handleSendHearing(selectedCaseId, selectedCaseDetails)}>Send</button>
-        <button onClick={handleCloseModal}>Back</button> {/* Back button */}
-      </div>
-    </div>
-  </div>
-)}
+        <div className="modal">
+          <div className="modal-content">
+            <span className="close" onClick={handleCloseModal}>&times;</span>
+            <h3>Add Hearing Details</h3>
+            <textarea
+              value={hearingDetails}
+              onChange={(e) => setHearingDetails(e.target.value)}
+              placeholder="Enter hearing details..."
+            ></textarea>
+            <div className="modal-buttons">
+              <button onClick={() => handleSendHearing(selectedCaseId, selectedCaseDetails)}>Send</button>
+              <button onClick={handleCloseModal}>Back</button> {/* Back button */}
+            </div>
+          </div>
+        </div>
+      )}
 
       <Snackbar
         open={snackbarOpen}
@@ -276,10 +275,8 @@ function Inbox() {
         onClose={() => setSnackbarOpen(false)}
         message={snackbarMessage}
       />
-
     </div>
   );
-  
 
   function getFileName(filePath) {
     const parts = filePath.split('/');
