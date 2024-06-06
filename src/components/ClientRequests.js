@@ -150,7 +150,7 @@ function ClientRequests() {
       ) : (
         <p>Please log in to make a request.</p>
       )}
-      <div class="page-footer">
+      <div class="page-footer" style={{ backgroundColor: '#000000' }}>
         <h7 className="msg">"This form is designed to facilitate the request for a preferred lawyer to represent you in your case."</h7>
       </div>
 

@@ -9,12 +9,10 @@ function ContactForm() {
   const handleFormSubmit = async (event) => {
     event.preventDefault(); // Prevent default form submission
 
-    const result = await handleSubmit(event); // Call handleSubmit and await its result
-
+    await handleSubmit(event); // Call handleSubmit and await its result
     // If form submission is successful, show modal
-    if (result.succeeded) {
-      setShowModal(true); // Show modal
-    }
+    setShowModal(true); // Show modal
+
   };
 
   const closeModal = () => {
@@ -71,6 +69,9 @@ function ContactForm() {
           </div>
         </div>
       )}
+          <div class="page-footer" style={{ backgroundColor: '#000000' }}>
+        <h7 className="msg">"Get in touch with us for any inquiries or assistance."</h7>
+      </div>
     </>
   );
 }

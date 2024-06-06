@@ -121,6 +121,9 @@ function AddCasePage() {
       />
 
     </div>
+    <div class="page-footer" style={{ backgroundColor: '#000000' }}>
+      <h7 className="msg">"Fill out the form accurately!"</h7>
+    </div>
     </>
   );
 }

@@ -141,6 +141,9 @@ const Profile = () => {
         </div>
       )}
     </div>
+    <div class="page-footer" style={{ backgroundColor: '#000000' }}>
+        <h7 className="msg">"Manage your profile settings here."</h7>
+      </div>
     </>
   );
 };

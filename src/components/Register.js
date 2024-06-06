@@ -193,6 +193,9 @@ axios.post('http://localhost:5000/api/product/getbill', { userEmail: email, user
     </div>
     <h7></h7>
     </div>
+    <div class="page-footer">
+      <h7 className="msg">"Success is not final, failure is not fatal: It is the courage to continue that counts." - Winston Churchill</h7>
+    </div>
     </div>
     
     </>

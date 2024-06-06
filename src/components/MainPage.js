@@ -8,7 +8,6 @@ import image1 from './Assets/img.png';
 import image2 from './Assets/img2.png';
 import image3 from './Assets/img3.png';
 
-
 function MainPage() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [username, setUsername] = useState('');
@@ -20,6 +19,19 @@ function MainPage() {
       setUsername(user);
     }
   }, []);
+
+  // Function to handle next slide
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+  };
+
+  useEffect(() => {
+    // Automatically move to the next slide every 4 seconds
+    const interval = setInterval(nextSlide, 4000);
+
+    // Clear the interval on component unmount to prevent memory leaks
+    return () => clearInterval(interval);
+  }, [currentSlide]); // Include currentSlide in the dependency array to update the interval when the slide changes
 
   const handlePrev = () => {
     setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
@@ -47,30 +59,27 @@ function MainPage() {
         <h1 className='greet'>Hello {username}!</h1>
         <h1 className='main-title'>Welcome to Justice Portal</h1>
         <div>
-        <p className='main-description'>
-  <strong>Welcome to the Justice Portal</strong>, where legal efficiency meets technological innovation. Our platform revolutionizes case management processes by providing a centralized hub for seamless scheduling, real-time tracking, and comprehensive monitoring of various types of cases across diverse legal domains.
-</p>
-<p className='main-description'>
-  Join us in our <strong>mission to enhance the efficiency and effectiveness of judicial proceedings</strong> while upholding the principles of fairness and access to justice for all. Together, let's shape the future of legal practice.
-</p>
-
-</div>
-
-
+          <p className='main-description'>
+            <strong>Welcome to the Justice Portal</strong>, where legal efficiency meets technological innovation. Our platform revolutionizes case management processes by providing a centralized hub for seamless scheduling, real-time tracking, and comprehensive monitoring of various types of cases across diverse legal domains.
+          </p>
+          <p className='main-description'>
+            Join us in our <strong>mission to enhance the efficiency and effectiveness of judicial proceedings</strong> while upholding the principles of fairness and access to justice for all. Together, let's shape the future of legal practice.
+          </p>
+        </div>
       </div>
-      <div className="second-container">
-  <section className='features-section'>
-    <h2 className='section-title'>OUR KEY FEATURES</h2>
-    <div className='features-list'>
-      <div className='feature-item'>Automated Case Management</div>
-      <div className='feature-item'>Advanced Analytics Dashboard</div>
-      <div className='feature-item'>Integrated Document Management</div>
-      <div className='feature-item'>Secure Communication Channels</div>
-      <div className='feature-item'>Customizable User Permissions</div>
-    </div>
-  </section>
-</div>
 
+      <div className="second-container">
+        <section className='features-section'>
+          <h2 className='section-title'>OUR KEY FEATURES</h2>
+          <div className='features-list'>
+            <div className='feature-item'>Automated Case Management</div>
+            <div className='feature-item'>Advanced Analytics Dashboard</div>
+            <div className='feature-item'>Integrated Document Management</div>
+            <div className='feature-item'>Secure Communication Channels</div>
+            <div className='feature-item'>Customizable User Permissions</div>
+          </div>
+        </section>
+      </div>
 
       <div className="last-container">
         <section className='mission-section'>
@@ -79,22 +88,19 @@ function MainPage() {
             Our mission is to enhance the efficiency and effectiveness of judicial proceedings while upholding the principles of fairness and access to justice for all.
           </p>
           <div className='mission-images'>
-            {/* Placeholder images for mission */}
             <div className='mission-image'>
-              <img src={image1} alt='Mission Image' className='mission-image-img' />
-          </div>
-
-            <div className='mission-image'>
-            <img src={image2} alt='Mission Image' className='mission-image-img' />
-
+              <img src={image1} alt='' className='mission-image-img' />
             </div>
             <div className='mission-image'>
-            <img src={image3} alt='Mission Image' className='mission-image-img' />
-
+              <img src={image2} alt='' className='mission-image-img' />
+            </div>
+            <div className='mission-image'>
+              <img src={image3} alt='' className='mission-image-img' />
             </div>
           </div>
         </section>
       </div>
+
       <div className='footer'>
         <div className='footer-content'>
           <h3>Contact Us</h3>
