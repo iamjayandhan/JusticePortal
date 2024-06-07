@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { db, storage } from './firebase'; // Import the Firestore database instance and Firebase storage instance
-import { collection, getDocs, addDoc, deleteDoc, doc, query, where } from 'firebase/firestore';
+import { collection, getDocs, addDoc, deleteDoc,getDoc,doc, query, where } from 'firebase/firestore';
 import { ref, getDownloadURL } from 'firebase/storage'; // Import the necessary storage functions
 import Cookies from 'js-cookie';
 import '../css/Inbox.css';
@@ -177,25 +177,44 @@ function Inbox() {
     try {
       const collectionName = messageType === 'reqMsg' ? 'requests' : 'messages';
       const messageRef = doc(db, collectionName, messageId);
+      const messageSnapshot = await getDoc(messageRef);
+      const messageData = messageSnapshot.data();
+  
       await deleteDoc(messageRef);
       console.log("Message deleted from", collectionName);
-
+  
       // Update the state to remove the deleted message
       setMessages((prevMessages) => prevMessages.filter(message => message.id !== messageId));
       
       setSnackbarMessage('Message deleted successfully!');
       setSnackbarOpen(true);
+  
+      // Log deletion in the 'log' collection
+      const logEntry = {
+        message: `Message with ID ${messageId} deleted from ${collectionName} collection.`,
+        deletionTimestamp: new Date(),
+        deletedBy: Cookies.get('username'), // Get lawyer name from cookie
+        messageType: messageType,
+        messageData: messageData // Include message data if needed
+      };
+      const logCollectionRef = collection(db, 'log');
+      await addDoc(logCollectionRef, logEntry);
     } catch (error) {
       console.error("Error deleting message:", error);
     }
   };
-
+  
   return (
     <div className="inbox-container">
       <div className="inbox-heading">
         <h2 style={{ color: '#fff' }}>INBOX</h2>
       </div>
-      {messages.map((message) => (
+      
+       
+    {messages.length === 0 ? (
+      <p style={{color:'#fff', textAlign:'center',paddingTop:'200px'}}>No messages found.</p>
+    ) : (
+      messages.map((message) => (
         <div className={`message ${getMessageTypeColor(message.type)}`} key={message.id}>
           {message.type === "reqMsg" && (
             <>
@@ -267,7 +286,9 @@ function Inbox() {
           )}
           <button onClick={() => handleDeleteMessage(message.id, message.type)}>Delete</button>
         </div>
-      ))}
+      ))
+    )}
+
 
       {isModalOpen && (
         <div className="modal">

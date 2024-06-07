@@ -27,7 +27,6 @@
 }
   
 .field-container {
-    margin-bottom: 20px;
     display: flex; /* Use flexbox */
     align-items: center; /* Align items vertically */
     justify-content: space-between; /* Space items evenly */

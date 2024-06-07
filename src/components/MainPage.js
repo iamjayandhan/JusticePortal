@@ -101,11 +101,9 @@ function MainPage() {
         </section>
       </div>
 
-      <div className='footer'>
+      <div className='footer' style={{backgroundColor:'#000000',padding:0}}>
         <div className='footer-content'>
-          <h3>Contact Us</h3>
-          <p>Email: justiceportal22@gmail.com</p>
-          <p>Phone: 123-456-7890</p>
+          <p>Contact us: justiceportal22@gmail.com</p>
         </div>
       </div>
     </div>
