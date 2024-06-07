@@ -132,15 +132,19 @@ function AllCases() {
         onChange={(e) => setSearchQuery(e.target.value)}
         className="search-bar"
       />
-      {filteredCases.map((caseItem) => (
-        <div className="case-container" key={caseItem.id}>
-          <h3 className="case-title">Title: {caseItem.caseTitle}</h3>
-          <p className="case-description"><b>Description:</b> {caseItem.caseDescription}</p>
-          {userRole === 'Lawyers/Attorneys' && (
-            <button onClick={() => handleViewCaseDetails(caseItem)}>View Case Details</button>
-          )}
-        </div>
-      ))}
+      {filteredCases.length === 0 ? (
+        <p className="no-cases-message" >🐻Bear a minute...we are preparing all documents.</p>
+      ) : (
+        filteredCases.map((caseItem) => (
+          <div className="case-container" key={caseItem.id}>
+            <h3 className="case-title">Title: {caseItem.caseTitle}</h3>
+            <p className="case-description"><b>Description:</b> {caseItem.caseDescription}</p>
+            {userRole === 'Lawyers/Attorneys' && (
+              <button onClick={() => handleViewCaseDetails(caseItem)}>View Case Details</button>
+            )}
+          </div>
+        ))
+      )}
       {selectedCase && (
         <div className="modal-allcases">
           <div className="modal-content-allcases">

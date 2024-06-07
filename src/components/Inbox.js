@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { db, storage } from './firebase'; // Import the Firestore database instance and Firebase storage instance
-import { collection, getDocs, addDoc, query, where } from 'firebase/firestore';
+import { collection, getDocs, addDoc, deleteDoc, doc, query, where } from 'firebase/firestore';
 import { ref, getDownloadURL } from 'firebase/storage'; // Import the necessary storage functions
 import Cookies from 'js-cookie';
 import '../css/Inbox.css';
@@ -173,6 +173,23 @@ function Inbox() {
     }
   };
 
+  const handleDeleteMessage = async (messageId, messageType) => {
+    try {
+      const collectionName = messageType === 'reqMsg' ? 'requests' : 'messages';
+      const messageRef = doc(db, collectionName, messageId);
+      await deleteDoc(messageRef);
+      console.log("Message deleted from", collectionName);
+
+      // Update the state to remove the deleted message
+      setMessages((prevMessages) => prevMessages.filter(message => message.id !== messageId));
+      
+      setSnackbarMessage('Message deleted successfully!');
+      setSnackbarOpen(true);
+    } catch (error) {
+      console.error("Error deleting message:", error);
+    }
+  };
+
   return (
     <div className="inbox-container">
       <div className="inbox-heading">
@@ -248,6 +265,7 @@ function Inbox() {
               )}
             </>
           )}
+          <button onClick={() => handleDeleteMessage(message.id, message.type)}>Delete</button>
         </div>
       ))}
 

@@ -159,102 +159,106 @@ function MyCases() {
   return (
     <div>
       <h2 style={{color:'#fff'}}>MY CASES</h2>
-      {cases.map((caseItem) => (
-        <div className="case-container" key={caseItem.id}>
-          {editingCaseId === caseItem.id ? (
-            <div className="edit-case-form">
-              <h3 className='edit-case-title'>Edit Case Details:</h3>
-              <div className="input-field">
-                <label htmlFor="edit-case-title"><b>Case Title:</b></label>
-                <input
-                  id="edit-case-title"
-                  type="text"
-                  value={editedCase.caseTitle}
-                  onChange={(e) => setEditedCase({ ...editedCase, caseTitle: e.target.value })}
-                />
-              </div>
-              <div className="input-field">
-                <label htmlFor="edit-case-description"><b>Description:</b></label>
-                <textarea
-                  id="edit-case-description"
-                  value={editedCase.caseDescription}
-                  onChange={(e) => setEditedCase({ ...editedCase, caseDescription: e.target.value })}
-                />
-              </div>
-              <div className="input-field">
-                <label htmlFor="edit-case-type"><b>Type:</b></label>
-                <input
-                  id="edit-case-type"
-                  type="text"
-                  value={editedCase.caseType}
-                  onChange={(e) => setEditedCase({ ...editedCase, caseType: e.target.value })}
-                />
-              </div>
-              <div className="input-field">
-                <label htmlFor="edit-case-assignee"><b>Assignee:</b></label>
-                <input
-                  id="edit-case-assignee"
-                  type="text"
-                  value={editedCase.caseAssignee}
-                  onChange={(e) => setEditedCase({ ...editedCase, caseAssignee: e.target.value })}
-                />
-              </div>
-              <div className="existing-files">
-                <h4 className='files-title'>Existing Files:</h4>
-                <div className='files-list'>
-                  {caseItem.files.map((file, index) => (
-                    <div className='file-item' key={index}>
-                      <a className='file-link' href={file.downloadURL} target="_blank" rel="noopener noreferrer" style={{ color: 'black' }}>
-                        {file.filePath}
-                      </a>
-                      <button onClick={() => handleDeleteFile(caseItem.id, file)} style={{ marginLeft: '5px' }}>Delete</button>
-                    </div>
-                  ))}
+      {cases.length === 0 ? (
+        <p style={{ color: '#fff',textAlign:'center' ,paddingTop:'250px'}}>No cases found.</p>
+      ) : (
+        cases.map((caseItem) => (
+          <div className="case-container" key={caseItem.id}>
+            {editingCaseId === caseItem.id ? (
+              <div className="edit-case-form">
+                <h3 className='edit-case-title'>Edit Case Details:</h3>
+                <div className="input-field">
+                  <label htmlFor="edit-case-title"><b>Case Title:</b></label>
+                  <input
+                    id="edit-case-title"
+                    type="text"
+                    value={editedCase.caseTitle}
+                    onChange={(e) => setEditedCase({ ...editedCase, caseTitle: e.target.value })}
+                  />
                 </div>
-              </div>
-
-              <div className="input-field">
-                <label htmlFor="edit-case-files"><b>Upload New File(s):</b></label>
-                <input id="edit-case-files" type="file" multiple onChange={(e) => handleFileChange(caseItem.id, e.target.files)} />
-              </div>
-              <button onClick={() => handleUpdateCase(caseItem.id)}>Update</button>
-              <button className='cancel-btn' onClick={() => {
-                setEditingCaseId(null); // Exit editing mode
-                setEditedCase({
-                  caseTitle: '',
-                  caseDescription: '',
-                  caseType: '',
-                  caseAssignee: '',
-                });
-              }}>Cancel</button>
-            </div>
-          ) : (
-            <>
-              <h3 className="case-title">Title: {caseItem.caseTitle}</h3>
-              <p className="case-description"><b>Description:</b> {caseItem.caseDescription}</p>
-              <div className="case-details">
-                <p><b>Type:</b> {caseItem.caseType}</p>
-                <p><b>Assignee:</b> {caseItem.caseAssignee}</p>
-                <p><b>Filing Date:</b> {new Date(caseItem.filingDateTime).toLocaleString()}</p>
-                <div>
-                  <h4 className='files-title'>Files:</h4>
-                  <div className="files-list">
-                    {caseItem.files && caseItem.files.map((file, index) => (
-                      <a className="file-link" href={file.downloadURL} target="_blank" rel="noopener noreferrer" key={index}>
-                        {file.filePath}
-                      </a>
+                <div className="input-field">
+                  <label htmlFor="edit-case-description"><b>Description:</b></label>
+                  <textarea
+                    id="edit-case-description"
+                    value={editedCase.caseDescription}
+                    onChange={(e) => setEditedCase({ ...editedCase, caseDescription: e.target.value })}
+                  />
+                </div>
+                <div className="input-field">
+                  <label htmlFor="edit-case-type"><b>Type:</b></label>
+                  <input
+                    id="edit-case-type"
+                    type="text"
+                    value={editedCase.caseType}
+                    onChange={(e) => setEditedCase({ ...editedCase, caseType: e.target.value })}
+                  />
+                </div>
+                <div className="input-field">
+                  <label htmlFor="edit-case-assignee"><b>Assignee:</b></label>
+                  <input
+                    id="edit-case-assignee"
+                    type="text"
+                    value={editedCase.caseAssignee}
+                    onChange={(e) => setEditedCase({ ...editedCase, caseAssignee: e.target.value })}
+                  />
+                </div>
+                <div className="existing-files">
+                  <h4 className='files-title'>Existing Files:</h4>
+                  <div className='files-list'>
+                    {caseItem.files.map((file, index) => (
+                      <div className='file-item' key={index}>
+                        <a className='file-link' href={file.downloadURL} target="_blank" rel="noopener noreferrer" style={{ color: 'black' }}>
+                          {file.filePath}
+                        </a>
+                        <button onClick={() => handleDeleteFile(caseItem.id, file)} style={{ marginLeft: '5px' }}>Delete</button>
+                      </div>
                     ))}
                   </div>
                 </div>
+
+                <div className="input-field">
+                  <label htmlFor="edit-case-files"><b>Upload New File(s):</b></label>
+                  <input id="edit-case-files" type="file" multiple onChange={(e) => handleFileChange(caseItem.id, e.target.files)} />
+                </div>
+                <button onClick={() => handleUpdateCase(caseItem.id)}>Update</button>
+                <button className='cancel-btn' onClick={() => {
+                  setEditingCaseId(null); // Exit editing mode
+                  setEditedCase({
+                    caseTitle: '',
+                    caseDescription: '',
+                    caseType: '',
+                    caseAssignee: '',
+                  });
+                }}>Cancel</button>
               </div>
-              <div className="case-actions">
-                <button onClick={() => handleDeleteCase(caseItem.id)}>Delete</button>
-                <button onClick={() => toggleEditingMode(caseItem.id)}>Edit</button>
-              </div>
-            </>
-          )}
-        </div>
-      ))}
+            ) : (
+              <>
+                <h3 className="case-title">Title: {caseItem.caseTitle}</h3>
+                <p className="case-description"><b>Description:</b> {caseItem.caseDescription}</p>
+                <div className="case-details">
+                  <p><b>Type:</b> {caseItem.caseType}</p>
+                  <p><b>Assignee:</b> {caseItem.caseAssignee}</p>
+                  <p><b>Filing Date:</b> {new Date(caseItem.filingDateTime).toLocaleString()}</p>
+                  <div>
+                    <h4 className='files-title'>Files:</h4>
+                    <div className="files-list">
+                      {caseItem.files && caseItem.files.map((file, index) => (
+                        <a className="file-link" href={file.downloadURL} target="_blank" rel="noopener noreferrer" key={index}>
+                          {file.filePath}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <div className="case-actions">
+                  <button onClick={() => handleDeleteCase(caseItem.id)}>Delete</button>
+                  <button onClick={() => toggleEditingMode(caseItem.id)}>Edit</button>
+                </div>
+              </>
+            )}
+          </div>
+        ))
+      )}
       <div className="wanted-level">
         <span>Wanted Level:</span>
         {Array.from({ length: wantedLevel }, (_, index) => (

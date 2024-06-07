@@ -10,7 +10,11 @@
   margin: 0 auto;
   background-color: #f9f9f9;
 }
-
+.no-cases-message{
+  color:#fff;
+  text-align: center;
+  padding-top: 200px;
+}
 .case {
   margin-bottom: 20px;
 }
