@@ -57,10 +57,10 @@ function MainPage() {
       
       <div className="first-container">
         <h1 className='greet'>Hello {username}!</h1>
-        <h1 className='main-title'>Welcome to Justice Portal</h1>
+        <h1 className='main-title'>The Realm of Justice</h1>
         <div>
           <p className='main-description'>
-            <strong>Welcome to the Justice Portal</strong>, where legal efficiency meets technological innovation. Our platform revolutionizes case management processes by providing a centralized hub for seamless scheduling, real-time tracking, and comprehensive monitoring of various types of cases across diverse legal domains.
+            <strong>Enter the Realm of Justice</strong>, where legal efficiency meets technological innovation. Our platform revolutionizes case management processes by providing a centralized hub for seamless scheduling, real-time tracking, and comprehensive monitoring of various types of cases across diverse legal domains.
           </p>
           <p className='main-description'>
             Join us in our <strong>mission to enhance the efficiency and effectiveness of judicial proceedings</strong> while upholding the principles of fairness and access to justice for all. Together, let's shape the future of legal practice.
