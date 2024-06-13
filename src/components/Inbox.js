@@ -289,7 +289,6 @@ function Inbox() {
       ))
     )}
 
-
       {isModalOpen && (
         <div className="modal">
           <div className="modal-content">
