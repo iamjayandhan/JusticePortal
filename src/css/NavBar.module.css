@@ -1,143 +1,116 @@
-  .nav {
-    background-color: #1a1a1a;
-    padding: 10px 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-  }
+.nav {
+  background-color: #1a1a1a;
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between; /* Adjust alignment */
+  align-items: center;
+  position: relative; /* Ensure relative positioning */
+}
 
-  .menuToggle {
-    cursor: pointer;
-    display: none; /* Initially hide the menu toggle on larger screens */
-  }
-  
-  .logoLink{
-    text-decoration: none;
-  }
-  .logoContainer {
-    display: flex;
-    align-items: center;
-    margin-right: auto; /* Move the logo to the left-most side */
-  }
-  
-  
-  .logo {
-    width: 40px; /* Adjust the width as needed */
-    height: auto; /* Maintain aspect ratio */
-    margin-left: 10px; /* Add margin to separate the logo from other elements */
-  }
-  .bar {
-    width: 25px;
-    height: 3px;
-    background-color: #fff;
-    margin: 4px 0;
-    transition: transform 0.3s, opacity 0.3s;
-  }
+.menuToggle {
+  cursor: pointer;
+  display: none; /* Initially hide the menu toggle on larger screens */
+}
 
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding-top: 10px;
-    display: flex;
-    justify-content: flex-end; /* Align items to the right */
-  }
-  
-  ul li {
-    margin-left: 20px; /* Add margin-left between list items */
-  }
-  
-  ul li:first-child {
-    margin-left: 0px; /* Align first list item to the right */
-  }
-
-
-  ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: bold;
-    padding: 10px 15px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-    font-family: 'Roboto', Arial, sans-serif;
-  }
-
-  ul li a:hover {
-    background-color: #555;
-  }
-
-  .userSection {
-    display: flex;
-    align-items: center;
-  }
-
-  .userSection span {
-    margin-right: 10px;
-    color: #fff;
-    font-size: 18px;
-    margin-top:-10px;
-  }
-
-  .logoText {
-    font-size: 1.8rem; /* Increase font size */
-    margin-left: 5px; /* Adjust margin as needed */
-    color: white; /* Make text white */
-    text-decoration: none; /* Remove underline */
-    position: relative; /* Position the text relative to the parent */
-    top: -8px; /* Move up slightly */
-    left:10px;
-  }
-
-  /* Media query for mobile view */
-  @media screen and (max-width: 768px) {
-    .menuToggle {
-      display: block; /* Display the menu toggle on smaller screens */
-    }
-
-    ul {
-      flex-direction: column; /* Stack menu items vertically on smaller screens */
-      position: absolute;
-      top: 65px; /* Adjust the top position */
-      left: 0;
-      width: 90%;
-      background-color: #1a1a1a;
-      /* padding: 20px; */
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      z-index: 10001;
-      display: none; /* Initially hide the menu on smaller screens */
-    }
-      
 .logoContainer {
   display: flex;
   align-items: center;
-  margin-right: auto; /* Move the logo to the left-most side */
 }
 
-.logoLink {
-  display: inline-block;
-  width: 100%; /* Ensure the link takes up the full width of its container */
+.logo {
+  width: 40px;
+  height: auto;
+  margin-right: 10px; /* Add margin to separate logo from text */
 }
 
-    ul.active {
-      display: flex; /* Display the menu when active */
-    }
+.logoText {
+  font-size: 1.8rem;
+  color: white;
+  text-decoration: none;
+  position: relative;
+  top: -3px; /* Adjust vertical alignment */
+}
 
-    ul li {
-      margin: 10px 0; /* Adjust margin for menu items */
-    }
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+a{
+  text-decoration: none;
 
-    ul li:first-child {
-      margin-top: 0; /* Reset margin for the first menu item */
-    }
-    .logoText {
-      font-size: 1.5rem; /* Increase font size */
-      margin-left: 5px; /* Adjust margin as needed */
-      color: white; /* Make text white */
-      text-decoration: none; /* Remove underline */
-      position: relative; /* Position the text relative to the parent */
-      top: -8px; /* Move up slightly */
-      left:10px;
-    }
-    
+}
+ul li {
+  margin-left: 20px;
+}
+
+ul li:first-child {
+  margin-left: 0;
+}
+
+ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  font-family: 'Roboto', Arial, sans-serif;
+}
+
+ul li a:hover {
+  background-color: #555;
+}
+
+.userSection {
+  display: flex;
+  align-items: center;
+}
+
+.userSection span {
+  margin-right: 10px;
+  color: #fff;
+  font-size: 18px;
+}
+
+/* Media query for mobile view */
+@media screen and (max-width: 768px) {
+  .menuToggle {
+    display: block; /* Display the menu toggle on smaller screens */
+    margin-left: auto; /* Move toggle to the right */
   }
+
+  ul {
+    flex-direction: column; /* Stack menu items vertically on smaller screens */
+    position: absolute;
+    top: 60px; /* Adjust the top position */
+    left: 0;
+    width: 100%;
+    background-color: #1a1a1a;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 10001;
+    display: none; /* Initially hide the menu on smaller screens */
+  }
+
+  ul.active {
+    display: flex; /* Display the menu when active */
+  }
+
+  ul li {
+    margin: 10px 0;
+  }
+
+  ul li:first-child {
+    margin-top: 0;
+  }
+
+  .logoText {
+    font-size: 1.5rem;
+    top: -3px; /* Adjust vertical alignment */
+    text-decoration: none;
+  }
+}
