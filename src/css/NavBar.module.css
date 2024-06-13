@@ -3,9 +3,8 @@
   padding: 10px 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
-  justify-content: space-between; /* Adjust alignment */
+  justify-content: flex-end;
   align-items: center;
-  position: relative; /* Ensure relative positioning */
 }
 
 .menuToggle {
@@ -13,42 +12,44 @@
   display: none; /* Initially hide the menu toggle on larger screens */
 }
 
+.logoLink {
+  text-decoration: none;
+}
+
 .logoContainer {
   display: flex;
   align-items: center;
+  margin-right: auto; /* Move the logo to the left-most side */
 }
 
 .logo {
-  width: 40px;
-  height: auto;
-  margin-right: 10px; /* Add margin to separate logo from text */
+  width: 40px; /* Adjust the width as needed */
+  height: auto; /* Maintain aspect ratio */
+  margin-left: 10px; /* Add margin to separate the logo from other elements */
 }
 
-.logoText {
-  font-size: 1.8rem;
-  color: white;
-  text-decoration: none;
-  position: relative;
-  top: -3px; /* Adjust vertical alignment */
+.bar {
+  width: 25px;
+  height: 3px;
+  background-color: #fff;
+  margin: 4px 0;
+  transition: transform 0.3s, opacity 0.3s;
 }
 
 ul {
   list-style-type: none;
   margin: 0;
-  padding: 0;
+  padding-top: 10px;
   display: flex;
-  align-items: center;
+  justify-content: flex-end; /* Align items to the right */
 }
-a{
-  text-decoration: none;
 
-}
 ul li {
-  margin-left: 20px;
+  margin-left: 20px; /* Add margin-left between list items */
 }
 
 ul li:first-child {
-  margin-left: 0;
+  margin-left: 0px; /* Align first list item to the right */
 }
 
 ul li a {
@@ -75,25 +76,47 @@ ul li a:hover {
   margin-right: 10px;
   color: #fff;
   font-size: 18px;
+  margin-top: -10px;
+}
+
+.logoText {
+  font-size: 1.8rem; /* Increase font size */
+  margin-left: 5px; /* Adjust margin as needed */
+  color: white; /* Make text white */
+  text-decoration: none; /* Remove underline */
+  position: relative; /* Position the text relative to the parent */
+  top: -8px; /* Move up slightly */
+  left: 10px;
 }
 
 /* Media query for mobile view */
 @media screen and (max-width: 768px) {
   .menuToggle {
     display: block; /* Display the menu toggle on smaller screens */
-    margin-left: auto; /* Move toggle to the right */
   }
 
   ul {
     flex-direction: column; /* Stack menu items vertically on smaller screens */
     position: absolute;
-    top: 60px; /* Adjust the top position */
+    top: 65px; /* Adjust the top position */
     left: 0;
-    width: 100%;
+    width: 90%;
     background-color: #1a1a1a;
+    /* padding: 20px; */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 10001;
     display: none; /* Initially hide the menu on smaller screens */
+  }
+
+  .logoContainer {
+    display: flex;
+    align-items: center;
+    margin-right: auto; /* Move the logo to the left-most side */
+  }
+
+  .logoLink {
+    display: inline-block;
+    width: 100%; /* Ensure the link takes up the full width of its container */
   }
 
   ul.active {
@@ -101,16 +124,60 @@ ul li a:hover {
   }
 
   ul li {
-    margin: 10px 0;
+    margin: 10px 0; /* Adjust margin for menu items */
   }
 
   ul li:first-child {
-    margin-top: 0;
+    margin-top: 0; /* Reset margin for the first menu item */
   }
 
   .logoText {
-    font-size: 1.5rem;
-    top: -3px; /* Adjust vertical alignment */
-    text-decoration: none;
+    font-size: 1.5rem; /* Increase font size */
+    margin-left: 5px; /* Adjust margin as needed */
+    color: white; /* Make text white */
+    text-decoration: none; /* Remove underline */
+    position: relative; /* Position the text relative to the parent */
+    top: -8px; /* Move up slightly */
+    left: 10px;
   }
+}
+
+/* Modal styles */
+.confirmLogoutModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.btnConfirm {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin-right: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.btnCancel {
+  background-color: #6c757d;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
 }
