@@ -219,10 +219,10 @@ function Inbox() {
           {message.type === "reqMsg" && (
             <>
               {message.type && (
-                <p className="message-sender"><b>Type:</b> {message.type}</p>
+                <p className="message-sender"><b>Type:👁️‍🗨️</b>{message.type}</p>
               )}
               {message.from && (
-                <p className="message-sender"><b>From:</b> {message.from}</p>
+                <p className="message-sender"><b>From: 👤</b>{message.from}</p>
               )}
               {message.caseTitle && (
                 <p className="message-details"><b>Case Title:</b> {message.caseTitle}</p>
@@ -238,10 +238,10 @@ function Inbox() {
           {message.type === "hearingMsg" && (
             <>
               {message.type && (
-                <p className="message-sender"><b>Type:</b> {message.type}</p>
+                <p className="message-sender"><b>Type:👁️‍🗨️</b>{message.type}</p>
               )}
               {message.sender && (
-                <p className="message-sender"><b>From:</b> {message.sender}</p>
+                <p className="message-sender"><b>From:👤</b>{message.sender}</p>
               )}
               {message.caseTitle && (
                 <p className="message-sender"><b>Case:</b> {message.caseTitle}</p>
@@ -257,16 +257,16 @@ function Inbox() {
           {message.type === "caseTaken" && (
             <>
               {message.type && (
-                <p className="message-sender"><b>Type:</b> {message.type}</p>
+                <p className="message-sender"><b>Type:</b>👁️‍🗨️{message.type}</p>
               )}
               {message.caseDetails && (
                 <div className="message-details">
                   <p><b>Title:</b> {message.caseDetails.caseTitle}</p>
-                  <p><b>Assignee:</b> {message.caseDetails.caseAssignee}</p>
+                  <p><b>Assignee:</b>👤{message.caseDetails.caseAssignee}</p>
                   <p><b>Case Type:</b> {message.caseDetails.caseType}</p>
                   <p><b>Case Description:</b> {message.caseDetails.caseDescription}</p>
                   <p><b>Filing Date:</b> {message.caseDetails.filingDateTime}</p>
-                  <p><b>Username:</b> {message.caseDetails.username}</p>
+                  <p><b>Username:</b>👤{message.caseDetails.username}</p>
                   {message.caseDetails.files && (
                     <div className="file-links">
                       <p><b>Files:</b></p>
@@ -279,12 +279,12 @@ function Inbox() {
                       ))}
                     </div>
                   )}
-                  <button onClick={() => handleAddHearing(message.caseDetails.id, message.caseDetails)}>Add Hearing Details</button>
+                  <button className='addhear-bn' onClick={() => handleAddHearing(message.caseDetails.id, message.caseDetails)}>Add Hearing Details</button>
                 </div>
               )}
             </>
           )}
-          <button onClick={() => handleDeleteMessage(message.id, message.type)}>Delete</button>
+          <button className='inbox-bn' onClick={() => handleDeleteMessage(message.id, message.type)}>Delete</button>
         </div>
       ))
     )}

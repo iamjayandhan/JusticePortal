@@ -9,7 +9,6 @@
 }
 
 .inbox-heading {
-  /* position: fixed; */
   top: 0;
   left: 0;
   width: 100%;
@@ -36,38 +35,47 @@
 
 /* Message styles */
 .message {
-  width: 50rem;
-  border-radius: 10px;
+  max-width: 50rem;
+  width: 100%;
+  border-radius: 15px;
   padding: 15px;
   margin-bottom: 15px;
-  margin-left:0;
-  background-color: white;
+  background-color: #f9f9f9;
   color: black;
-  box-shadow: 10px 16px 32px rgba(0, 0, 0, 0.1); /* Add a subtle shadow effect */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s, transform 0.3s;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 
 .message:hover {
-  box-shadow: 10px 8px 8px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
   transform: translateY(-5px);
-  background-color: #e0f5ff;
 }
 
 .message-header {
   display: flex;
   justify-content: space-between;
-  align-items: left;
+  align-items: flex-start;
   margin-bottom: 10px;
+}
+
+.message-sender, .message-details, .message-timestamp {
+  margin-bottom: 5px;
 }
 
 .message-timestamp {
   font-size: 12px;
+  color: #666;
 }
 
-.message-details {
+.file-links a {
+  text-decoration: none;
+  color: blue;
   margin-bottom: 5px;
+  display: inline-block;
 }
-
 
 /* Modal styles */
 .modal {
@@ -88,7 +96,8 @@
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  width: 100%;
+  width: 80%;
+  max-width: 500px;
 }
 
 .close {
@@ -106,6 +115,10 @@ textarea {
   width: 100%;
   height: 100px;
   margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  resize: none;
 }
 
 button {
@@ -134,27 +147,31 @@ button:hover {
   margin-right: 0;
 }
 
-.file-links a {
-  text-decoration: none; /* Remove underline */
-  color: blue; 
-}
-/* Styles for reqMsg */
+/* Message type styles */
 .req-message {
-  background-color: #F0F8FF; /* Mint cream */
+  background-color: #f0f8ff; /* Alice blue */
+  border-left: 5px solid #007bff;
 }
 
-/* Styles for hearingMsg */
 .hearing-message {
-  background-color: #F0F8FF; /* Alice blue */
+  background-color: #f0f8ff; /* Alice blue */
+  border-left: 5px solid #28a745;
 }
 
-/* Styles for caseTaken */
 .case-taken-message {
-  background-color: #d5f5c3; /* Lemon chiffon */
+  background-color: #f0f8ff; /* Mint cream */
+  border-left: 5px solid #28a745;
 }
 
+.inbox-bn{
+  width: 6rem;
+  font-size: medium;
 
-
+}
+.addhear-bn{
+  width: 11.5rem;
+  font-size: medium;
+}
 
 /* Media query for mobile view */
 @media screen and (max-width: 768px) {
@@ -163,6 +180,9 @@ button:hover {
     margin-top: 10px; /* Decrease top margin */
   }
 
+  .inbox-bn{
+    margin-left: 5px;
+  }
   .inbox-heading {
     padding: 8px 0; /* Decrease padding */
     font-size: 18px; /* Decrease font size */
@@ -178,33 +198,19 @@ button:hover {
     align-items: center;
     margin-bottom: 20px; /* Add space above the message timestamp */
   }
-  .message-sender,.message-details{
-    margin:5px;
+
+  .message-sender, .message-details {
+    margin: 5px;
   }
 
   .message-timestamp {
     align-self: flex-start; /* Align timestamp to start */
     margin-top: 30px; /* Adjust margin */
-    margin:5px;
-  }
-  .file-links a {
-    text-decoration: none; /* Remove underline */
-    color: blue; 
+    margin: 5px;
   }
 
-  .req-message {
-    background-color: #F0F8FF; /* Mint cream */
+  .file-links a {
+    text-decoration: none; /* Remove underline */
+    color: blue;
   }
-  
-  /* Styles for hearingMsg */
-  .hearing-message {
-    background-color: #F0F8FF; /* Alice blue */
-  }
-  
-  /* Styles for caseTaken */
-  .case-taken-message {
-    background-color: #d5f5c3; /* Lemon chiffon */
-  }
-  
-  
 }
