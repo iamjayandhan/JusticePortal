@@ -34,6 +34,7 @@ function ContactForm() {
             id="email"
             type="email" 
             name="email"
+            required
           />
           <ValidationError 
             prefix="Email" 
@@ -45,6 +46,7 @@ function ContactForm() {
           <textarea
             id="message"
             name="message"
+            required  
           />
           <ValidationError 
             prefix="Message" 
