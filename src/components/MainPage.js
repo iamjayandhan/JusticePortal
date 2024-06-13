@@ -102,7 +102,7 @@ function MainPage() {
 
       <div className='footer' style={{backgroundColor:'#000000',padding:0}}>
         <div className='footer-content'>
-          <p>Contact us: justiceportal22@gmail.com</p>
+          <p>What? look around, found something?</p>
         </div>
       </div>
     </div>
