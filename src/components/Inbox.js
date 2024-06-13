@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { db, storage } from './firebase'; // Import the Firestore database instance and Firebase storage instance
-import { collection, getDocs, addDoc, deleteDoc,getDoc,doc, query, where } from 'firebase/firestore';
+import { collection, getDocs, addDoc, deleteDoc, getDoc, doc, query, where } from 'firebase/firestore';
 import { ref, getDownloadURL } from 'firebase/storage'; // Import the necessary storage functions
 import Cookies from 'js-cookie';
 import '../css/Inbox.css';
@@ -16,6 +16,8 @@ function Inbox() {
   const [hearingDetails, setHearingDetails] = useState('');
   const [snackbarOpen, setSnackbarOpen] = useState(false); // State for Snackbar visibility
   const [snackbarMessage, setSnackbarMessage] = useState(''); // State for Snackbar message
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [messageToDelete, setMessageToDelete] = useState(null);
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -173,44 +175,59 @@ function Inbox() {
     }
   };
 
-  const handleDeleteMessage = async (messageId, messageType) => {
+  const handleOpenDeleteModal = (message) => {
+    setMessageToDelete(message);
+    setIsDeleteModalOpen(true);
+  };
+
+  const handleCloseDeleteModal = () => {
+    setMessageToDelete(null);
+    setIsDeleteModalOpen(false);
+  };
+
+  const handleConfirmDelete = async () => {
+    if (!messageToDelete) return;
+
+    const { id, type } = messageToDelete;
+
     try {
-      const collectionName = messageType === 'reqMsg' ? 'requests' : 'messages';
-      const messageRef = doc(db, collectionName, messageId);
+      const collectionName = type === 'reqMsg' ? 'requests' : 'messages';
+      const messageRef = doc(db, collectionName, id);
       const messageSnapshot = await getDoc(messageRef);
       const messageData = messageSnapshot.data();
-  
+
       await deleteDoc(messageRef);
       console.log("Message deleted from", collectionName);
-  
+
       // Update the state to remove the deleted message
-      setMessages((prevMessages) => prevMessages.filter(message => message.id !== messageId));
+      setMessages((prevMessages) => prevMessages.filter(message => message.id !== id));
       
       setSnackbarMessage('Message deleted successfully!');
       setSnackbarOpen(true);
-  
+
       // Log deletion in the 'log' collection
       const logEntry = {
-        message: `Message with ID ${messageId} deleted from ${collectionName} collection.`,
+        message: `Message with ID ${id} deleted from ${collectionName} collection.`,
         deletionTimestamp: new Date(),
         deletedBy: Cookies.get('username'), // Get lawyer name from cookie
-        messageType: messageType,
+        messageType: type,
         messageData: messageData // Include message data if needed
       };
       const logCollectionRef = collection(db, 'log');
       await addDoc(logCollectionRef, logEntry);
+
+      handleCloseDeleteModal();
     } catch (error) {
       console.error("Error deleting message:", error);
     }
   };
-  
+
   return (
     <div className="inbox-container">
       <div className="inbox-heading">
         <h2 style={{ color: '#fff' }}>INBOX</h2>
       </div>
       
-       
     {messages.length === 0 ? (
       <p style={{color:'#fff', textAlign:'center',paddingTop:'200px'}}>No messages found.</p>
     ) : (
@@ -284,7 +301,7 @@ function Inbox() {
               )}
             </>
           )}
-          <button className='inbox-bn' onClick={() => handleDeleteMessage(message.id, message.type)}>Delete</button>
+          <button className='inbox-bn' onClick={() => handleOpenDeleteModal(message)}>Delete</button>
         </div>
       ))
     )}
@@ -302,6 +319,20 @@ function Inbox() {
             <div className="modal-buttons">
               <button onClick={() => handleSendHearing(selectedCaseId, selectedCaseDetails)}>Send</button>
               <button onClick={handleCloseModal}>Back</button> {/* Back button */}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {isDeleteModalOpen && (
+        <div className="modal">
+          <div className="modal-content">
+            <span className="close" onClick={handleCloseDeleteModal}>&times;</span>
+            <h3>Confirm Deletion</h3>
+            <p>Are you sure you want to delete this message?</p>
+            <div className="modal-buttons">
+              <button onClick={handleConfirmDelete}>Yes</button>
+              <button onClick={handleCloseDeleteModal}>No</button>
             </div>
           </div>
         </div>

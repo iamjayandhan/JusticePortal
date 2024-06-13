@@ -11,6 +11,8 @@ function MyCases() {
   const [editingCaseId, setEditingCaseId] = useState(null); // State to track the case being edited
   const [username, setUsername] = useState(null); // State to store logged-in username
   const [wantedLevel, setWantedLevel] = useState(0); // State to store wanted level
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [caseToDelete, setCaseToDelete] = useState(null);
 
   // Define state variables for editing case details
   const [editedCase, setEditedCase] = useState({
@@ -114,6 +116,7 @@ function MyCases() {
     try {
       await deleteDoc(doc(db, 'cases', caseId));
       setCases((prevCases) => prevCases.filter((item) => item.id !== caseId));
+      setIsDeleteModalOpen(false); // Close the delete confirmation modal
       console.log('Case deleted successfully.');
     } catch (error) {
       console.error('Error deleting case:', error);
@@ -156,11 +159,21 @@ function MyCases() {
     }
   };
 
+  const handleOpenDeleteModal = (caseItem) => {
+    setCaseToDelete(caseItem);
+    setIsDeleteModalOpen(true);
+  };
+
+  const handleCloseDeleteModal = () => {
+    setCaseToDelete(null);
+    setIsDeleteModalOpen(false);
+  };
+
   return (
     <div>
       <h2 style={{color:'#fff'}}>MY CASES</h2>
       {cases.length === 0 ? (
-        <p style={{ color: '#fff',textAlign:'center' ,paddingTop:'250px'}}>No cases found.</p>
+        <p style={{ color: '#fff', textAlign: 'center', paddingTop: '250px' }}>No cases found.</p>
       ) : (
         cases.map((caseItem) => (
           <div className="case-container" key={caseItem.id}>
@@ -205,7 +218,8 @@ function MyCases() {
                 <div className="existing-files">
                   <h4 className='files-title'>Existing Files:</h4>
                   <div className='files-list'>
-                    {caseItem.files.map((file, index) => (
+                   
+                  {caseItem.files.map((file, index) => (
                       <div className='file-item' key={index}>
                         <a className='file-link' href={file.downloadURL} target="_blank" rel="noopener noreferrer" style={{ color: 'black' }}>
                           {file.filePath}
@@ -251,7 +265,7 @@ function MyCases() {
                   </div>
                 </div>
                 <div className="case-actions">
-                  <button onClick={() => handleDeleteCase(caseItem.id)}>Delete</button>
+                  <button onClick={() => handleOpenDeleteModal(caseItem)}>Delete</button>
                   <button onClick={() => toggleEditingMode(caseItem.id)}>Edit</button>
                 </div>
               </>
@@ -265,6 +279,20 @@ function MyCases() {
           <img key={index} src={starImage} alt="star" />
         ))}
       </div>
+
+      {/* Delete Confirmation Modal */}
+      {isDeleteModalOpen && (
+        <div className="delete-modal">
+          <div className="delete-modal-content">
+            <h3>Confirm Deletion</h3>
+            <p>Are you sure you want to delete the case "{caseToDelete.caseTitle}"?</p>
+            <div>
+              <button onClick={() => handleDeleteCase(caseToDelete.id)}>Yes, Delete</button>
+              <button onClick={handleCloseDeleteModal}>Cancel</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
