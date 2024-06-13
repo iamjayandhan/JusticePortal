@@ -116,6 +116,8 @@
   flex: 1 1 30%;
   text-align: center;
   transition: background-color 0.3s ease;
+  border-left: 5px solid #FF5722; /* Adding left border */
+
 }
 
 .feature-item:hover {

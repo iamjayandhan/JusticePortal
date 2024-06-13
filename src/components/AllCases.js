@@ -151,7 +151,7 @@ function AllCases() {
             <h2>Case Details</h2>
             <p><b>Case Title:</b> {selectedCase.caseTitle}</p>
             <p><b>Case Description:</b> {selectedCase.caseDescription}</p>
-            <p><b>Client Name:</b> {selectedCase.caseAssignee}</p>
+            <p><b>Client Name:</b>👤{selectedCase.caseAssignee}</p>
             <p><b>Case Type:</b> {selectedCase.caseType}</p>
             <p><b>Filing Date:</b> {selectedCase.filingDateTime}</p>
             

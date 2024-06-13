@@ -1,11 +1,13 @@
 .case-container {
   border: 1px solid #e6e6e6;
-  border-radius: 10px;
+  border-radius: 15px;
   margin-bottom: 20px;
   padding: 20px;
   background-color: #f9f9f9; /* Light background color */
   transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
   box-shadow: 10px 16px 32px rgba(0, 0, 0, 0.1); /* Add a subtle shadow effect */
+  border-left: 5px solid #007bff; /* Adding left border */
+
 }
 
 /* Blue theme for the case containers */
@@ -24,6 +26,8 @@
     margin-bottom: 20px;
     padding: 20px;
     top:10px;
+    border-left: 5px solid #007bff; /* Adding left border */
+
   }
   
   .case-details {

@@ -5,16 +5,19 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   margin-bottom: 20px;
-  padding: 20px;
+  padding: 10px;
   max-width: 50rem;
   margin: 0 auto;
   background-color: #f9f9f9;
+  border-left: 5px solid #007bff; /* Adding left border */
 }
-.no-cases-message{
-  color:#fff;
+
+.no-cases-message {
+  color: #fff;
   text-align: center;
   padding-top: 200px;
 }
+
 .case {
   margin-bottom: 20px;
 }
@@ -72,11 +75,13 @@ h2 {
 .modal-content-allcases {
   background-color: white;
   padding: 20px;
-  border-radius: 5px;
+  border-radius: 15px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   max-height: 80%;
-  max-width: 100%;
+  width: 50%;
   overflow-y: auto;
+  border-left: 5px solid #007bff; /* Adding left border */
+
 }
 
 .modal h2 {
@@ -121,15 +126,17 @@ h2 {
   margin-right: 0;
 }
 
-button{
-  margin-right:10px;
+button {
+  margin-right: 10px;
 }
+
 /* Media query for mobile view */
 @media screen and (max-width: 768px) {
-  .modal-allcases{
+  .modal-allcases {
     top: 50%; /* Adjust the modal position to center vertically */
     transform: translateY(-50%); /* Center the modal vertically */
   }
+
   .case-container {
     max-width: 20rem;
     padding: 15px;
@@ -146,14 +153,14 @@ button{
   .modal-content-allcases {
     background-color: white;
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 15px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    max-width: 90%;
     max-height: 90%;
+    width: 65%;
     overflow-y: auto;
   }
-  
-  ul li{
+
+  ul li {
     margin: 0; /* Remove all margin spaces */
     padding: 0; /* Remove all padding */
     margin-bottom: 10px;
@@ -162,6 +169,7 @@ button{
   .modal h2 {
     font-size: 1.5rem;
   }
+
   h2 {
     font-size: 1.8rem;
     color: #0f0f0f;
@@ -194,12 +202,10 @@ button{
     margin: 0; /* Remove all margin spaces */
     padding: 0; /* Remove all padding */
   }
+
   .file-link {
     font-size: 1rem;
     color: #0f83ff;
     text-decoration: none;
   }
-
 }
-
-

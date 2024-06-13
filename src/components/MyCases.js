@@ -185,7 +185,7 @@ function MyCases() {
                   />
                 </div>
                 <div className="input-field">
-                  <label htmlFor="edit-case-type"><b>Type:</b></label>
+                  <label htmlFor="edit-case-type"><b>Type:</b>👁️‍🗨️</label>
                   <input
                     id="edit-case-type"
                     type="text"
@@ -194,7 +194,7 @@ function MyCases() {
                   />
                 </div>
                 <div className="input-field">
-                  <label htmlFor="edit-case-assignee"><b>Assignee:</b></label>
+                  <label htmlFor="edit-case-assignee"><b>Assignee:</b>👤</label>
                   <input
                     id="edit-case-assignee"
                     type="text"
@@ -237,7 +237,7 @@ function MyCases() {
                 <p className="case-description"><b>Description:</b> {caseItem.caseDescription}</p>
                 <div className="case-details">
                   <p><b>Type:</b> {caseItem.caseType}</p>
-                  <p><b>Assignee:</b> {caseItem.caseAssignee}</p>
+                  <p><b>Assignee:</b>👤{caseItem.caseAssignee}</p>
                   <p><b>Filing Date:</b> {new Date(caseItem.filingDateTime).toLocaleString()}</p>
                   <div>
                     <h4 className='files-title'>Files:</h4>

@@ -2,97 +2,114 @@
 
 /* Common styles for both desktop and mobile */
 .container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    box-shadow: 10px 16px 32px rgba(0, 0, 0, 0.1); /* Add a subtle shadow effect */
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 10px 16px 32px rgba(0, 0, 0, 0.1); /* Add a subtle shadow effect */
   background-color: #FFFFFF; /* Example background color */
   transition: box-shadow 0.3s ease; /* Add smooth transition for hover effect */
-  margin-top:20px;
-  border-radius: 10px;
+  margin-top: 20px;
+  border-radius: 15px;
+  border-left: 5px solid #007bff; /* Adding left border */
 }
-.container:hover{
-  box-shadow: 10px 8px 8px rgba(0, 0, 0, 0.2); 
-}
-  
 
-.eye-icon{
-  margin-top:-2rem;
+.container:hover {
+  box-shadow: 10px 8px 8px rgba(0, 0, 0, 0.2);
 }
+
+.eye-icon {
+  margin-top: -2rem;
+}
+
 .title {
   padding-top: 2rem;
-    font-size: 2rem;
-    margin-bottom: 20px;
-    color: #fff;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #fff;
 }
-  
+
 .field-container {
-    display: flex; /* Use flexbox */
-    align-items: center; /* Align items vertically */
-    justify-content: space-between; /* Space items evenly */
+  display: flex; /* Use flexbox */
+  align-items: center; /* Align items vertically */
+  justify-content: space-between; /* Space items evenly */
+  padding-left: 10px; /* Add padding to separate content from border */
 }
-  
+
 .field-label {
-    font-size: 1.2rem;
-    margin-bottom: 5px;
-    font-weight: normal; /* Remove bold styling */
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+  font-weight: normal; /* Remove bold styling */
 }
-  
+
 .field-input {
-    width: 100%;
-    padding: 10px;
-    font-size: 1rem;
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
 }
-  
+
 .field-actions {
-    display: flex; /* Use flexbox */
-    align-items: center; /* Align items vertically */
-    padding: 10px; /* Add padding */
+  display: flex; /* Use flexbox */
+  align-items: center; /* Align items vertically */
+  padding: 10px; /* Add padding */
 }
-  
+
 .button {
-    margin-left: 10px; /* Adjust margin */
+  margin-left: 10px; /* Adjust margin */
 }
 
 /* Add space between buttons */
 .button + .button {
-    margin-left: 15px; /* Add space between buttons */
+  margin-left: 15px; /* Add space between buttons */
 }
 
-  /* Media query for mobile devices */
-  @media screen and (max-width: 600px) {
-    .container {
+h2{
+  font-size: 1.8rem;
+      color: #0f0f0f;
+      margin-top: 20px;
+      margin-bottom: 15px;
+      text-align: center;
+}
+/* Media query for mobile devices */
+@media screen and (max-width: 600px) {
+  h2{
+    font-size: 1.8rem;
+        color: #0f0f0f;
+        margin-top: 20px;
+        margin-bottom: 15px;
+        text-align: center;
+  }
+  .container {
       max-width: 90%;
       padding: 10px;
       background-color: #FFFFFF; /* Example background color */
-  transition: box-shadow 0.3s ease; /* Add smooth transition for hover effect */
-  margin-top:20px;
-    }
-    .container:hover{
-      box-shadow: 10px 8px 8px rgba(0, 0, 0, 0.2); 
-    }
-  
-    .title {
+      transition: box-shadow 0.3s ease; /* Add smooth transition for hover effect */
+      margin-top: 20px;
+  }
+  .container:hover {
+      box-shadow: 10px 8px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .title {
       font-size: 1.8rem;
       margin-bottom: 15px;
-    }
-  
-    .field-label {
+  }
+
+  .field-label {
       font-size: 1rem;
       margin-bottom: 3px;
-    }
-  
-    .field-input {
+  }
+
+  .field-input {
       padding: 8px;
       font-size: 0.9rem;
-    }
-  
-    .field-actions {
+  }
+
+  .field-actions {
       margin-top: 8px;
       padding: 8px; /* Add padding */
-    }
-  
-    .button {
-      margin-left: 8px; /* Adjust margin */
-    }
   }
+
+  .button {
+      margin-left: 8px; /* Adjust margin */
+  }
+}
