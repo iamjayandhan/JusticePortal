@@ -151,7 +151,7 @@ function Inbox() {
       };
 
       // After successful registration, send user's email to the server
-      axios.post('http://localhost:5000/api/product/getbill', { userEmail: email, userName: username, mailBody: body, subject: "Case hearing information" })
+      axios.post('https://justice-portal-server.vercel.app/api/submit/message', { userEmail: email, userName: username, mailBody: body, subject: "Case hearing information" })
         .then(response => {
           console.log('Response:', response.data); // Log the response data
           // Handle response
